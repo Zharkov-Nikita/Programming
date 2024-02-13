@@ -17,15 +17,15 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-            EnumsListBox.SetSelected(0, true);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            EnumsListBox.SetSelected(0, true); //Выбор первого элемента в EnumsListBox
+            SeasonHandleCombobox.DataSource = Enum.GetValues(typeof(Season)); //Заполнение Combobox названиями времён года
         }
 
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e) //Заполнение ValuesListBox элементами выбранной категории
         {
             switch (EnumsListBox.SelectedItem)
             {
@@ -50,43 +50,41 @@ namespace Programming
             }
         }
 
-        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e) //Вывод ID выбранного в ValuesListBox элемента
         {
             switch (EnumsListBox.SelectedItem)
             {
                 case "Color":
-                    IntValuesTextBox.Text = Convert.ToString((int)(Model.Color)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(Model.Color)ValuesListBox.SelectedItem);
                     break;
                 case "EducationForm":
-                    IntValuesTextBox.Text = Convert.ToString((int)(EducationForm)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(EducationForm)ValuesListBox.SelectedItem);
                     break;
                 case "Genre":
-                    IntValuesTextBox.Text = Convert.ToString((int)(Genre)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(Genre)ValuesListBox.SelectedItem);
                     break;
                 case "Manufactures":
-                    IntValuesTextBox.Text = Convert.ToString((int)(Manufactures)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(Manufactures)ValuesListBox.SelectedItem);
                     break;
                 case "Season":
-                    IntValuesTextBox.Text = Convert.ToString((int)(Season)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(Season)ValuesListBox.SelectedItem);
                     break;
                 case "Weekday":
-                    IntValuesTextBox.Text = Convert.ToString((int)(Weekday)this.ValuesListBox.SelectedItem);
+                    IntValuesTextBox.Text = Convert.ToString((int)(Weekday)ValuesListBox.SelectedItem);
                     break;
             }
         }
 
-        private void WeekdayParsingButton_Click(object sender, EventArgs e)
+        private void WeekdayParsingButton_Click(object sender, EventArgs e) //Кнопка "Parse"
         {
-            string day = WeekdayParsingTextBox.Text;
-            foreach (Weekday weekday in Enum.GetValues(typeof(Weekday)))
+            try
             {
-                Weekday weekdayValue = (Weekday)Enum.Parse(typeof(Weekday), weekday.ToString());
-
-                if (day == weekdayValue.ToString())
-                {
-                    WeekdayParsingLabel.Text = $"Это день недели ({weekday} = {(int)weekday})";
-                    break;
-                }
+                string day = WeekdayParsingTextBox.Text; //Текст из Textbox
+                Weekday weekdayValue = (Weekday)Enum.Parse(typeof(Weekday), day.ToString());
+                WeekdayParsingLabel.Text = $"Это день недели ({weekdayValue} = {(int)weekdayValue})";
+            }
+            catch
+            {
                 WeekdayParsingLabel.Text = "Нет такого дня недели";
             }
         }
@@ -94,6 +92,26 @@ namespace Programming
         private void WeekdayParsingTextBox_KeyPress(object sender, KeyPressEventArgs e) //Защита от написания чисел и спецсимволов
         {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void SeasonHandleButton_Click(object sender, EventArgs e) //Кнопка "Go!"
+        {
+            this.BackColor = ColorTranslator.FromHtml("#FFFFFF"); //Замена цвета заднего фона на белый
+            switch (SeasonHandleCombobox.SelectedItem.ToString()) //В зависимости от выбранного значения в Combobox
+            {
+                case "Winter":
+                    MessageBox.Show("Бррр! Холодно!"); //Вывод окна с сообщением
+                    break;
+                case "Spring":
+                    this.BackColor = ColorTranslator.FromHtml("#559c45"); //Изменить цвет
+                    break;
+                case "Summer":
+                    MessageBox.Show("Ура! Солнце!"); //Вывод окна с сообщением
+                    break;
+                case "Autumn":
+                    this.BackColor = ColorTranslator.FromHtml("#e29c45"); //Изменить цвет
+                    break;
+            }
         }
     }
 }

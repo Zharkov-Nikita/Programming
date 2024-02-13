@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace Programming
 {
@@ -31,6 +32,10 @@ namespace Programming
         private void InitializeComponent()
         {
             this.Enums = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.SeasonHandleButton = new System.Windows.Forms.Button();
+            this.SeasonHandleCombobox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.WeekdayParsing = new System.Windows.Forms.GroupBox();
             this.WeekdayParsingLabel = new System.Windows.Forms.Label();
             this.WeekdayParsingButton = new System.Windows.Forms.Button();
@@ -43,24 +48,66 @@ namespace Programming
             this.IntValuesTextBox = new System.Windows.Forms.TextBox();
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.EnumsTabControl = new System.Windows.Forms.TabControl();
             this.Enums.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.WeekdayParsing.SuspendLayout();
             this.Enumerations.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.EnumsTabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // Enums
             // 
+            this.Enums.BackColor = System.Drawing.Color.Transparent;
+            this.Enums.Controls.Add(this.groupBox1);
             this.Enums.Controls.Add(this.WeekdayParsing);
             this.Enums.Controls.Add(this.Enumerations);
             this.Enums.Location = new System.Drawing.Point(4, 22);
             this.Enums.Name = "Enums";
             this.Enums.Padding = new System.Windows.Forms.Padding(3);
-            this.Enums.Size = new System.Drawing.Size(692, 424);
+            this.Enums.Size = new System.Drawing.Size(676, 424);
             this.Enums.TabIndex = 0;
             this.Enums.Text = "Enums";
-            this.Enums.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.SeasonHandleButton);
+            this.groupBox1.Controls.Add(this.SeasonHandleCombobox);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Location = new System.Drawing.Point(336, 249);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(335, 137);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Season Handle";
+            // 
+            // SeasonHandleButton
+            // 
+            this.SeasonHandleButton.Location = new System.Drawing.Point(190, 49);
+            this.SeasonHandleButton.Name = "SeasonHandleButton";
+            this.SeasonHandleButton.Size = new System.Drawing.Size(75, 20);
+            this.SeasonHandleButton.TabIndex = 2;
+            this.SeasonHandleButton.Text = "Go!";
+            this.SeasonHandleButton.UseVisualStyleBackColor = true;
+            this.SeasonHandleButton.Click += new System.EventHandler(this.SeasonHandleButton_Click);
+            // 
+            // SeasonHandleCombobox
+            // 
+            this.SeasonHandleCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SeasonHandleCombobox.FormattingEnabled = true;
+            this.SeasonHandleCombobox.Location = new System.Drawing.Point(9, 49);
+            this.SeasonHandleCombobox.Name = "SeasonHandleCombobox";
+            this.SeasonHandleCombobox.Size = new System.Drawing.Size(163, 21);
+            this.SeasonHandleCombobox.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Choose season:";
             // 
             // WeekdayParsing
             // 
@@ -70,7 +117,7 @@ namespace Programming
             this.WeekdayParsing.Controls.Add(this.label4);
             this.WeekdayParsing.Location = new System.Drawing.Point(0, 249);
             this.WeekdayParsing.Name = "WeekdayParsing";
-            this.WeekdayParsing.Size = new System.Drawing.Size(302, 137);
+            this.WeekdayParsing.Size = new System.Drawing.Size(318, 137);
             this.WeekdayParsing.TabIndex = 1;
             this.WeekdayParsing.TabStop = false;
             this.WeekdayParsing.Text = "Weekday parsing";
@@ -113,6 +160,7 @@ namespace Programming
             // 
             // Enumerations
             // 
+            this.Enumerations.BackColor = System.Drawing.Color.Transparent;
             this.Enumerations.Controls.Add(this.label3);
             this.Enumerations.Controls.Add(this.label2);
             this.Enumerations.Controls.Add(this.label1);
@@ -121,7 +169,7 @@ namespace Programming
             this.Enumerations.Controls.Add(this.EnumsListBox);
             this.Enumerations.Location = new System.Drawing.Point(0, 0);
             this.Enumerations.Name = "Enumerations";
-            this.Enumerations.Size = new System.Drawing.Size(426, 235);
+            this.Enumerations.Size = new System.Drawing.Size(671, 235);
             this.Enumerations.TabIndex = 0;
             this.Enumerations.TabStop = false;
             this.Enumerations.Text = "Enumerations";
@@ -185,31 +233,34 @@ namespace Programming
             this.EnumsListBox.TabIndex = 0;
             this.EnumsListBox.SelectedIndexChanged += new System.EventHandler(this.EnumsListBox_SelectedIndexChanged);
             // 
-            // tabControl1
+            // EnumsTabControl
             // 
-            this.tabControl1.Controls.Add(this.Enums);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(700, 450);
-            this.tabControl1.TabIndex = 0;
+            this.EnumsTabControl.Controls.Add(this.Enums);
+            this.EnumsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.EnumsTabControl.Location = new System.Drawing.Point(0, 0);
+            this.EnumsTabControl.Name = "EnumsTabControl";
+            this.EnumsTabControl.SelectedIndex = 0;
+            this.EnumsTabControl.Size = new System.Drawing.Size(684, 450);
+            this.EnumsTabControl.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 450);
-            this.Controls.Add(this.tabControl1);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(684, 450);
+            this.Controls.Add(this.EnumsTabControl);
             this.Name = "MainForm";
             this.Text = "Programming Demo";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Enums.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.WeekdayParsing.ResumeLayout(false);
             this.WeekdayParsing.PerformLayout();
             this.Enumerations.ResumeLayout(false);
             this.Enumerations.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.EnumsTabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -217,7 +268,7 @@ namespace Programming
         #endregion
 
         private System.Windows.Forms.TabPage Enums;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl EnumsTabControl;
         private System.Windows.Forms.GroupBox Enumerations;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -230,6 +281,10 @@ namespace Programming
         private System.Windows.Forms.TextBox WeekdayParsingTextBox;
         private System.Windows.Forms.Button WeekdayParsingButton;
         private System.Windows.Forms.Label WeekdayParsingLabel;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button SeasonHandleButton;
+        private System.Windows.Forms.ComboBox SeasonHandleCombobox;
     }
 }
 
