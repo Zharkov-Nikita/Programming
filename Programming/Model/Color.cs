@@ -13,6 +13,7 @@ namespace Programming.Model
         Green,
         Yellow,
         Gray,
+        Gray2,
         Brown,
         Purple,
         White,
