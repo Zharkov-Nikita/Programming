@@ -150,6 +150,12 @@ namespace Programming
         /// </summary>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!RectanglesLenghtTextBox.Enabled)
+            {
+                RectanglesLenghtTextBox.Enabled = true;
+                RectanglesWidthTextBox.Enabled = true;
+                RectanglesColorTextBox.Enabled = true;
+            }
             _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
             RectanglesLenghtTextBox.Text = _currentRectangle.Lenght.ToString();
             RectanglesWidthTextBox.Text = _currentRectangle.Width.ToString();
@@ -229,6 +235,14 @@ namespace Programming
         /// </summary>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!MoviesNameTextBox.Enabled)
+            {
+                MoviesNameTextBox.Enabled = true;
+                MoviesDurationTextBox.Enabled = true;
+                MoviesYearOfReleaseTextBox.Enabled = true;
+                MoviesGenreTextBox.Enabled = true;
+                MoviesRatingTextBox.Enabled = true;
+            }
             _currentMovie = _movies[MoviesListBox.SelectedIndex];
             MoviesNameTextBox.Text = _currentMovie.Name.ToString();
             MoviesDurationTextBox.Text = _currentMovie.Duration.ToString();
@@ -250,7 +264,15 @@ namespace Programming
         /// </summary>
         private void MoviesDurationTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                _currentMovie.Duration = Convert.ToInt32(MoviesDurationTextBox.Text);
+                MoviesDurationTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                MoviesDurationTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
 
         /// <summary>
@@ -258,7 +280,15 @@ namespace Programming
         /// </summary>
         private void MoviesYearOfReleaseTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                _currentMovie.YearOfRelease = Convert.ToInt32(MoviesYearOfReleaseTextBox.Text);
+                MoviesYearOfReleaseTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                MoviesYearOfReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
 
         /// <summary>
@@ -266,7 +296,7 @@ namespace Programming
         /// </summary>
         private void MoviesGenreTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            _currentMovie.Genre = MoviesGenreTextBox.Text;
         }
 
         /// <summary>
@@ -274,7 +304,43 @@ namespace Programming
         /// </summary>
         private void MoviesRatingTextBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                _currentMovie.Rating = Convert.ToDouble(MoviesRatingTextBox.Text);
+                MoviesRatingTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                MoviesRatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
 
+        /// <summary>
+        /// Находит фильм с наивысшим рейтингом
+        /// </summary>
+        /// <param name="rectangles"></param>
+        /// <returns>Возвращает индекс найденного фильма</returns>
+        private int FindMovieWithMaxRating(Movie[] movies)
+        {
+            double max = 0;
+            int maxIndex = 0;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Rating > max)
+                {
+                    max = movies[i].Rating;
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+
+        /// <summary>
+        /// Выделяет полученный фильм
+        /// </summary>
+        private void MoviesFindButton_Click(object sender, EventArgs e)
+        {
+            MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
         }
     }
 }

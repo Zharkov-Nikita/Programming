@@ -55,7 +55,7 @@ namespace Programming
             this.MoviesGenreTextBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.MoviesFindButton = new System.Windows.Forms.Button();
             this.MoviesYearOfReleaseTextBox = new System.Windows.Forms.TextBox();
             this.MoviesDurationTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -288,7 +288,7 @@ namespace Programming
             this.groupBox2.Controls.Add(this.MoviesGenreTextBox);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.MoviesFindButton);
             this.groupBox2.Controls.Add(this.MoviesYearOfReleaseTextBox);
             this.groupBox2.Controls.Add(this.MoviesDurationTextBox);
             this.groupBox2.Controls.Add(this.label9);
@@ -305,6 +305,7 @@ namespace Programming
             // 
             // MoviesRatingTextBox
             // 
+            this.MoviesRatingTextBox.Enabled = false;
             this.MoviesRatingTextBox.Location = new System.Drawing.Point(135, 193);
             this.MoviesRatingTextBox.Name = "MoviesRatingTextBox";
             this.MoviesRatingTextBox.Size = new System.Drawing.Size(100, 20);
@@ -313,6 +314,7 @@ namespace Programming
             // 
             // MoviesGenreTextBox
             // 
+            this.MoviesGenreTextBox.Enabled = false;
             this.MoviesGenreTextBox.Location = new System.Drawing.Point(135, 154);
             this.MoviesGenreTextBox.Name = "MoviesGenreTextBox";
             this.MoviesGenreTextBox.Size = new System.Drawing.Size(100, 20);
@@ -337,17 +339,19 @@ namespace Programming
             this.label12.TabIndex = 9;
             this.label12.Text = "Genre:";
             // 
-            // button1
+            // MoviesFindButton
             // 
-            this.button1.Location = new System.Drawing.Point(135, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 20);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Find";
-            this.button1.UseVisualStyleBackColor = true;
+            this.MoviesFindButton.Location = new System.Drawing.Point(135, 237);
+            this.MoviesFindButton.Name = "MoviesFindButton";
+            this.MoviesFindButton.Size = new System.Drawing.Size(100, 20);
+            this.MoviesFindButton.TabIndex = 8;
+            this.MoviesFindButton.Text = "Find";
+            this.MoviesFindButton.UseVisualStyleBackColor = true;
+            this.MoviesFindButton.Click += new System.EventHandler(this.MoviesFindButton_Click);
             // 
             // MoviesYearOfReleaseTextBox
             // 
+            this.MoviesYearOfReleaseTextBox.Enabled = false;
             this.MoviesYearOfReleaseTextBox.Location = new System.Drawing.Point(135, 115);
             this.MoviesYearOfReleaseTextBox.Name = "MoviesYearOfReleaseTextBox";
             this.MoviesYearOfReleaseTextBox.Size = new System.Drawing.Size(100, 20);
@@ -356,6 +360,7 @@ namespace Programming
             // 
             // MoviesDurationTextBox
             // 
+            this.MoviesDurationTextBox.Enabled = false;
             this.MoviesDurationTextBox.Location = new System.Drawing.Point(135, 75);
             this.MoviesDurationTextBox.Name = "MoviesDurationTextBox";
             this.MoviesDurationTextBox.Size = new System.Drawing.Size(100, 20);
@@ -391,6 +396,7 @@ namespace Programming
             // 
             // MoviesNameTextBox
             // 
+            this.MoviesNameTextBox.Enabled = false;
             this.MoviesNameTextBox.Location = new System.Drawing.Point(135, 35);
             this.MoviesNameTextBox.Name = "MoviesNameTextBox";
             this.MoviesNameTextBox.Size = new System.Drawing.Size(100, 20);
@@ -442,6 +448,7 @@ namespace Programming
             // 
             // RectanglesColorTextBox
             // 
+            this.RectanglesColorTextBox.Enabled = false;
             this.RectanglesColorTextBox.Location = new System.Drawing.Point(135, 115);
             this.RectanglesColorTextBox.Name = "RectanglesColorTextBox";
             this.RectanglesColorTextBox.Size = new System.Drawing.Size(100, 20);
@@ -450,6 +457,7 @@ namespace Programming
             // 
             // RectanglesWidthTextBox
             // 
+            this.RectanglesWidthTextBox.Enabled = false;
             this.RectanglesWidthTextBox.Location = new System.Drawing.Point(135, 75);
             this.RectanglesWidthTextBox.Name = "RectanglesWidthTextBox";
             this.RectanglesWidthTextBox.Size = new System.Drawing.Size(100, 20);
@@ -485,6 +493,7 @@ namespace Programming
             // 
             // RectanglesLenghtTextBox
             // 
+            this.RectanglesLenghtTextBox.Enabled = false;
             this.RectanglesLenghtTextBox.Location = new System.Drawing.Point(135, 35);
             this.RectanglesLenghtTextBox.Name = "RectanglesLenghtTextBox";
             this.RectanglesLenghtTextBox.Size = new System.Drawing.Size(100, 20);
@@ -564,7 +573,7 @@ namespace Programming
         private TextBox RectanglesColorTextBox;
         private TextBox RectanglesWidthTextBox;
         private GroupBox groupBox2;
-        private Button button1;
+        private Button MoviesFindButton;
         private TextBox MoviesYearOfReleaseTextBox;
         private TextBox MoviesDurationTextBox;
         private Label label9;
