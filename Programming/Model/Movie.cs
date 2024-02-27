@@ -74,5 +74,7 @@ namespace Programming.Model
             Genre = genre;
             Rating = rating;
         }
+
+        public Movie() { }
     }
 }

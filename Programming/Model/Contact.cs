@@ -34,5 +34,7 @@ namespace Programming.Model
             Name = name;
             Number = number;
         }
+
+        public Contact() { }
     }
 }

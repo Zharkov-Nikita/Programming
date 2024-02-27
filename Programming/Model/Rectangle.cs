@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Programming.Model
 {
     public class Rectangle
     {
-        private double _lenght;
-        private double _width;
+        private int _lenght;
+        private int _width;
         private string _color;
 
-        public double Lenght
+        public int Lenght
         {
             get
             {
@@ -28,7 +29,7 @@ namespace Programming.Model
             }
         }
 
-        public double Width
+        public int Width
         {
             get
             {
@@ -46,11 +47,13 @@ namespace Programming.Model
 
         public string Color { get; set; }
 
-        public Rectangle(double lenght, double width, string color)
+        public Rectangle(int lenght, int width, string color)
         {
             Lenght = lenght;
             Width = width;
             Color = color;
         }
+
+        public Rectangle() { }
     }
 }

@@ -66,5 +66,7 @@ namespace Programming.Model
             Minutes = minutes;
             Seconds = seconds;
         }
+
+        public Time() { }
     }
 }

@@ -37,5 +37,7 @@ namespace Programming.Model
             Destination = destination;
             FlightTime = flightTime;
         }
+
+        public Flight() { }
     }
 }

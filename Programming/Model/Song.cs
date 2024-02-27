@@ -37,5 +37,7 @@ namespace Programming.Model
             Author = author;
             Duration = duration;
         }
+
+        public Song() { }
     }
 }

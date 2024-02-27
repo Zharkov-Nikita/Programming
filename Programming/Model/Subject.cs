@@ -37,5 +37,7 @@ namespace Programming.Model
             Teacher = teacher;
             Grade = grade;
         }
+
+        public Subject() { }
     }
 }
