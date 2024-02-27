@@ -40,7 +40,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 1900)
+                if (value < 1900 || value > 2025)
                 {
                     throw new ArgumentException();
                 }
@@ -66,6 +66,14 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Movie"/>.
+        /// </summary>
+        /// <param name="name">Название. Нет ограничений.</param>
+        /// <param name="duration">Продолжительность в минутах. Не может быть отрицательным.</param>
+        /// <param name="yearOfRelease">Год выпуска. Больше 1900 и меньше 2025</param>
+        /// <param name="genre">Жанр. Нет ограничений.</param>
+        /// <param name="rating">Рейтинг. Не может быть отрицательным и больше 10</param>
         public Movie(string name, int duration, int yearOfRelease, string genre, double rating)
         {
             Name = name;

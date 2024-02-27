@@ -205,7 +205,7 @@ namespace Programming
         /// <summary>
         /// Находит прямоугольник с наибольшей шириной
         /// </summary>
-        /// <param name="rectangles"></param>
+        /// <param name="rectangles">Массив прямоугольников</param>
         /// <returns>Возвращает индекс найденного прямоугольника</returns>
         private int FindRectangleWithMaxWidth(Model.Rectangle[] rectangles)
         {
@@ -318,7 +318,7 @@ namespace Programming
         /// <summary>
         /// Находит фильм с наивысшим рейтингом
         /// </summary>
-        /// <param name="rectangles"></param>
+        /// <param name="movies">Массив фильмов</param>
         /// <returns>Возвращает индекс найденного фильма</returns>
         private int FindMovieWithMaxRating(Movie[] movies)
         {

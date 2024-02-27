@@ -29,6 +29,11 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="name">Имя. Не имеет ограничений.</param>
+        /// <param name="number">Номер телефона. Не может быть длиннее 11 знаков.</param>
         public Contact(string name, long number)
         {
             Name = name;

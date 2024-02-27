@@ -31,6 +31,12 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Song"/>.
+        /// </summary>
+        /// <param name="name">Название. Нет ограничений.</param>
+        /// <param name="author">Автор. Нет ограничений.</param>
+        /// <param name="duration">Продолжительность. Не может быть отрицательным и равным 0.</param>
         public Song(string name, string author, int duration)
         {
             Name = name;

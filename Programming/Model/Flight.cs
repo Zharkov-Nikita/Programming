@@ -31,6 +31,12 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Flight"/>.
+        /// </summary>
+        /// <param name="departurePoint">Пункт вылета. Не имеет ограничений.</param>
+        /// <param name="destination">Пункт назначения. Не имеет ограничений.</param>
+        /// <param name="flightTime">Время полёта в минутах. Не может быть отрицательным.</param>
         public Flight(string departurePoint, string destination, int flightTime)
         {
             DeparturePoint = departurePoint;

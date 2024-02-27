@@ -47,6 +47,12 @@ namespace Programming.Model
 
         public string Color { get; set; }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Rectangle"/>.
+        /// </summary>
+        /// <param name="lenght">Длина. Не может быть отрицательным.</param>
+        /// <param name="width">Ширина. Не может быть отрицательным.</param>
+        /// <param name="color">Цвет. Нет ограничений.</param>
         public Rectangle(int lenght, int width, string color)
         {
             Lenght = lenght;

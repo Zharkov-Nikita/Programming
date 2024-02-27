@@ -60,6 +60,12 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Time"/>.
+        /// </summary>
+        /// <param name="hours">Часы. Не может быть меньше 0 и больше 60.</param>
+        /// <param name="minutes">Минуты. Не может быть меньше 0 и больше 60.</param>
+        /// <param name="seconds">Секунды. Не может быть меньше 0 и больше 60.</param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;
