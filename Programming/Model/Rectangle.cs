@@ -12,6 +12,7 @@ namespace Programming.Model
         private int _lenght;
         private int _width;
         private string _color;
+        private Point2D _center;
 
         public int Lenght
         {
@@ -41,17 +42,20 @@ namespace Programming.Model
 
         public string Color { get; set; }
 
+        public Point2D Center { get; set; }
+
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Rectangle"/>.
         /// </summary>
         /// <param name="lenght">Длина. Не может быть отрицательным.</param>
         /// <param name="width">Ширина. Не может быть отрицательным.</param>
         /// <param name="color">Цвет. Нет ограничений.</param>
-        public Rectangle(int lenght, int width, string color)
+        public Rectangle(int lenght, int width, string color, Point2D center)
         {
             Lenght = lenght;
             Width = width;
             Color = color;
+            Center = center;
         }
 
         public Rectangle() { }

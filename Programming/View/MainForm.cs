@@ -28,7 +28,7 @@ namespace Programming
             //Заполнения массива с прямоугольниками
             for (int i = 0; i < 5; i++)
             {
-                Model.Rectangle rectangle = new Model.Rectangle(rand.Next(1, 31), rand.Next(1, 31), _color[rand.Next(0, 9)].ToString());
+                Model.Rectangle rectangle = new Model.Rectangle(rand.Next(1, 31), rand.Next(1, 31), _color[rand.Next(0, 9)].ToString(), new Point2D(rand.Next(0, 51), rand.Next(0, 51)));
                 _rectangles[i] = rectangle;
             }
 
@@ -160,6 +160,8 @@ namespace Programming
             RectanglesLenghtTextBox.Text = _currentRectangle.Lenght.ToString();
             RectanglesWidthTextBox.Text = _currentRectangle.Width.ToString();
             RectanglesColorTextBox.Text = _currentRectangle.Color.ToString();
+            RectanglesCenterXTextBox.Text = _currentRectangle.Center.X.ToString();
+            RectanglesCenterYTextBox.Text = _currentRectangle.Center.Y.ToString();
         }
 
         /// <summary>
@@ -341,6 +343,16 @@ namespace Programming
         private void MoviesFindButton_Click(object sender, EventArgs e)
         {
             MoviesListBox.SelectedIndex = FindMovieWithMaxRating(_movies);
+        }
+
+        private void RectanglesCenterXTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RectanglesCenterYTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }
