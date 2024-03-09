@@ -20,10 +20,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 60)
-                {
-                    throw new ArgumentException();
-                }
+                Validator.AssertValueInRange(value, 0, 60);
                 _hours = value;
             }
         }
@@ -36,10 +33,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 60)
-                {
-                    throw new ArgumentException();
-                }
+                Validator.AssertValueInRange(value, 0, 60);
                 _minutes = value;
             }
         }
@@ -52,10 +46,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 60)
-                {
-                    throw new ArgumentException();
-                }
+                Validator.AssertValueInRange(value, 0, 60);
                 _seconds = value;
             }
         }

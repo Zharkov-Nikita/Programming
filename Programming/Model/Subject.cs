@@ -23,10 +23,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 1 || value > 5)
-                {
-                    throw new ArgumentException();
-                }
+                Validator.AssertValueInRange(value, 1, 5);
                 _grade = value;
             }
         }
