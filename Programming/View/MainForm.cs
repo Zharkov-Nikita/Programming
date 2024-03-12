@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Programming
 {
@@ -162,6 +163,7 @@ namespace Programming
             RectanglesColorTextBox.Text = _currentRectangle.Color.ToString();
             RectanglesCenterXTextBox.Text = _currentRectangle.Center.X.ToString();
             RectanglesCenterYTextBox.Text = _currentRectangle.Center.Y.ToString();
+            RectanglesIdTextBox.Text = _currentRectangle.Id.ToString();
         }
 
         /// <summary>
@@ -351,6 +353,11 @@ namespace Programming
         }
 
         private void RectanglesCenterYTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RectanglesIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
         }

@@ -20,8 +20,8 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertOnPositiveValue(value);
-                if (value < _innerRadius)
+                Validator.AssertOnPositiveValue(value, nameof(OuterRadius));
+                if (value <= _innerRadius)
                 {
                     throw new ArgumentException();
                 }
@@ -37,8 +37,8 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertOnPositiveValue(value);
-                if (value > _outerRadius)
+                Validator.AssertOnPositiveValue(value, nameof(InnerRadius));
+                if (value >= _outerRadius)
                 {
                     throw new ArgumentException();
                 }

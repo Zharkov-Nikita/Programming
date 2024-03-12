@@ -64,6 +64,12 @@ namespace Programming
             this.MoviesNameTextBox = new System.Windows.Forms.TextBox();
             this.MoviesListBox = new System.Windows.Forms.ListBox();
             this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
+            this.RectanglesIdTextBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.RectanglesCenterYTextBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.RectanglesCenterXTextBox = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.RectanglesFindButton = new System.Windows.Forms.Button();
             this.RectanglesColorTextBox = new System.Windows.Forms.TextBox();
             this.RectanglesWidthTextBox = new System.Windows.Forms.TextBox();
@@ -72,10 +78,6 @@ namespace Programming
             this.label8 = new System.Windows.Forms.Label();
             this.RectanglesLenghtTextBox = new System.Windows.Forms.TextBox();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.RectanglesCenterXTextBox = new System.Windows.Forms.TextBox();
-            this.RectanglesCenterYTextBox = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.Enums.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.WeekdayParsing.SuspendLayout();
@@ -425,6 +427,8 @@ namespace Programming
             // RectanglesGroupBox
             // 
             this.RectanglesGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.RectanglesGroupBox.Controls.Add(this.RectanglesIdTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.label16);
             this.RectanglesGroupBox.Controls.Add(this.RectanglesCenterYTextBox);
             this.RectanglesGroupBox.Controls.Add(this.label15);
             this.RectanglesGroupBox.Controls.Add(this.RectanglesCenterXTextBox);
@@ -439,14 +443,65 @@ namespace Programming
             this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
             this.RectanglesGroupBox.Location = new System.Drawing.Point(3, 3);
             this.RectanglesGroupBox.Name = "RectanglesGroupBox";
-            this.RectanglesGroupBox.Size = new System.Drawing.Size(285, 277);
+            this.RectanglesGroupBox.Size = new System.Drawing.Size(285, 315);
             this.RectanglesGroupBox.TabIndex = 1;
             this.RectanglesGroupBox.TabStop = false;
             this.RectanglesGroupBox.Text = "Rectangles";
             // 
+            // RectanglesIdTextBox
+            // 
+            this.RectanglesIdTextBox.Location = new System.Drawing.Point(135, 233);
+            this.RectanglesIdTextBox.Name = "RectanglesIdTextBox";
+            this.RectanglesIdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.RectanglesIdTextBox.TabIndex = 14;
+            this.RectanglesIdTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RectanglesIdTextBox_KeyPress);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(132, 216);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 13);
+            this.label16.TabIndex = 13;
+            this.label16.Text = "Id:";
+            // 
+            // RectanglesCenterYTextBox
+            // 
+            this.RectanglesCenterYTextBox.Location = new System.Drawing.Point(135, 193);
+            this.RectanglesCenterYTextBox.Name = "RectanglesCenterYTextBox";
+            this.RectanglesCenterYTextBox.Size = new System.Drawing.Size(100, 20);
+            this.RectanglesCenterYTextBox.TabIndex = 12;
+            this.RectanglesCenterYTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RectanglesCenterYTextBox_KeyPress);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(132, 178);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 13);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "Center Y:";
+            // 
+            // RectanglesCenterXTextBox
+            // 
+            this.RectanglesCenterXTextBox.Location = new System.Drawing.Point(135, 153);
+            this.RectanglesCenterXTextBox.Name = "RectanglesCenterXTextBox";
+            this.RectanglesCenterXTextBox.Size = new System.Drawing.Size(100, 20);
+            this.RectanglesCenterXTextBox.TabIndex = 10;
+            this.RectanglesCenterXTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RectanglesCenterXTextBox_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(132, 138);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(51, 13);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Center X:";
+            // 
             // RectanglesFindButton
             // 
-            this.RectanglesFindButton.Location = new System.Drawing.Point(132, 237);
+            this.RectanglesFindButton.Location = new System.Drawing.Point(135, 276);
             this.RectanglesFindButton.Name = "RectanglesFindButton";
             this.RectanglesFindButton.Size = new System.Drawing.Size(100, 20);
             this.RectanglesFindButton.TabIndex = 8;
@@ -519,43 +574,9 @@ namespace Programming
             "Rectangle 5"});
             this.RectanglesListBox.Location = new System.Drawing.Point(6, 19);
             this.RectanglesListBox.Name = "RectanglesListBox";
-            this.RectanglesListBox.Size = new System.Drawing.Size(120, 238);
+            this.RectanglesListBox.Size = new System.Drawing.Size(120, 277);
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(132, 138);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(51, 13);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "Center X:";
-            // 
-            // RectanglesCenterXTextBox
-            // 
-            this.RectanglesCenterXTextBox.Location = new System.Drawing.Point(135, 153);
-            this.RectanglesCenterXTextBox.Name = "RectanglesCenterXTextBox";
-            this.RectanglesCenterXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.RectanglesCenterXTextBox.TabIndex = 10;
-            this.RectanglesCenterXTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RectanglesCenterXTextBox_KeyPress);
-            // 
-            // RectanglesCenterYTextBox
-            // 
-            this.RectanglesCenterYTextBox.Location = new System.Drawing.Point(135, 193);
-            this.RectanglesCenterYTextBox.Name = "RectanglesCenterYTextBox";
-            this.RectanglesCenterYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.RectanglesCenterYTextBox.TabIndex = 12;
-            this.RectanglesCenterYTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RectanglesCenterYTextBox_KeyPress);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(132, 178);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(51, 13);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Center Y:";
             // 
             // MainForm
             // 
@@ -631,6 +652,8 @@ namespace Programming
         private TextBox RectanglesCenterYTextBox;
         private Label label15;
         private TextBox RectanglesCenterXTextBox;
+        private TextBox RectanglesIdTextBox;
+        private Label label16;
     }
 }
 

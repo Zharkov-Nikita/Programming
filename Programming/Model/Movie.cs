@@ -24,7 +24,7 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }
@@ -37,7 +37,7 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertValueInRange(value, 1900, 2025);
+                Validator.AssertValueInRange(value, 1900, 2025, nameof(YearOfRelease));
                 _yearOfRelease = value;
             }
         }
@@ -52,10 +52,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 10)
-                {
-                    throw new ArgumentException();
-                }
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
                 _rating = value;
             }
         }

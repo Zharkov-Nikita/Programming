@@ -13,6 +13,8 @@ namespace Programming.Model
         private int _width;
         private string _color;
         private Point2D _center;
+        private static int _allRectanglesCount = 0;
+        private readonly int _id;
 
         public int Lenght
         {
@@ -22,7 +24,7 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Lenght));
                 _lenght = value;
             }
         }
@@ -35,7 +37,7 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
         }
@@ -43,6 +45,10 @@ namespace Programming.Model
         public string Color { get; set; }
 
         public Point2D Center { get; set; }
+
+        public static int AllRectanglesCount { get; }
+
+        public int Id { get; private set; }
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Rectangle"/>.
@@ -56,6 +62,8 @@ namespace Programming.Model
             Width = width;
             Color = color;
             Center = center;
+            Id = _allRectanglesCount;
+            _allRectanglesCount++;
         }
 
         public Rectangle() { }

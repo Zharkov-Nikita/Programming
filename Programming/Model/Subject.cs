@@ -23,7 +23,7 @@ namespace Programming.Model
             }
             set
             {
-                Validator.AssertValueInRange(value, 1, 5);
+                Validator.AssertValueInRange(value, 1, 5, nameof(Grade));
                 _grade = value;
             }
         }

@@ -19,7 +19,7 @@ namespace Programming.Model
             }
             private set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(X));
                 _x = value;
             }
         }
@@ -32,7 +32,7 @@ namespace Programming.Model
             }
             private set
             {
-                Validator.AssertOnPositiveValue(value);
+                Validator.AssertOnPositiveValue(value, nameof(Y));
                 _y = value;
             }
         }

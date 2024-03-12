@@ -23,7 +23,7 @@ namespace Programming.Model
             {
                 if (!AssertStringContainsOnlyLetters(value))
                 {
-                    throw new ArgumentException("Name записано неверно");
+                    throw new ArgumentException(nameof(Name) + " записано неверно");
                 }
                 _name = value;
             }
@@ -39,7 +39,7 @@ namespace Programming.Model
             {
                 if (!AssertStringContainsOnlyLetters(value))
                 {
-                    throw new ArgumentException("Surname записано неверно");
+                    throw new ArgumentException(nameof(Surname) + " записано неверно");
                 }
                 _surname = value;
             }
