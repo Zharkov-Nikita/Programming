@@ -24,13 +24,17 @@ namespace Programming
         {
             EnumsListBox.SetSelected(0, true); //Выбор первого элемента в EnumsListBox
             SeasonHandleCombobox.DataSource = Enum.GetValues(typeof(Season)); //Заполнение Combobox названиями времён года
-
-            Random rand = new Random(); //Функция для рандомного числа
+            
             //Заполнения массива с прямоугольниками
             for (int i = 0; i < 5; i++)
             {
-                Model.Rectangle rectangle = new Model.Rectangle(rand.Next(1, 31), rand.Next(1, 31), _color[rand.Next(0, 9)].ToString(), new Point2D(rand.Next(0, 51), rand.Next(0, 51)));
+                Model.Rectangle rectangle = new Model.Rectangle(rand.Next(30, 121), rand.Next(30, 121), _color[rand.Next(0, 9)].ToString(), new Point2D(rand.Next(5, 301), rand.Next(5, 301)));
                 _rectangles[i] = rectangle;
+                _rectangles2.Add(rectangle);
+
+                string _item = ($"{rectangle.Id}: (X = {rectangle.Center.X}; Y = {rectangle.Center.Y}; W = {rectangle.Width}; H = {rectangle.Lenght})").ToString();
+                RectanglesRectanglesListBox.Items.Add(_item);
+                AddPanel(rectangle);
             }
 
             //Заполнения массива с фильмами
@@ -41,8 +45,14 @@ namespace Programming
             }
         }
 
+        Random rand = new Random(); //Функция для рандомного числа
+
         private Model.Rectangle[] _rectangles = new Model.Rectangle[5]; //Массив с прямоугольниками
         private Model.Rectangle _currentRectangle;
+
+        private List<Model.Rectangle> _rectangles2 = new List<Model.Rectangle>(); //Список с прямоугольниками
+        private List<Panel> _rectanglePanels = new List<Panel>(); //Список с панелями
+        private Model.Rectangle _currentRectangle2;
 
         public Model.Color[] _color = Enum.GetValues(typeof(Model.Color)).Cast<Model.Color>().ToArray(); //Перечисление цветов
 
@@ -360,6 +370,150 @@ namespace Programming
         private void RectanglesIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void RectanglesRectanglesIdTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void RefreshRectanglesListBox()
+        {
+            RectanglesRectanglesListBox.Items.Clear();
+            foreach (Model.Rectangle item in _rectangles2)
+            {
+                string _item = ($"{item.Id}: (X = {item.Center.X}; Y = {item.Center.Y}; W = {item.Width}; H = {item.Lenght})").ToString();
+                RectanglesRectanglesListBox.Items.Add(_item);
+            }
+            RectanglesRectanglesHeightTextBox.Text = null;
+            RectanglesRectanglesWidthTextBox.Text = null;
+            RectanglesRectanglesCenterXTextBox.Text = null;
+            RectanglesRectanglesCenterYTextBox.Text = null;
+            RectanglesRectanglesIdTextBox.Text = null;
+
+            RectanglesRectanglesHeightTextBox.Enabled = false;
+            RectanglesRectanglesWidthTextBox.Enabled = false;
+            RectanglesRectanglesCenterXTextBox.Enabled = false;
+            RectanglesRectanglesCenterYTextBox.Enabled = false;
+
+            RectanglesRectanglesHeightTextBox.BackColor = System.Drawing.Color.White;
+            RectanglesRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+            RectanglesRectanglesCenterXTextBox.BackColor = System.Drawing.Color.White;
+            RectanglesRectanglesCenterYTextBox.BackColor = System.Drawing.Color.White;
+        }
+
+        private void RefreshRectanglesListBoxItem()
+        {
+            string _item = ($"{_currentRectangle2.Id}: (X = {_currentRectangle2.Center.X}; Y = {_currentRectangle2.Center.Y}; W = {_currentRectangle2.Width}; H = {_currentRectangle2.Lenght})").ToString();
+            RectanglesRectanglesListBox.Items[RectanglesRectanglesListBox.SelectedIndex] = _item;
+        }
+
+        private void AddPanel(Model.Rectangle rectangle)
+        {
+            Panel panel = new Panel();
+            panel.Location = new Point(rectangle.Center.X, rectangle.Center.Y);
+            panel.Width = rectangle.Width;
+            panel.Height = rectangle.Lenght;
+            panel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            _rectanglePanels.Add(panel);
+            RectanglesCanvasPanel.Controls.Add(panel);
+        }
+
+        private void RectanglesRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!RectanglesRectanglesHeightTextBox.Enabled)
+            {
+                RectanglesRectanglesHeightTextBox.Enabled = true;
+                RectanglesRectanglesWidthTextBox.Enabled = true;
+                RectanglesRectanglesCenterXTextBox.Enabled = true;
+                RectanglesRectanglesCenterYTextBox.Enabled = true;
+            }
+            try
+            {
+                _currentRectangle2 = _rectangles2[RectanglesRectanglesListBox.SelectedIndex];
+                RectanglesRectanglesHeightTextBox.Text = _currentRectangle2.Lenght.ToString();
+                RectanglesRectanglesWidthTextBox.Text = _currentRectangle2.Width.ToString();
+                RectanglesRectanglesCenterXTextBox.Text = _currentRectangle2.Center.X.ToString();
+                RectanglesRectanglesCenterYTextBox.Text = _currentRectangle2.Center.Y.ToString();
+                RectanglesRectanglesIdTextBox.Text = _currentRectangle2.Id.ToString();
+            }
+            catch { }
+        }
+
+        private void AddRectangleButton_Click(object sender, EventArgs e)
+        {
+            Model.Rectangle rectangle = new Model.Rectangle(rand.Next(30, 121), rand.Next(30, 121), _color[rand.Next(0, 9)].ToString(), new Point2D(rand.Next(5, 301), rand.Next(5, 301)));
+            _rectangles2.Add(rectangle);
+            AddPanel(rectangle);
+            RefreshRectanglesListBox();
+        }
+
+        private void DeleteRectangleButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _rectangles2.RemoveAt(RectanglesRectanglesListBox.SelectedIndex);
+                RectanglesCanvasPanel.Controls.RemoveAt(RectanglesRectanglesListBox.SelectedIndex);
+                _rectanglePanels.RemoveAt(RectanglesRectanglesListBox.SelectedIndex);
+                RefreshRectanglesListBox();
+            }
+            catch { }
+        }
+
+        private void RectanglesRectanglesHeightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle2.Lenght = Convert.ToInt32(RectanglesRectanglesHeightTextBox.Text);
+                RectanglesRectanglesHeightTextBox.BackColor = System.Drawing.Color.White;
+                RefreshRectanglesListBoxItem();
+            }
+            catch
+            {
+                RectanglesRectanglesHeightTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void RectanglesRectanglesWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle2.Width = Convert.ToInt32(RectanglesRectanglesWidthTextBox.Text);
+                RectanglesRectanglesWidthTextBox.BackColor = System.Drawing.Color.White;
+                RefreshRectanglesListBoxItem();
+            }
+            catch
+            {
+                RectanglesRectanglesWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void RectanglesRectanglesCenterYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle2.Center.Y = Convert.ToInt32(RectanglesRectanglesCenterYTextBox.Text);
+                RectanglesRectanglesCenterYTextBox.BackColor = System.Drawing.Color.White;
+                RefreshRectanglesListBoxItem();
+            }
+            catch
+            {
+                RectanglesRectanglesCenterYTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void RectanglesRectanglesCenterXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle2.Center.X = Convert.ToInt32(RectanglesRectanglesCenterXTextBox.Text);
+                RectanglesRectanglesCenterXTextBox.BackColor = System.Drawing.Color.White;
+                RefreshRectanglesListBoxItem();
+            }
+            catch
+            {
+                RectanglesRectanglesCenterXTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
         }
     }
 }
