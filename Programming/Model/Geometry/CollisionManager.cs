@@ -10,15 +10,23 @@ namespace Programming.Model
     {
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
-            bool isCollisionWidth = Math.Abs(rectangle1.Center.X - rectangle2.Center.X) < (rectangle1.Width + rectangle2.Width) / 2;
-            bool isCollisionLenght = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y) < (rectangle1.Lenght + rectangle2.Lenght) / 2;
-
-            if (isCollisionWidth && isCollisionLenght)
-            {
-                return true;
-            }
+            int xMax1 = rectangle1.Center.X + rectangle1.Width;
+            int xMax2 = rectangle2.Center.X + rectangle2.Width;
             
-            return false;
+            int yMax1 = rectangle1.Center.Y + rectangle1.Lenght;
+            int yMax2 = rectangle2.Center.Y + rectangle2.Lenght;
+
+            if (rectangle1.Center.X >= xMax2 || rectangle2.Center.X >= xMax1)
+            {
+                return false;
+            }
+
+            if (rectangle1.Center.Y >= yMax2 || rectangle2.Center.Y >= yMax1)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static bool IsCollision(Ring ring1, Ring ring2)

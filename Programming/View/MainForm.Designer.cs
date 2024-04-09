@@ -116,7 +116,7 @@ namespace Programming
             this.Enums.Location = new System.Drawing.Point(4, 22);
             this.Enums.Name = "Enums";
             this.Enums.Padding = new System.Windows.Forms.Padding(3);
-            this.Enums.Size = new System.Drawing.Size(676, 424);
+            this.Enums.Size = new System.Drawing.Size(708, 452);
             this.Enums.TabIndex = 0;
             this.Enums.Text = "Enums";
             // 
@@ -293,7 +293,7 @@ namespace Programming
             this.EnumsTabControl.Location = new System.Drawing.Point(0, 0);
             this.EnumsTabControl.Name = "EnumsTabControl";
             this.EnumsTabControl.SelectedIndex = 0;
-            this.EnumsTabControl.Size = new System.Drawing.Size(684, 450);
+            this.EnumsTabControl.Size = new System.Drawing.Size(687, 450);
             this.EnumsTabControl.TabIndex = 0;
             // 
             // Classes
@@ -302,7 +302,7 @@ namespace Programming
             this.Classes.Controls.Add(this.RectanglesGroupBox);
             this.Classes.Location = new System.Drawing.Point(4, 22);
             this.Classes.Name = "Classes";
-            this.Classes.Size = new System.Drawing.Size(676, 424);
+            this.Classes.Size = new System.Drawing.Size(708, 452);
             this.Classes.TabIndex = 1;
             this.Classes.Text = "Classes";
             this.Classes.UseVisualStyleBackColor = true;
@@ -618,7 +618,7 @@ namespace Programming
             this.Rectangles.Controls.Add(this.label17);
             this.Rectangles.Location = new System.Drawing.Point(4, 22);
             this.Rectangles.Name = "Rectangles";
-            this.Rectangles.Size = new System.Drawing.Size(676, 424);
+            this.Rectangles.Size = new System.Drawing.Size(679, 424);
             this.Rectangles.TabIndex = 2;
             this.Rectangles.Text = "Rectangles";
             this.Rectangles.UseVisualStyleBackColor = true;
