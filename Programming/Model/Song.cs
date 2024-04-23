@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о музыке
+    /// </summary>
     public class Song
     {
         private string _name;

@@ -7,6 +7,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Programming.Model.Geometry
 {
+    /// <summary>
+    /// Создаёт случайный прямоугольник.
+    /// </summary>
     static class RectangleFactory
     {
         static Random rand = new Random();

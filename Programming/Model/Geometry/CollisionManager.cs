@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Проверяет, пересекают ли друг друга заданные фигуры.
+    /// </summary>
     public static class CollisionManager
     {
+        /// <summary>
+        /// Проверка на пересечение прямоугольников.
+        /// </summary>
+        /// <param name="rectangle1">Первый прямоугольник</param>
+        /// <param name="rectangle2">Второй прямоугольник</param>
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             int xMax1 = rectangle1.Center.X + rectangle1.Width;
@@ -29,6 +37,12 @@ namespace Programming.Model
             return true;
         }
 
+        /// <summary>
+        /// Проверка на пересечение колец.
+        /// </summary>
+        /// <param name="ring1">Первое кольцо</param>
+        /// <param name="ring2">Второе кольцо</param>
+        /// <returns></returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
             double c = Math.Sqrt(Math.Pow(ring1.Center.X - ring2.Center.X, 2) + Math.Pow(ring1.Center.Y - ring2.Center.Y, 2));

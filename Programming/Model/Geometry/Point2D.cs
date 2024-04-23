@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит положение фигуры на экране
+    /// </summary>
     public class Point2D
     {
         private int _x;
@@ -37,6 +40,11 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Point2D"/>.
+        /// </summary>
+        /// <param name="x">Координата X. Не может быть отрицательной.</param>
+        /// <param name="y">Координата Y. Не может быть отрицательной.</param>
         public Point2D(int x, int y)
         {
             X = x;

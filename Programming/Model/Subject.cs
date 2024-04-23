@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию об учебном предмете
+    /// </summary>
     public class Subject
     {
         private string _name;

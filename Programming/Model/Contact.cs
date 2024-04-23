@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о телефонном контакте
+    /// </summary>
     public class Contact
     {
         private string _name;

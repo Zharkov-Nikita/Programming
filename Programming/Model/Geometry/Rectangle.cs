@@ -7,15 +7,44 @@ using System.Windows.Forms;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о созданном прямоугольнике.
+    /// </summary>
     public class Rectangle
     {
+        /// <summary>
+        /// Высота прямоугольника.
+        /// </summary>
         private int _lenght;
+
+        /// <summary>
+        /// Ширина прямоугольника.
+        /// </summary>
         private int _width;
+
+        /// <summary>
+        /// Цвет прямоугольника.
+        /// </summary>
         private string _color;
+
+        /// <summary>
+        /// Позиция прямоугольника на экране.
+        /// </summary>
         private Point2D _center;
+
+        /// <summary>
+        /// Общее количество прямоугольников.
+        /// </summary>
         private static int _allRectanglesCount = 0;
+
+        /// <summary>
+        /// Уникальный идентификатор для всех объектов данного класса.
+        /// </summary>
         private readonly int _id;
 
+        /// <summary>
+        /// Возвращает и задаёт высоту прямоугольника. Не может быть отрицательной.
+        /// </summary>
         public int Lenght
         {
             get
@@ -29,6 +58,9 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт ширину прямоугольника. Не может быть отрицательной.
+        /// </summary>
         public int Width
         {
             get
@@ -42,12 +74,24 @@ namespace Programming.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт цвет прямоугольника. Нет ограничений.
+        /// </summary>
         public string Color { get; set; }
 
+        /// <summary>
+        /// Возвращает и задаёт положение прямоугольника. Не может быть отрицательным.
+        /// </summary>
         public Point2D Center { get; set; }
 
+        /// <summary>
+        /// Возвращает общее количество прямоугольников.
+        /// </summary>
         public static int AllRectanglesCount { get; }
 
+        /// <summary>
+        /// Возвращает и задаёт уникальный идентификатор прямоугольника. Не может быть отрицательным.
+        /// </summary>
         public int Id { get; private set; }
 
         /// <summary>

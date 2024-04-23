@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о перелётах
+    /// </summary>
     public class Flight
     {
         private string _departurePoint;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о времени
+    /// </summary>
     public class Time
     {
         private int _hours;

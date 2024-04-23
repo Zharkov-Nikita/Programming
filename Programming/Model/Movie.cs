@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит информацию о фильмах
+    /// </summary>
     public class Movie
     {
         private string _name;
