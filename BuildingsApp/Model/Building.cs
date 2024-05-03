@@ -33,7 +33,7 @@ namespace BuildingsApp.Model
         private double _rating;
 
         /// <summary>
-        /// Возвращает и задаёт название здания. Не может быть длиннее 200 символов.
+        /// Возвращает и задаёт название здания. Не может быть короче 1 или длиннее 200 символов.
         /// </summary>
         public string Name
         {
@@ -43,7 +43,7 @@ namespace BuildingsApp.Model
             }
             set
             {
-                if (value.Length > 200)
+                if (value.Length < 1 || value.Length > 200)
                 {
                     throw new ArgumentException();
                 }
@@ -52,7 +52,7 @@ namespace BuildingsApp.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт адрес здания. Не может быть длиннее 100 символов.
+        /// Возвращает и задаёт адрес здания. Не может быть короче 1 или длиннее 100 символов.
         /// </summary>
         public string Address
         {
@@ -62,7 +62,7 @@ namespace BuildingsApp.Model
             }
             set
             {
-                if (value.Length > 100)
+                if (value.Length < 1 || value.Length > 100)
                 {
                     throw new ArgumentException();
                 }
@@ -97,8 +97,8 @@ namespace BuildingsApp.Model
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Building"/>.
         /// </summary>
-        /// <param name="name">Название. Не может быть длиннее 200 символов.</param>
-        /// <param name="address">Адрес. Не может быть длиннее 100 символов.</param>
+        /// <param name="name">Название. Не может быть короче 1 или длиннее 200 символов.</param>
+        /// <param name="address">Адрес. Не может быть короче 1 или длиннее 100 символов.</param>
         /// <param name="category">Категория. Нет ограничений.</param>
         /// <param name="rating">Рейтинг. Не может быть меньше 0 и больше 5.</param>
         public Building(string name, string address, string category, double rating)

@@ -30,16 +30,17 @@
         {
             this.BuildingsListBox = new System.Windows.Forms.ListBox();
             this.SelectedBuildingGroupBox = new System.Windows.Forms.GroupBox();
+            this.RatingTextBox = new System.Windows.Forms.TextBox();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.AddressTextBox = new System.Windows.Forms.TextBox();
-            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
-            this.RatingTextBox = new System.Windows.Forms.TextBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.SortButton = new System.Windows.Forms.Button();
             this.SelectedBuildingGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.BuildingsListBox.Name = "BuildingsListBox";
             this.BuildingsListBox.Size = new System.Drawing.Size(276, 420);
             this.BuildingsListBox.TabIndex = 0;
+            this.BuildingsListBox.SelectedIndexChanged += new System.EventHandler(this.BuildingsListBox_SelectedIndexChanged);
             // 
             // SelectedBuildingGroupBox
             // 
@@ -67,6 +69,39 @@
             this.SelectedBuildingGroupBox.TabIndex = 1;
             this.SelectedBuildingGroupBox.TabStop = false;
             this.SelectedBuildingGroupBox.Text = "Выбранное здание";
+            // 
+            // RatingTextBox
+            // 
+            this.RatingTextBox.Location = new System.Drawing.Point(77, 92);
+            this.RatingTextBox.Name = "RatingTextBox";
+            this.RatingTextBox.Size = new System.Drawing.Size(51, 20);
+            this.RatingTextBox.TabIndex = 7;
+            this.RatingTextBox.TextChanged += new System.EventHandler(this.RatingTextBox_TextChanged);
+            // 
+            // CategoryComboBox
+            // 
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(77, 67);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(210, 21);
+            this.CategoryComboBox.TabIndex = 6;
+            this.CategoryComboBox.TextChanged += new System.EventHandler(this.CategoryComboBox_TextChanged);
+            // 
+            // AddressTextBox
+            // 
+            this.AddressTextBox.Location = new System.Drawing.Point(77, 42);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(410, 20);
+            this.AddressTextBox.TabIndex = 5;
+            this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
+            // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(77, 17);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(410, 20);
+            this.NameTextBox.TabIndex = 4;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // label4
             // 
@@ -108,35 +143,6 @@
             this.label1.Text = "Название:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // NameTextBox
-            // 
-            this.NameTextBox.Location = new System.Drawing.Point(77, 17);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(410, 20);
-            this.NameTextBox.TabIndex = 4;
-            // 
-            // AddressTextBox
-            // 
-            this.AddressTextBox.Location = new System.Drawing.Point(77, 42);
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(410, 20);
-            this.AddressTextBox.TabIndex = 5;
-            // 
-            // CategoryComboBox
-            // 
-            this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(77, 67);
-            this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(210, 21);
-            this.CategoryComboBox.TabIndex = 6;
-            // 
-            // RatingTextBox
-            // 
-            this.RatingTextBox.Location = new System.Drawing.Point(77, 92);
-            this.RatingTextBox.Name = "RatingTextBox";
-            this.RatingTextBox.Size = new System.Drawing.Size(51, 20);
-            this.RatingTextBox.TabIndex = 7;
-            // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(296, 141);
@@ -145,6 +151,7 @@
             this.AddButton.TabIndex = 2;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // DeleteButton
             // 
@@ -154,17 +161,29 @@
             this.DeleteButton.TabIndex = 3;
             this.DeleteButton.Text = "Удалить";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
-            // Form1
+            // SortButton
+            // 
+            this.SortButton.Location = new System.Drawing.Point(460, 141);
+            this.SortButton.Name = "SortButton";
+            this.SortButton.Size = new System.Drawing.Size(75, 23);
+            this.SortButton.TabIndex = 4;
+            this.SortButton.Text = "Сортировка";
+            this.SortButton.UseVisualStyleBackColor = true;
+            this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SortButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.SelectedBuildingGroupBox);
             this.Controls.Add(this.BuildingsListBox);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.SelectedBuildingGroupBox.ResumeLayout(false);
             this.SelectedBuildingGroupBox.PerformLayout();
@@ -186,6 +205,7 @@
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button SortButton;
     }
 }
 
