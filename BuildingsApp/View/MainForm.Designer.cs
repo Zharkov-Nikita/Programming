@@ -30,6 +30,9 @@
         {
             this.BuildingsListBox = new System.Windows.Forms.ListBox();
             this.SelectedBuildingGroupBox = new System.Windows.Forms.GroupBox();
+            this.RatingErrorLabel = new System.Windows.Forms.Label();
+            this.AddressErrorLabel = new System.Windows.Forms.Label();
+            this.NameErrorLabel = new System.Windows.Forms.Label();
             this.RatingTextBox = new System.Windows.Forms.TextBox();
             this.CategoryComboBox = new System.Windows.Forms.ComboBox();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
@@ -55,6 +58,9 @@
             // 
             // SelectedBuildingGroupBox
             // 
+            this.SelectedBuildingGroupBox.Controls.Add(this.RatingErrorLabel);
+            this.SelectedBuildingGroupBox.Controls.Add(this.AddressErrorLabel);
+            this.SelectedBuildingGroupBox.Controls.Add(this.NameErrorLabel);
             this.SelectedBuildingGroupBox.Controls.Add(this.RatingTextBox);
             this.SelectedBuildingGroupBox.Controls.Add(this.CategoryComboBox);
             this.SelectedBuildingGroupBox.Controls.Add(this.AddressTextBox);
@@ -63,12 +69,46 @@
             this.SelectedBuildingGroupBox.Controls.Add(this.label3);
             this.SelectedBuildingGroupBox.Controls.Add(this.label2);
             this.SelectedBuildingGroupBox.Controls.Add(this.label1);
+            this.SelectedBuildingGroupBox.ForeColor = System.Drawing.SystemColors.ControlText;
             this.SelectedBuildingGroupBox.Location = new System.Drawing.Point(295, 13);
             this.SelectedBuildingGroupBox.Name = "SelectedBuildingGroupBox";
             this.SelectedBuildingGroupBox.Size = new System.Drawing.Size(493, 121);
             this.SelectedBuildingGroupBox.TabIndex = 1;
             this.SelectedBuildingGroupBox.TabStop = false;
             this.SelectedBuildingGroupBox.Text = "Выбранное здание";
+            // 
+            // RatingErrorLabel
+            // 
+            this.RatingErrorLabel.AutoSize = true;
+            this.RatingErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.RatingErrorLabel.Location = new System.Drawing.Point(134, 95);
+            this.RatingErrorLabel.Name = "RatingErrorLabel";
+            this.RatingErrorLabel.Size = new System.Drawing.Size(248, 13);
+            this.RatingErrorLabel.TabIndex = 10;
+            this.RatingErrorLabel.Text = "Не меньше 0 и не больше 5, длина не больше 3";
+            this.RatingErrorLabel.Visible = false;
+            // 
+            // AddressErrorLabel
+            // 
+            this.AddressErrorLabel.AutoSize = true;
+            this.AddressErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.AddressErrorLabel.Location = new System.Drawing.Point(364, 45);
+            this.AddressErrorLabel.Name = "AddressErrorLabel";
+            this.AddressErrorLabel.Size = new System.Drawing.Size(99, 13);
+            this.AddressErrorLabel.TabIndex = 9;
+            this.AddressErrorLabel.Text = "Длина от 1 до 100";
+            this.AddressErrorLabel.Visible = false;
+            // 
+            // NameErrorLabel
+            // 
+            this.NameErrorLabel.AutoSize = true;
+            this.NameErrorLabel.ForeColor = System.Drawing.Color.Red;
+            this.NameErrorLabel.Location = new System.Drawing.Point(364, 20);
+            this.NameErrorLabel.Name = "NameErrorLabel";
+            this.NameErrorLabel.Size = new System.Drawing.Size(99, 13);
+            this.NameErrorLabel.TabIndex = 8;
+            this.NameErrorLabel.Text = "Длина от 1 до 200";
+            this.NameErrorLabel.Visible = false;
             // 
             // RatingTextBox
             // 
@@ -77,6 +117,7 @@
             this.RatingTextBox.Size = new System.Drawing.Size(51, 20);
             this.RatingTextBox.TabIndex = 7;
             this.RatingTextBox.TextChanged += new System.EventHandler(this.RatingTextBox_TextChanged);
+            this.RatingTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RatingTextBox_KeyPress);
             // 
             // CategoryComboBox
             // 
@@ -91,17 +132,19 @@
             // 
             this.AddressTextBox.Location = new System.Drawing.Point(77, 42);
             this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(410, 20);
+            this.AddressTextBox.Size = new System.Drawing.Size(281, 20);
             this.AddressTextBox.TabIndex = 5;
             this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
+            this.AddressTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AddressTextBox_KeyPress);
             // 
             // NameTextBox
             // 
             this.NameTextBox.Location = new System.Drawing.Point(77, 17);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(410, 20);
+            this.NameTextBox.Size = new System.Drawing.Size(281, 20);
             this.NameTextBox.TabIndex = 4;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
             // label4
             // 
@@ -185,6 +228,7 @@
             this.Controls.Add(this.BuildingsListBox);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.SelectedBuildingGroupBox.ResumeLayout(false);
             this.SelectedBuildingGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -206,6 +250,9 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Button SortButton;
+        private System.Windows.Forms.Label AddressErrorLabel;
+        private System.Windows.Forms.Label NameErrorLabel;
+        private System.Windows.Forms.Label RatingErrorLabel;
     }
 }
 

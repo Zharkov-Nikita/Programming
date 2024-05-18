@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuildingsApp.Model.Enums
 {
+    /// <summary>
+    /// Перечисление категорий зданий.
+    /// </summary>
     public enum Category
     {
         Municipal,
