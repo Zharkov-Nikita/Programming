@@ -24,6 +24,7 @@ namespace BuildingsApp
 
             NameTextBox.Enabled = false;
             AddressTextBox.Enabled = false;
+
             CategoryComboBox.Enabled = false;
             RatingTextBox.Enabled = false;
 
@@ -33,7 +34,7 @@ namespace BuildingsApp
         private List<Building> _buildings = new List<Building>(); //Список со зданиями
         private Building _currentBuilding; //Выбранное здание
         public string[] _category = Enum.GetNames(typeof(Model.Enums.Category)); //Перечисление категорий
-        string path = Directory.GetCurrentDirectory() + "/saves.txt"; //Путь файла с сохранениями
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/saves.txt"; //Путь файла с сохранениями
 
         /// <summary>
         /// Функция загрузки сохранений.

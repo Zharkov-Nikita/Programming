@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.BuildingsListBox = new System.Windows.Forms.ListBox();
             this.SelectedBuildingGroupBox = new System.Windows.Forms.GroupBox();
             this.RatingErrorLabel = new System.Windows.Forms.Label();
@@ -226,8 +227,9 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.SelectedBuildingGroupBox);
             this.Controls.Add(this.BuildingsListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "BuildingsApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.SelectedBuildingGroupBox.ResumeLayout(false);
             this.SelectedBuildingGroupBox.PerformLayout();
