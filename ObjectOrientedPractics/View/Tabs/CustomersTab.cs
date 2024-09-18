@@ -111,7 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Кнопка добавления товара
+        /// Кнопка добавления покупателя
         /// </summary>
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
@@ -121,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Кнопка удаления товара
+        /// Кнопка удаления покупателя
         /// </summary>
         private void CustomerRemoveButton_Click(object sender, EventArgs e)
         {
