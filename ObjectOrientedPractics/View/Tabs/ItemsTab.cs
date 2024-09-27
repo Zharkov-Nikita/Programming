@@ -22,8 +22,20 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category)); //Заполнение Combobox названиями времён года.
         }
 
-        private List<Model.Item> _items = new List<Model.Item>(); //Список с товарами.
-        private Model.Item _currentItem; //Текущий товар.
+        private Item _currentItem; //Текущий товар.
+        private List<Item> _items = new List<Item>(); //Список с товарами.
+
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
 
         /// <summary>
         /// Заполняет поля данными из выбранного товара.

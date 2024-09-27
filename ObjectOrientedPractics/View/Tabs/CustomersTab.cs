@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.View.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,11 +18,23 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
-        private List<Model.Customer> _customers = new List<Model.Customer>(); //Список с покупателями
-        private Model.Customer _currentCustomer; //Текущий покупатель
+        private Model.Customer _currentCustomer; //Текущий покупатель.
+        private List<Model.Customer> _customers = new List<Model.Customer>(); //Список с покупателями.
+        
+        public List<Model.Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value;
+            }
+        }
 
         /// <summary>
-        /// Заполняет поля данными из выбранного покупателя
+        /// Заполняет поля данными из выбранного покупателя.
         /// </summary>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -30,11 +43,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer = _customers[CustomersListBox.SelectedIndex];
                 CustomerIdTextBox.Text = _currentCustomer.Id.ToString();
                 CustomerFullNameTextBox.Text = _currentCustomer.Fullname;
-                CustomerAddressTextBox.Text = _currentCustomer.Address;
+                CustomerAddressControl.Address = _currentCustomer.Address;
+                CustomerAddressControl.ShowAddress();
                 if (!CustomerFullNameTextBox.Enabled)
                 {
                     CustomerFullNameTextBox.Enabled = true;
-                    CustomerAddressTextBox.Enabled = true;
+                    CustomerAddressControl.EnableAddressInfo();
                 }
             }
             catch { }
@@ -61,25 +75,6 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Меняет адрес покупателя на введённый
-        /// </summary>
-        private void CustomerAddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (CustomersListBox.SelectedIndex != -1)
-                {
-                    _currentCustomer.Address = CustomerAddressTextBox.Text;
-                    CustomerAddressTextBox.BackColor = Color.White;
-                }
-            }
-            catch
-            {
-                CustomerAddressTextBox.BackColor = Color.LightPink;
-            }
-        }
-
-        /// <summary>
         /// Очищение текстбоксов с информацией о выбранном покупателе
         /// </summary>
         private void ClearCustomerInfo()
@@ -92,13 +87,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             CustomerIdTextBox.Text = null;
             CustomerFullNameTextBox.Text = null;
-            CustomerAddressTextBox.Text = null;
 
             CustomerFullNameTextBox.Enabled = false;
-            CustomerAddressTextBox.Enabled = false;
 
             CustomerFullNameTextBox.BackColor = Color.White;
-            CustomerAddressTextBox.BackColor = Color.White;
+            CustomerAddressControl.ClearAddressInfo();
         }
 
         /// <summary>
@@ -115,7 +108,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
-            Model.Customer item = new Model.Customer("Фамилия Имя Отчество", "Адрес проживания");
+            Model.Customer item = new Model.Customer("Фамилия Имя Отчество", new Model.Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"));
             _customers.Add(item);
             ClearCustomerInfo();
         }
