@@ -26,8 +26,12 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт покупателей.
         /// </summary>
-        public List<Item> Customers { get; set; }
+        public List<Customer> Customers { get; set; }
 
-        public Store() { }
+        public Store()
+        { 
+            Items = new List<Item>();
+            Customers = new List<Customer>();
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         private Item _currentItem; //Текущий товар.
-        private List<Item> _items = new List<Item>(); //Список с товарами.
+        List<Item> _items = new List<Item>(); //Список с товарами.
 
         public List<Item> Items
         {

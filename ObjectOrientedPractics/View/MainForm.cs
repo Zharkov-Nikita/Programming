@@ -15,19 +15,14 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+        private Store _store;
         public MainForm()
         {
             InitializeComponent();
+            _store = new Store();
+
+            ItemsTab.Items = _store.Items;
+            CustomersTab.Customers = _store.Customers;
         }
-
-        private Store _store = new Store();
-
-        public Store Store
-        {
-            get { return _store; }
-            set { _store = value; }
-        }
-
-        
     }
 }

@@ -58,7 +58,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт адрес покупателя. Не может быть длиннее 500 символов.
+        /// Возвращает и задаёт адрес покупателя.
         /// </summary>
         public Address Address { get; set; }
 
@@ -66,7 +66,7 @@ namespace ObjectOrientedPractics.Model
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Название. Не может быть длиннее 200 символов.</param>
-        /// <param name="address">Описание. Не может быть длиннее 500 символов.</param>
+        /// <param name="address">Адрес.</param>
         public Customer(string fullname, Address address)
         {
             Fullname = fullname;
