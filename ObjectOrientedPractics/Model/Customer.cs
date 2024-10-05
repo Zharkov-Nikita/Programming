@@ -32,6 +32,16 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Заказы покупателя.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
         /// Возвращает общее количество покупателей.
         /// </summary>
         public static int AllCustomersCount { get; }
@@ -63,6 +73,16 @@ namespace ObjectOrientedPractics.Model
         public Address Address { get; set; }
 
         /// <summary>
+        /// Возвращает и задаёт корзину покупателя.
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт заказы покупателя.
+        /// </summary>
+        public List<Order> Orders { get; set; }
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Название. Не может быть длиннее 200 символов.</param>
@@ -71,6 +91,8 @@ namespace ObjectOrientedPractics.Model
         {
             Fullname = fullname;
             Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
             Id = _allCustomersCount;
             _allCustomersCount++;
         }
