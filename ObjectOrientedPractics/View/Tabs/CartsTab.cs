@@ -16,10 +16,99 @@ namespace ObjectOrientedPractics.View.Tabs
         public CartsTab()
         {
             InitializeComponent();
+            CustomersComboBox.Enabled = true;
         }
 
+        private Customer CurrentCustomer;
         public List<Item> Items { get; set; }
 
         public List<Customer> Customers { get; set; }
+
+        public void RefreshData()
+        {
+            ItemsListBox.Items.Clear();
+            foreach (Item item in Items)
+            {
+                string _item = ($"{item.Id}: {item.Name}, цена = {item.Cost}").ToString();
+                ItemsListBox.Items.Add(_item);
+            }
+            CustomersComboBox.Items.Clear();
+            foreach (Customer item in Customers)
+            {
+                string _item = ($"{item.Fullname}").ToString();
+                CustomersComboBox.Items.Add(_item);
+            }
+            CartItemsListBox.Items.Clear();
+        }
+
+        /// <summary>
+        /// Заполняет список товарами из корзины выбранного покупателя.
+        /// </summary>
+        private void RefreshCartItemsListBox()
+        {
+            CartItemsListBox.Items.Clear();
+            double amount = 0;
+            foreach (Item item in CurrentCustomer.Cart.Items)
+            {
+                amount += item.Cost;
+                string _item = ($"{item.Id}: {item.Name}, цена = {item.Cost}").ToString();
+                CartItemsListBox.Items.Add(_item);
+            }
+            CartAmountLabel.Text = amount.ToString();
+        }
+
+        /// <summary>
+        /// Устанавливает выбранного покупателя.
+        /// </summary>
+        private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CustomersComboBox.SelectedIndex != -1)
+            {
+                CurrentCustomer = Customers[CustomersComboBox.SelectedIndex];
+                RefreshCartItemsListBox();
+            }
+            else
+            {
+                CartItemsListBox.Items.Clear();
+            }
+        }
+
+        private void AddToCartButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersComboBox.SelectedIndex != -1)
+            {
+                CurrentCustomer.Cart.Items.Add(Items[ItemsListBox.SelectedIndex]);
+                RefreshCartItemsListBox();
+            }
+        }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersComboBox.SelectedIndex != -1)
+            {
+                CurrentCustomer.Cart.Items.Remove(CurrentCustomer.Cart.Items[CartItemsListBox.SelectedIndex]);
+                RefreshCartItemsListBox();
+            }
+        }
+
+        private void ClearCartButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersComboBox.SelectedIndex != -1)
+            {
+                CurrentCustomer.Cart.Items.Clear();
+                RefreshCartItemsListBox();
+            }
+        }
+
+        private void CreateOrderButton_Click(object sender, EventArgs e)
+        {
+            if (CustomersComboBox.SelectedIndex != -1 && CurrentCustomer.Cart.Items.Count != 0)
+            {
+                Order order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                CurrentCustomer.Orders.Add(order);
+                CurrentCustomer.Cart.Items.Clear();
+                RefreshCartItemsListBox();
+            }
+        }
     }
 }

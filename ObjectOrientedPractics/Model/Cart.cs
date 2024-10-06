@@ -36,5 +36,13 @@ namespace ObjectOrientedPractics.Model
                 return amount;
             }
         }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Cart"/>.
+        /// </summary>
+        public Cart()
+        {
+            Items = new List<Item>();
+        }
     }
 }

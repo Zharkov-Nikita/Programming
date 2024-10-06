@@ -23,6 +23,20 @@ namespace ObjectOrientedPractics
 
             ItemsTab.Items = _store.Items;
             CustomersTab.Customers = _store.Customers;
+
+            CartsTab.Items = _store.Items;
+            CartsTab.Customers = _store.Customers;
+        }
+
+        /// <summary>
+        /// Заполняет поля данными из выбранного товара.
+        /// </summary>
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MainTabControl.SelectedIndex == 2)
+            {
+                CartsTab.RefreshData();
+            }
         }
     }
 }

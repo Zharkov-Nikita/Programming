@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -80,6 +81,21 @@ namespace ObjectOrientedPractics.Model
                 }
                 return amount;
             }
+        }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Order"/>.
+        /// </summary>
+        /// <param name="address">Адрес доставки.</param>
+        /// <param name="items">Список товаров.</param>
+        public Order(Address address, List<Item> items)
+        {
+            Address = address;
+            Items = items;
+            CreateDate = DateTime.Now;
+            Status = OrderStatus.New;
+            Id = _allOrdersCount;
+            _allOrdersCount++;
         }
     }
 }
