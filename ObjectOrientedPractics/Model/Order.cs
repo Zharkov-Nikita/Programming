@@ -15,27 +15,27 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Общее количество заказов.
         /// </summary>
-        private static int _allOrdersCount = 0;
+        protected static int _allOrdersCount = 0;
 
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private readonly int _id;
+        protected readonly int _id;
 
         /// <summary>
         /// Дата создания заказа.
         /// </summary>
-        private readonly DateTime _createDate;
+        protected readonly DateTime _createDate;
 
         /// <summary>
         /// Адрес доставки.
         /// </summary>
-        private Address _address;
+        protected Address _address;
 
         /// <summary>
         /// Товары заказа.
         /// </summary>
-        private List<Item> _items;
+        protected List<Item> _items;
 
         /// <summary>
         /// Возвращает общее количество заказов.
@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт уникальный идентификатор заказа. Не может быть отрицательным.
         /// </summary>
-        public int Id { get; private set; }
+        public int Id { get; protected set; }
 
         /// <summary>
         /// Возвращает и задаёт статус заказа. Нет ограничений.
@@ -55,7 +55,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт дату создания заказа.
         /// </summary>
-        public DateTime CreateDate { get; private set; }
+        public DateTime CreateDate { get; protected set; }
 
         /// <summary>
         /// Возвращает и задаёт адрес доставки.
@@ -97,5 +97,7 @@ namespace ObjectOrientedPractics.Model
             Id = _allOrdersCount;
             _allOrdersCount++;
         }
+        
+        public Order() { }
     }
 }
