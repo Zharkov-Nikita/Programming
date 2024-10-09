@@ -29,7 +29,7 @@ namespace ObjectOrientedPractics.Model
             get
             {
                 double amount = 0.0;
-                foreach (Item item in _items)
+                foreach (Item item in Items)
                 {
                     amount += item.Cost;
                 }

@@ -17,6 +17,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             CustomersComboBox.Enabled = true;
+            ItemsListBox.DataSource = Items;
+            CustomersComboBox.DataSource = Customers;
         }
 
         private Customer CurrentCustomer;
@@ -24,6 +26,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         public List<Customer> Customers { get; set; }
 
+        /// <summary>
+        /// Обновляет данные на странице.
+        /// </summary>
         public void RefreshData()
         {
             ItemsListBox.Items.Clear();
@@ -47,14 +52,12 @@ namespace ObjectOrientedPractics.View.Tabs
         private void RefreshCartItemsListBox()
         {
             CartItemsListBox.Items.Clear();
-            double amount = 0;
             foreach (Item item in CurrentCustomer.Cart.Items)
             {
-                amount += item.Cost;
                 string _item = ($"{item.Id}: {item.Name}, цена = {item.Cost}").ToString();
                 CartItemsListBox.Items.Add(_item);
             }
-            CartAmountLabel.Text = amount.ToString();
+            CartAmountLabel.Text = CurrentCustomer.Cart.Amount.ToString();
         }
 
         /// <summary>

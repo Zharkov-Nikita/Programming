@@ -26,6 +26,8 @@ namespace ObjectOrientedPractics
 
             CartsTab.Items = _store.Items;
             CartsTab.Customers = _store.Customers;
+
+            OrdersTab.Customers = _store.Customers;
         }
 
         /// <summary>
@@ -36,6 +38,10 @@ namespace ObjectOrientedPractics
             if (MainTabControl.SelectedIndex == 2)
             {
                 CartsTab.RefreshData();
+            }
+            if (MainTabControl.SelectedIndex == 3)
+            {
+                OrdersTab.RefreshData();
             }
         }
     }

@@ -37,7 +37,6 @@
             this.CustomerIdTextBox = new System.Windows.Forms.TextBox();
             this.CustomerFullNameTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.CustomerPanel = new System.Windows.Forms.Panel();
             this.CustomerAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -143,7 +142,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.CustomerAddressControl);
-            this.groupBox2.Controls.Add(this.CustomerPanel);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.CustomerIdTextBox);
@@ -157,25 +155,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Customer";
             // 
-            // CustomerPanel
-            // 
-            this.CustomerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerPanel.Location = new System.Drawing.Point(9, 266);
-            this.CustomerPanel.Name = "CustomerPanel";
-            this.CustomerPanel.Size = new System.Drawing.Size(707, 143);
-            this.CustomerPanel.TabIndex = 9;
-            // 
             // CustomerAddressControl
             // 
             this.CustomerAddressControl.Address = null;
             this.CustomerAddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerAddressControl.Location = new System.Drawing.Point(0, 98);
+            this.CustomerAddressControl.Location = new System.Drawing.Point(0, 75);
             this.CustomerAddressControl.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.CustomerAddressControl.Name = "CustomerAddressControl";
-            this.CustomerAddressControl.Size = new System.Drawing.Size(710, 241);
+            this.CustomerAddressControl.Size = new System.Drawing.Size(716, 241);
             this.CustomerAddressControl.TabIndex = 10;
             // 
             // CustomersTab
@@ -204,7 +192,6 @@
         private System.Windows.Forms.TextBox CustomerIdTextBox;
         private System.Windows.Forms.TextBox CustomerFullNameTextBox;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Panel CustomerPanel;
         private Controls.AddressControl CustomerAddressControl;
     }
 }

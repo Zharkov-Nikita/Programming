@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
-            ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category)); //Заполнение Combobox названиями времён года.
+            ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category)); //Заполнение Combobox категориями товаров.
         }
 
         private Item _currentItem; //Текущий товар.
@@ -36,6 +36,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 _items = value;
             }
         }
+
+        Random rnd = new Random();
 
         /// <summary>
         /// Заполняет поля данными из выбранного товара.
@@ -162,7 +164,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ItemAddButton_Click(object sender, EventArgs e)
         {
-            Model.Item item = new Model.Item("Название", "Описание", 5, Category.Cereals);
+            Model.Item item = new Model.Item("Название", "Описание", rnd.Next(5, 101), Category.Cereals);
             _items.Add(item);
             ClearItemInfo();
         }

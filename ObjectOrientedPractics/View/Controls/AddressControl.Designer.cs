@@ -65,7 +65,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(429, 152);
+            this.groupBox1.Size = new System.Drawing.Size(407, 152);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Delivery Address";
@@ -78,7 +78,7 @@
             this.AddressApartmentTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddressApartmentTextBox.Location = new System.Drawing.Point(286, 119);
             this.AddressApartmentTextBox.Name = "AddressApartmentTextBox";
-            this.AddressApartmentTextBox.Size = new System.Drawing.Size(86, 21);
+            this.AddressApartmentTextBox.Size = new System.Drawing.Size(85, 21);
             this.AddressApartmentTextBox.TabIndex = 11;
             this.AddressApartmentTextBox.TextChanged += new System.EventHandler(this.AddressApartmentTextBox_TextChanged);
             // 
@@ -120,7 +120,7 @@
             this.AddressStreetTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddressStreetTextBox.Location = new System.Drawing.Point(79, 92);
             this.AddressStreetTextBox.Name = "AddressStreetTextBox";
-            this.AddressStreetTextBox.Size = new System.Drawing.Size(303, 21);
+            this.AddressStreetTextBox.Size = new System.Drawing.Size(292, 21);
             this.AddressStreetTextBox.TabIndex = 7;
             this.AddressStreetTextBox.TextChanged += new System.EventHandler(this.AddressStreetTextBox_TextChanged);
             // 
@@ -142,7 +142,7 @@
             this.AddressCityTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.AddressCityTextBox.Location = new System.Drawing.Point(267, 65);
             this.AddressCityTextBox.Name = "AddressCityTextBox";
-            this.AddressCityTextBox.Size = new System.Drawing.Size(115, 21);
+            this.AddressCityTextBox.Size = new System.Drawing.Size(104, 21);
             this.AddressCityTextBox.TabIndex = 5;
             this.AddressCityTextBox.TextChanged += new System.EventHandler(this.AddressCityTextBox_TextChanged);
             // 
@@ -202,7 +202,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "AddressControl";
-            this.Size = new System.Drawing.Size(445, 152);
+            this.Size = new System.Drawing.Size(432, 152);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

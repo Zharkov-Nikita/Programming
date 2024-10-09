@@ -75,7 +75,7 @@ namespace ObjectOrientedPractics.Model
             get
             {
                 double amount = 0.0;
-                foreach (Item item in _items)
+                foreach (Item item in Items)
                 {
                     amount += item.Cost;
                 }
@@ -91,7 +91,7 @@ namespace ObjectOrientedPractics.Model
         public Order(Address address, List<Item> items)
         {
             Address = address;
-            Items = items;
+            Items = items.ToList();
             CreateDate = DateTime.Now;
             Status = OrderStatus.New;
             Id = _allOrdersCount;
