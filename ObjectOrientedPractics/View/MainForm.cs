@@ -43,6 +43,10 @@ namespace ObjectOrientedPractics
             {
                 OrdersTab.RefreshData();
             }
+            if (MainTabControl.SelectedIndex == 4)
+            {
+                PriorityOrdersTab.RefreshData();
+            }
         }
     }
 }

@@ -36,12 +36,15 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="items">Список товаров.</param>
-        public PriorityOrder(DateTime desiredDate, string desiredTime) : base()
+        public PriorityOrder(DateTime desiredDate, string desiredTime, Address address, List<Item> items) : base(address, items)
         {
             DesiredDate = desiredDate;
             DesiredTime = desiredTime;
         }
 
-        public PriorityOrder() { }
+        public PriorityOrder()
+        {
+            Items = new List<Item>();
+        }
     }
 }
