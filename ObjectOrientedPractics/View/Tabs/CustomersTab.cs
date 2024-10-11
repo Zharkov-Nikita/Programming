@@ -44,10 +44,12 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomerIdTextBox.Text = _currentCustomer.Id.ToString();
                 CustomerFullNameTextBox.Text = _currentCustomer.Fullname;
                 CustomerAddressControl.Address = _currentCustomer.Address;
+                CustomerIsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
                 CustomerAddressControl.ShowAddress();
                 if (!CustomerFullNameTextBox.Enabled)
                 {
                     CustomerFullNameTextBox.Enabled = true;
+                    CustomerIsPriorityCheckBox.Enabled = true;
                     CustomerAddressControl.EnableAddressInfo();
                 }
             }
@@ -87,11 +89,13 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             CustomerIdTextBox.Text = null;
             CustomerFullNameTextBox.Text = null;
+            CustomerIsPriorityCheckBox.Checked = false;
 
             CustomerFullNameTextBox.Enabled = false;
+            CustomerIsPriorityCheckBox.Enabled = false;
 
             CustomerFullNameTextBox.BackColor = Color.White;
-            CustomerAddressControl.ClearAddressInfo();
+            CustomerAddressControl.ClearAddressInfo(CustomersListBox.SelectedIndex);
         }
 
         /// <summary>
@@ -124,6 +128,14 @@ namespace ObjectOrientedPractics.View.Tabs
                 ClearCustomerInfo();
             }
             catch { }
+        }
+
+        private void CustomerIsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomersListBox.SelectedIndex != -1)
+            {
+                _currentCustomer.IsPriority = CustomerIsPriorityCheckBox.Checked;
+            }
         }
     }
 }

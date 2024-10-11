@@ -128,7 +128,7 @@
             this.OrdersTabPage.Location = new System.Drawing.Point(4, 22);
             this.OrdersTabPage.Name = "OrdersTabPage";
             this.OrdersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.OrdersTabPage.Size = new System.Drawing.Size(782, 424);
+            this.OrdersTabPage.Size = new System.Drawing.Size(790, 424);
             this.OrdersTabPage.TabIndex = 2;
             this.OrdersTabPage.Text = "Orders";
             this.OrdersTabPage.UseVisualStyleBackColor = true;

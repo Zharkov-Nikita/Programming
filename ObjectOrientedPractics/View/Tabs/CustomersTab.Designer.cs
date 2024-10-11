@@ -38,6 +38,7 @@
             this.CustomerFullNameTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.CustomerAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.CustomerIsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +133,7 @@
             this.CustomerFullNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CustomerFullNameTextBox.Location = new System.Drawing.Point(77, 44);
             this.CustomerFullNameTextBox.Name = "CustomerFullNameTextBox";
-            this.CustomerFullNameTextBox.Size = new System.Drawing.Size(639, 23);
+            this.CustomerFullNameTextBox.Size = new System.Drawing.Size(533, 23);
             this.CustomerFullNameTextBox.TabIndex = 6;
             this.CustomerFullNameTextBox.TextChanged += new System.EventHandler(this.CustomerFullNameTextBox_TextChanged);
             // 
@@ -141,6 +142,7 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.CustomerIsPriorityCheckBox);
             this.groupBox2.Controls.Add(this.CustomerAddressControl);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
@@ -150,7 +152,7 @@
             this.groupBox2.Location = new System.Drawing.Point(215, 1);
             this.groupBox2.MinimumSize = new System.Drawing.Size(313, 214);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(722, 415);
+            this.groupBox2.Size = new System.Drawing.Size(616, 415);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Customer";
@@ -160,11 +162,24 @@
             this.CustomerAddressControl.Address = null;
             this.CustomerAddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerAddressControl.Location = new System.Drawing.Point(0, 75);
-            this.CustomerAddressControl.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.CustomerAddressControl.Location = new System.Drawing.Point(9, 108);
+            this.CustomerAddressControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CustomerAddressControl.Name = "CustomerAddressControl";
-            this.CustomerAddressControl.Size = new System.Drawing.Size(716, 241);
-            this.CustomerAddressControl.TabIndex = 10;
+            this.CustomerAddressControl.Size = new System.Drawing.Size(601, 190);
+            this.CustomerAddressControl.TabIndex = 7;
+            // 
+            // CustomerIsPriorityCheckBox
+            // 
+            this.CustomerIsPriorityCheckBox.AutoSize = true;
+            this.CustomerIsPriorityCheckBox.Enabled = false;
+            this.CustomerIsPriorityCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CustomerIsPriorityCheckBox.Location = new System.Drawing.Point(77, 80);
+            this.CustomerIsPriorityCheckBox.Name = "CustomerIsPriorityCheckBox";
+            this.CustomerIsPriorityCheckBox.Size = new System.Drawing.Size(83, 20);
+            this.CustomerIsPriorityCheckBox.TabIndex = 8;
+            this.CustomerIsPriorityCheckBox.Text = "Is Priority";
+            this.CustomerIsPriorityCheckBox.UseVisualStyleBackColor = true;
+            this.CustomerIsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.CustomerIsPriorityCheckBox_CheckedChanged);
             // 
             // CustomersTab
             // 
@@ -173,7 +188,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "CustomersTab";
-            this.Size = new System.Drawing.Size(940, 419);
+            this.Size = new System.Drawing.Size(834, 419);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -193,5 +208,6 @@
         private System.Windows.Forms.TextBox CustomerFullNameTextBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private Controls.AddressControl CustomerAddressControl;
+        private System.Windows.Forms.CheckBox CustomerIsPriorityCheckBox;
     }
 }

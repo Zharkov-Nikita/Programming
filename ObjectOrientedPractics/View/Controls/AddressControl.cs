@@ -19,6 +19,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         private Address _address;
+        private int _selectedIndex;
 
         public Address Address
         {
@@ -42,8 +43,9 @@ namespace ObjectOrientedPractics.View.Controls
             AddressApartmentTextBox.Text = Address.Apartment;
         }
 
-        public void ClearAddressInfo()
+        public void ClearAddressInfo(int selectedIndex)
         {
+            _selectedIndex = selectedIndex;
             AddressIndexTextBox.Text = null;
             AddressCountryTextBox.Text = null;
             AddressCityTextBox.Text = null;
@@ -80,8 +82,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.Index = Convert.ToInt32(AddressIndexTextBox.Text);
-                AddressIndexTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.Index = Convert.ToInt32(AddressIndexTextBox.Text);
+                    AddressIndexTextBox.BackColor = Color.White;
+                }
             }
             catch
             {
@@ -93,8 +98,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.Country = AddressCountryTextBox.Text;
-                AddressCountryTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.Country = AddressCountryTextBox.Text;
+                    AddressCountryTextBox.BackColor = Color.White;
+                }
             }
             catch
             {
@@ -106,8 +114,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.City = AddressCityTextBox.Text;
-                AddressCityTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.City = AddressCityTextBox.Text;
+                    AddressCityTextBox.BackColor = Color.White;
+                }
             }
             catch
             {
@@ -119,8 +130,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.Street = AddressStreetTextBox.Text;
-                AddressStreetTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.Street = AddressStreetTextBox.Text;
+                    AddressStreetTextBox.BackColor = Color.White;
+                }
             }
             catch
             {
@@ -132,8 +146,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.Building = AddressBuildingTextBox.Text;
-                AddressBuildingTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.Building = AddressBuildingTextBox.Text;
+                    AddressBuildingTextBox.BackColor = Color.White;
+                }
             }
             catch
             {
@@ -145,8 +162,11 @@ namespace ObjectOrientedPractics.View.Controls
         {
             try
             {
-                Address.Apartment = AddressApartmentTextBox.Text;
-                AddressApartmentTextBox.BackColor = Color.White;
+                if (_selectedIndex != -1)
+                {
+                    Address.Apartment = AddressApartmentTextBox.Text;
+                    AddressApartmentTextBox.BackColor = Color.White;
+                }
             }
             catch
             {

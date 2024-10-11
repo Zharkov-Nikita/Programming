@@ -83,6 +83,11 @@ namespace ObjectOrientedPractics.Model
         public List<Order> Orders { get; set; }
 
         /// <summary>
+        /// Возвращает и задаёт приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Название. Не может быть длиннее 200 символов.</param>
@@ -93,6 +98,7 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            IsPriority = false;
             Id = _allCustomersCount;
             _allCustomersCount++;
         }

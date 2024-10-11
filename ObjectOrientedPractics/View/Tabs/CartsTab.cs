@@ -107,7 +107,15 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (CustomersComboBox.SelectedIndex != -1 && CurrentCustomer.Cart.Items.Count != 0)
             {
-                Order order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                Order order = new Order();
+                if (CurrentCustomer.IsPriority == true)
+                {
+                    order = new PriorityOrder(DateTime.Now, "9:00 - 11:00", CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                }
+                else
+                {
+                    order = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Items);
+                }
                 CurrentCustomer.Orders.Add(order);
                 CurrentCustomer.Cart.Items.Clear();
                 RefreshCartItemsListBox();
