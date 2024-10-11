@@ -32,14 +32,13 @@
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.CustomerRemoveButton = new System.Windows.Forms.Button();
             this.CustomerAddButton = new System.Windows.Forms.Button();
-            this.CustomerAddressTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.CustomerIdTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.CustomerFullNameTextBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.CustomerPanel = new System.Windows.Forms.Panel();
+            this.CustomerAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
+            this.CustomerIsPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -66,9 +65,10 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.CustomersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CustomersListBox.FormattingEnabled = true;
+            this.CustomersListBox.ItemHeight = 17;
             this.CustomersListBox.Location = new System.Drawing.Point(6, 19);
             this.CustomersListBox.Name = "CustomersListBox";
-            this.CustomersListBox.Size = new System.Drawing.Size(200, 355);
+            this.CustomersListBox.Size = new System.Drawing.Size(200, 344);
             this.CustomersListBox.TabIndex = 0;
             this.CustomersListBox.SelectedIndexChanged += new System.EventHandler(this.CustomersListBox_SelectedIndexChanged);
             // 
@@ -96,28 +96,13 @@
             this.CustomerAddButton.UseVisualStyleBackColor = true;
             this.CustomerAddButton.Click += new System.EventHandler(this.CustomerAddButton_Click);
             // 
-            // CustomerAddressTextBox
-            // 
-            this.CustomerAddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerAddressTextBox.Enabled = false;
-            this.CustomerAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CustomerAddressTextBox.Location = new System.Drawing.Point(7, 89);
-            this.CustomerAddressTextBox.Multiline = true;
-            this.CustomerAddressTextBox.Name = "CustomerAddressTextBox";
-            this.CustomerAddressTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.CustomerAddressTextBox.Size = new System.Drawing.Size(299, 85);
-            this.CustomerAddressTextBox.TabIndex = 8;
-            this.CustomerAddressTextBox.TextChanged += new System.EventHandler(this.CustomerAddressTextBox_TextChanged);
-            this.CustomerAddressTextBox.Enabled = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(4, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(21, 13);
+            this.label3.Size = new System.Drawing.Size(25, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "ID:";
             // 
@@ -127,7 +112,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.Location = new System.Drawing.Point(4, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
+            this.label4.Size = new System.Drawing.Size(75, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Full Name:";
             // 
@@ -135,21 +120,10 @@
             // 
             this.CustomerIdTextBox.Enabled = false;
             this.CustomerIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CustomerIdTextBox.Location = new System.Drawing.Point(67, 19);
+            this.CustomerIdTextBox.Location = new System.Drawing.Point(77, 19);
             this.CustomerIdTextBox.Name = "CustomerIdTextBox";
-            this.CustomerIdTextBox.Size = new System.Drawing.Size(111, 20);
+            this.CustomerIdTextBox.Size = new System.Drawing.Size(111, 23);
             this.CustomerIdTextBox.TabIndex = 5;
-            this.CustomerIdTextBox.Enabled = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(4, 73);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Address:";
             // 
             // CustomerFullNameTextBox
             // 
@@ -157,43 +131,55 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CustomerFullNameTextBox.Enabled = false;
             this.CustomerFullNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CustomerFullNameTextBox.Location = new System.Drawing.Point(67, 44);
+            this.CustomerFullNameTextBox.Location = new System.Drawing.Point(77, 44);
             this.CustomerFullNameTextBox.Name = "CustomerFullNameTextBox";
-            this.CustomerFullNameTextBox.Size = new System.Drawing.Size(239, 20);
+            this.CustomerFullNameTextBox.Size = new System.Drawing.Size(533, 23);
             this.CustomerFullNameTextBox.TabIndex = 6;
             this.CustomerFullNameTextBox.TextChanged += new System.EventHandler(this.CustomerFullNameTextBox_TextChanged);
-            this.CustomerFullNameTextBox.Enabled = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.CustomerPanel);
-            this.groupBox2.Controls.Add(this.CustomerAddressTextBox);
+            this.groupBox2.Controls.Add(this.CustomerIsPriorityCheckBox);
+            this.groupBox2.Controls.Add(this.CustomerAddressControl);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.CustomerIdTextBox);
-            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.CustomerFullNameTextBox);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(215, 1);
             this.groupBox2.MinimumSize = new System.Drawing.Size(313, 214);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(313, 415);
+            this.groupBox2.Size = new System.Drawing.Size(616, 415);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Customer";
             // 
-            // CustomerPanel
+            // CustomerAddressControl
             // 
-            this.CustomerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CustomerAddressControl.Address = null;
+            this.CustomerAddressControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.CustomerPanel.Location = new System.Drawing.Point(9, 181);
-            this.CustomerPanel.Name = "CustomerPanel";
-            this.CustomerPanel.Size = new System.Drawing.Size(298, 228);
-            this.CustomerPanel.TabIndex = 9;
+            this.CustomerAddressControl.Location = new System.Drawing.Point(9, 108);
+            this.CustomerAddressControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CustomerAddressControl.Name = "CustomerAddressControl";
+            this.CustomerAddressControl.Size = new System.Drawing.Size(601, 190);
+            this.CustomerAddressControl.TabIndex = 7;
+            // 
+            // CustomerIsPriorityCheckBox
+            // 
+            this.CustomerIsPriorityCheckBox.AutoSize = true;
+            this.CustomerIsPriorityCheckBox.Enabled = false;
+            this.CustomerIsPriorityCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CustomerIsPriorityCheckBox.Location = new System.Drawing.Point(77, 80);
+            this.CustomerIsPriorityCheckBox.Name = "CustomerIsPriorityCheckBox";
+            this.CustomerIsPriorityCheckBox.Size = new System.Drawing.Size(83, 20);
+            this.CustomerIsPriorityCheckBox.TabIndex = 8;
+            this.CustomerIsPriorityCheckBox.Text = "Is Priority";
+            this.CustomerIsPriorityCheckBox.UseVisualStyleBackColor = true;
+            this.CustomerIsPriorityCheckBox.CheckedChanged += new System.EventHandler(this.CustomerIsPriorityCheckBox_CheckedChanged);
             // 
             // CustomersTab
             // 
@@ -202,7 +188,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "CustomersTab";
-            this.Size = new System.Drawing.Size(534, 419);
+            this.Size = new System.Drawing.Size(834, 419);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -216,13 +202,12 @@
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.Button CustomerRemoveButton;
         private System.Windows.Forms.Button CustomerAddButton;
-        private System.Windows.Forms.TextBox CustomerAddressTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox CustomerIdTextBox;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox CustomerFullNameTextBox;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Panel CustomerPanel;
+        private Controls.AddressControl CustomerAddressControl;
+        private System.Windows.Forms.CheckBox CustomerIsPriorityCheckBox;
     }
 }

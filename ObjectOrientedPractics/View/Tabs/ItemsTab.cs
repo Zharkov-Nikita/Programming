@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -17,13 +19,28 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category)); //Заполнение Combobox категориями товаров.
         }
 
-        private List<Model.Item> _items = new List<Model.Item>(); //Список с товарами
-        private Model.Item _currentItem; //Текущий товар
+        private Item _currentItem; //Текущий товар.
+        List<Item> _items = new List<Item>(); //Список с товарами.
+
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+            }
+        }
+
+        Random rnd = new Random();
 
         /// <summary>
-        /// Заполняет поля данными из выбранного товара
+        /// Заполняет поля данными из выбранного товара.
         /// </summary>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -34,18 +51,20 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemCostTextBox.Text = _currentItem.Cost.ToString();
                 ItemNameTextBox.Text = _currentItem.Name;
                 ItemDescriptionTextBox.Text = _currentItem.Info;
+                ItemCategoryComboBox.SelectedIndex = Convert.ToInt32(_currentItem.Category);
                 if (!ItemCostTextBox.Enabled)
                 {
                     ItemCostTextBox.Enabled = true;
                     ItemNameTextBox.Enabled = true;
                     ItemDescriptionTextBox.Enabled = true;
+                    ItemCategoryComboBox.Enabled = true;
                 }
             }
             catch { }
         }
 
         /// <summary>
-        /// Меняет цену товара на введённую
+        /// Меняет цену товара на введённую.
         /// </summary>
         private void ItemCostTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -65,7 +84,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Меняет название товара на введённое
+        /// Меняет название товара на введённое.
         /// </summary>
         private void ItemNameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -85,7 +104,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Меняет описание товара на введённое
+        /// Меняет описание товара на введённое.
         /// </summary>
         private void ItemDescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -104,7 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Очищение текстбоксов с информацией о выбранном товаре
+        /// Очищение текстбоксов с информацией о выбранном товаре.
         /// </summary>
         private void ClearItemInfo()
         {
@@ -118,18 +137,21 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemCostTextBox.Text = null;
             ItemNameTextBox.Text = null;
             ItemDescriptionTextBox.Text = null;
+            ItemCategoryComboBox.SelectedIndex = -1;
 
             ItemCostTextBox.Enabled = false;
             ItemNameTextBox.Enabled = false;
             ItemDescriptionTextBox.Enabled = false;
+            ItemCategoryComboBox.Enabled = false;
 
             ItemCostTextBox.BackColor = Color.White;
             ItemNameTextBox.BackColor = Color.White;
             ItemDescriptionTextBox.BackColor = Color.White;
+            ItemCategoryComboBox.BackColor = Color.White;
         }
 
         /// <summary>
-        /// Обновление информации в ListBox с товарами
+        /// Обновление информации в ListBox с товарами.
         /// </summary>
         private void RefreshItemsListBoxItem()
         {
@@ -138,17 +160,17 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Кнопка добавления товара
+        /// Кнопка добавления товара.
         /// </summary>
         private void ItemAddButton_Click(object sender, EventArgs e)
         {
-            Model.Item item = new Model.Item("Название", "Описание", 5);
+            Model.Item item = new Model.Item("Название", "Описание", rnd.Next(5, 101), Category.Cereals);
             _items.Add(item);
             ClearItemInfo();
         }
 
         /// <summary>
-        /// Кнопка удаления товара
+        /// Кнопка удаления товара.
         /// </summary>
         private void ItemRemoveButton_Click(object sender, EventArgs e)
         {
@@ -158,6 +180,21 @@ namespace ObjectOrientedPractics.View.Tabs
                 ClearItemInfo();
             }
             catch { }
+        }
+
+        /// <summary>
+        /// Изменение категории товара.
+        /// </summary>
+        private void ItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ItemsListBox.SelectedIndex != -1)
+                {
+                    _currentItem.Category = (Category)ItemCategoryComboBox.SelectedItem;
+                }
+            }
+            catch{}
         }
     }
 }

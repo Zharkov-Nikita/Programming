@@ -29,7 +29,17 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес покупателя.
         /// </summary>
-        private string _address;
+        private Address _address;
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Заказы покупателя.
+        /// </summary>
+        private List<Order> _orders;
 
         /// <summary>
         /// Возвращает общее количество покупателей.
@@ -58,30 +68,37 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт адрес покупателя. Не может быть длиннее 500 символов.
+        /// Возвращает и задаёт адрес покупателя.
         /// </summary>
-        public string Address
-        {
-            get
-            {
-                return _address;
-            }
-            set
-            {
-                ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
-                _address = value;
-            }
-        }
+        public Address Address { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт корзину покупателя.
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт заказы покупателя.
+        /// </summary>
+        public List<Order> Orders { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт приоритетность покупателя.
+        /// </summary>
+        public bool IsPriority { get; set; }
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Название. Не может быть длиннее 200 символов.</param>
-        /// <param name="address">Описание. Не может быть длиннее 500 символов.</param>
-        public Customer(string fullname, string address)
+        /// <param name="address">Адрес.</param>
+        public Customer(string fullname, Address address)
         {
             Fullname = fullname;
             Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
+            IsPriority = false;
             Id = _allCustomersCount;
             _allCustomersCount++;
         }
