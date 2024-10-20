@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о скидке.
     /// </summary>
-    public class PointsDiscount
+    public class PointsDiscount : IDiscount
     {
         /// <summary>
         /// Количество баллов.
@@ -40,7 +40,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public double Calculate(List<Item> items)
         {
-            double amount = 0.0;
+            double amount = 0;
             foreach (Item item in items)
             {
                 amount += item.Cost;
@@ -50,12 +50,8 @@ namespace ObjectOrientedPractics.Model
             if (Points < discount)
             {
                 discount = Points;
-                return discount;
             }
-            else
-            {
-                return discount;
-            }
+            return discount;
         }
 
         /// <summary>
