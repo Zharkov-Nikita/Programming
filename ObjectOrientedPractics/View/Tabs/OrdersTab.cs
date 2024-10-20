@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,10 +23,10 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderStatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus)); //Заполнение Combobox статусами заказов.
         }
 
-        private Model.PriorityOrder _currentPriorityOrder; //Текущий приоритетный заказ.
-        private Model.Order _currentOrder = new Order(); //Текущий заказ.
-        public List<Model.Customer> Customers { get; set; }
-        public List<Model.Order> Orders { get; set; } = new List<Model.Order>();
+        private PriorityOrder _currentPriorityOrder; //Текущий приоритетный заказ.
+        private Order _currentOrder = new Order(); //Текущий заказ.
+        public List<Customer> Customers { get; set; }
+        public List<Order> Orders { get; set; } = new List<Order>();
 
         /// <summary>
         /// Обновляет данные на странице.

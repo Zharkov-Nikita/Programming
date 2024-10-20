@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Discounts
 {
     /// <summary>
     /// Хранит информацию о скидке на конкретную категорию.

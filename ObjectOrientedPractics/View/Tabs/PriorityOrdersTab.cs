@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +22,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         Random rnd = new Random();
-        public Model.PriorityOrder PriorityOrder = new Model.PriorityOrder(DateTime.Now, "9:00 - 11:00", new Model.Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"), new List<Item>());
+        public PriorityOrder PriorityOrder = new PriorityOrder(DateTime.Now, "9:00 - 11:00", new Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"), new List<Item>());
 
         private void UpdateOrder()
         {
@@ -74,7 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ClearOrderButton_Click(object sender, EventArgs e)
         {
             PriorityOrder = null;
-            PriorityOrder = new Model.PriorityOrder(DateTime.Now, "9:00 - 11:00", new Model.Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"), new List<Item>());
+            PriorityOrder = new PriorityOrder(DateTime.Now, "9:00 - 11:00", new Model.Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"), new List<Item>());
             RefreshData();
         }
     }

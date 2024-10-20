@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Хранит информацию о заказе.
@@ -80,6 +81,22 @@ namespace ObjectOrientedPractics.Model
                     amount += item.Cost;
                 }
                 return amount;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт размер применённой скидки.
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Возвращает конечную сумму.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 
