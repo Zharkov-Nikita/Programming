@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,6 +119,15 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 return $"Процентная {Category} - {Percent * 100}%";
             }
+        }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="PercentDiscount"/>.
+        /// </summary>
+        /// <param name="category">Категория. Нет ограничений.</param>
+        public PercentDiscount(Category category)
+        {
+            Category = category;
         }
     }
 }
