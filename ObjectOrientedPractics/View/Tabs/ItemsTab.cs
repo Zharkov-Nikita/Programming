@@ -165,7 +165,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void ItemAddButton_Click(object sender, EventArgs e)
         {
-            Model.Item item = new Model.Item("Название", "Описание", rnd.Next(5, 101), Category.Cereals);
+            Model.Item item = new Model.Item("Название", "Описание", rnd.Next(100, 1001), Category.Cereals);
             _items.Add(item);
             ClearItemInfo();
         }

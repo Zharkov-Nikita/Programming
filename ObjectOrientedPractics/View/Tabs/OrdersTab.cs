@@ -56,6 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     OrdersDataGridView[3, index].Value = customer.Fullname;
                     OrdersDataGridView[4, index].Value = $"{customer.Address.City}, улица {customer.Address.Street}, дом {customer.Address.Building}, кв. {customer.Address.Apartment}";
                     OrdersDataGridView[5, index].Value = order.Amount;
+                    OrdersDataGridView[6, index].Value = order.Total;
                 }
             }
         }
@@ -92,6 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     OrderItemsListBox.Items.Add(_item);
                 }
                 OrderAmountLabel.Text = _currentOrder.Amount.ToString();
+                OrderTotalLabel.Text = _currentOrder.Total.ToString();
             }
             else
             {
@@ -101,6 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderAddressControl.ClearAddressInfo(currentRow);
                 OrderItemsListBox.Items.Clear();
                 OrderAmountLabel.Text = "0";
+                OrderTotalLabel.Text = "0";
             }
         }
 

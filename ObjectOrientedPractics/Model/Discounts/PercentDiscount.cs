@@ -71,21 +71,24 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         public double Calculate(List<Item> items)
         {
+            double purchaseAmount = 0;
             foreach (Item item in items)
             {
                 if (item.Category == Category)
                 {
-                    PurchaseAmount += item.Cost;
+                    purchaseAmount += item.Cost;
                 }
             }
 
-            double percent = Math.Round(PurchaseAmount * 0.001, 2);
+            double percent = Math.Floor(purchaseAmount / 1000);
+            percent /= 100;
 
             if (percent > 0.1)
             {
                 percent = 0.1;
             }
-            return Percent;
+            double discount = purchaseAmount * Percent;
+            return discount;
         }
 
         /// <summary>
@@ -94,7 +97,11 @@ namespace ObjectOrientedPractics.Model.Discounts
         public double Apply(List<Item> items)
         {
             double discount = Calculate(items);
-            Percent = 0;
+            if (discount != 0)
+            {
+                Percent = 0;
+                PurchaseAmount = 0;
+            }
             return discount;
         }
 
@@ -103,7 +110,16 @@ namespace ObjectOrientedPractics.Model.Discounts
         /// </summary>
         public void Update(List<Item> items)
         {
-            Percent += Calculate(items);
+            foreach (Item item in items)
+            {
+                if (item.Category == Category)
+                {
+                    PurchaseAmount += item.Cost;
+                }
+            }
+
+            Percent = Math.Floor(PurchaseAmount / 1000);
+            Percent /= 100;
             if (Percent > 0.1)
             {
                 Percent = 0.1;
