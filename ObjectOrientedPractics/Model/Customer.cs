@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -88,6 +90,11 @@ namespace ObjectOrientedPractics.Model
         public bool IsPriority { get; set; }
 
         /// <summary>
+        /// Возвращает и задаёт скидки покупателя.
+        /// </summary>
+        public List<IDiscount> Discounts { get; set; }
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="Customer"/>.
         /// </summary>
         /// <param name="fullname">Название. Не может быть длиннее 200 символов.</param>
@@ -99,6 +106,10 @@ namespace ObjectOrientedPractics.Model
             Cart = new Cart();
             Orders = new List<Order>();
             IsPriority = false;
+            Discounts = new List<IDiscount>
+            {
+                new PointsDiscount()
+            };
             Id = _allCustomersCount;
             _allCustomersCount++;
         }

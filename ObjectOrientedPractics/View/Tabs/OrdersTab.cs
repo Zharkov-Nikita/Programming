@@ -1,4 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,10 +23,10 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderStatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus)); //Заполнение Combobox статусами заказов.
         }
 
-        private Model.PriorityOrder _currentPriorityOrder; //Текущий приоритетный заказ.
-        private Model.Order _currentOrder = new Order(); //Текущий заказ.
-        public List<Model.Customer> Customers { get; set; }
-        public List<Model.Order> Orders { get; set; } = new List<Model.Order>();
+        private PriorityOrder _currentPriorityOrder; //Текущий приоритетный заказ.
+        private Order _currentOrder = new Order(); //Текущий заказ.
+        public List<Customer> Customers { get; set; }
+        public List<Order> Orders { get; set; } = new List<Order>();
 
         /// <summary>
         /// Обновляет данные на странице.
@@ -54,6 +56,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     OrdersDataGridView[3, index].Value = customer.Fullname;
                     OrdersDataGridView[4, index].Value = $"{customer.Address.City}, улица {customer.Address.Street}, дом {customer.Address.Building}, кв. {customer.Address.Apartment}";
                     OrdersDataGridView[5, index].Value = order.Amount;
+                    OrdersDataGridView[6, index].Value = order.Total;
                 }
             }
         }
@@ -90,6 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     OrderItemsListBox.Items.Add(_item);
                 }
                 OrderAmountLabel.Text = _currentOrder.Amount.ToString();
+                OrderTotalLabel.Text = _currentOrder.Total.ToString();
             }
             else
             {
@@ -99,6 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderAddressControl.ClearAddressInfo(currentRow);
                 OrderItemsListBox.Items.Clear();
                 OrderAmountLabel.Text = "0";
+                OrderTotalLabel.Text = "0";
             }
         }
 
