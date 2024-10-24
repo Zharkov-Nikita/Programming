@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 return _percent;
             }
-            set
+            private set
             {
                 if (value < 0)
                 {
@@ -51,7 +51,7 @@ namespace ObjectOrientedPractics.Model.Discounts
             {
                 return _purchaseAmount;
             }
-            set
+            private set
             {
                 if (value < 0)
                 {
