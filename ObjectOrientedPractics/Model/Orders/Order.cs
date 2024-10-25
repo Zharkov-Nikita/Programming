@@ -116,5 +116,29 @@ namespace ObjectOrientedPractics.Model.Orders
         }
         
         public Order() { }
+
+        /// <summary>
+        /// Сравнивает экземпляры класса
+        /// </summary>
+        /// <param name="other">Экземпляр, с которым будет происходить сравнение.</param>
+        /// <returns>true, если равны и false, если не равны.</returns>
+        public override bool Equals(object other)
+        {
+            //Обязательные проверки прежде чем мы сравним поля
+            if (other == null)
+                return false;
+            if (!(other is Order))
+                return false;
+            if (object.ReferenceEquals(this, other))
+                return true;
+            var order2 = (Order)other;
+
+            //Только теперь мы можем сделать собственное сравнение
+            if (this.Address != order2.Address)
+                return false;
+            if (this.Items != order2.Items)
+                return false;
+            return (this.Status == order2.Status);
+        }
     }
 }

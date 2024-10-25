@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
+            this.OrdersIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersCustomerFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersDeliveryAddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,13 +53,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.PriorityOrderPanel = new System.Windows.Forms.Panel();
             this.OrderAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
-            this.OrdersIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersCreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersCustomerFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersDeliveryAddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.OrderTotalLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
@@ -85,6 +85,69 @@
             this.OrdersDataGridView.Size = new System.Drawing.Size(367, 457);
             this.OrdersDataGridView.TabIndex = 0;
             this.OrdersDataGridView.SelectionChanged += new System.EventHandler(this.OrdersDataGridView_SelectionChanged);
+            // 
+            // OrdersIdColumn
+            // 
+            this.OrdersIdColumn.HeaderText = "Id";
+            this.OrdersIdColumn.MinimumWidth = 6;
+            this.OrdersIdColumn.Name = "OrdersIdColumn";
+            this.OrdersIdColumn.ReadOnly = true;
+            this.OrdersIdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersIdColumn.Width = 125;
+            // 
+            // OrdersCreatedColumn
+            // 
+            this.OrdersCreatedColumn.HeaderText = "Created";
+            this.OrdersCreatedColumn.MinimumWidth = 6;
+            this.OrdersCreatedColumn.Name = "OrdersCreatedColumn";
+            this.OrdersCreatedColumn.ReadOnly = true;
+            this.OrdersCreatedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersCreatedColumn.Width = 125;
+            // 
+            // OrdersStatusColumn
+            // 
+            this.OrdersStatusColumn.HeaderText = "Order Status";
+            this.OrdersStatusColumn.MinimumWidth = 6;
+            this.OrdersStatusColumn.Name = "OrdersStatusColumn";
+            this.OrdersStatusColumn.ReadOnly = true;
+            this.OrdersStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersStatusColumn.Width = 125;
+            // 
+            // OrdersCustomerFullNameColumn
+            // 
+            this.OrdersCustomerFullNameColumn.HeaderText = "Customer Full Name";
+            this.OrdersCustomerFullNameColumn.MinimumWidth = 6;
+            this.OrdersCustomerFullNameColumn.Name = "OrdersCustomerFullNameColumn";
+            this.OrdersCustomerFullNameColumn.ReadOnly = true;
+            this.OrdersCustomerFullNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersCustomerFullNameColumn.Width = 125;
+            // 
+            // OrdersDeliveryAddressColumn
+            // 
+            this.OrdersDeliveryAddressColumn.HeaderText = "Delivery Address";
+            this.OrdersDeliveryAddressColumn.MinimumWidth = 6;
+            this.OrdersDeliveryAddressColumn.Name = "OrdersDeliveryAddressColumn";
+            this.OrdersDeliveryAddressColumn.ReadOnly = true;
+            this.OrdersDeliveryAddressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersDeliveryAddressColumn.Width = 125;
+            // 
+            // OrdersAmountColumn
+            // 
+            this.OrdersAmountColumn.HeaderText = "Amount";
+            this.OrdersAmountColumn.MinimumWidth = 6;
+            this.OrdersAmountColumn.Name = "OrdersAmountColumn";
+            this.OrdersAmountColumn.ReadOnly = true;
+            this.OrdersAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersAmountColumn.Width = 125;
+            // 
+            // OrdersTotalColumn
+            // 
+            this.OrdersTotalColumn.HeaderText = "Total";
+            this.OrdersTotalColumn.MinimumWidth = 6;
+            this.OrdersTotalColumn.Name = "OrdersTotalColumn";
+            this.OrdersTotalColumn.ReadOnly = true;
+            this.OrdersTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrdersTotalColumn.Width = 125;
             // 
             // label1
             // 
@@ -182,8 +245,7 @@
             // 
             // OrderAmountLabel
             // 
-            this.OrderAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrderAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OrderAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OrderAmountLabel.Location = new System.Drawing.Point(681, 448);
             this.OrderAmountLabel.Name = "OrderAmountLabel";
@@ -265,72 +327,8 @@
             this.OrderAddressControl.Size = new System.Drawing.Size(458, 152);
             this.OrderAddressControl.TabIndex = 9;
             // 
-            // OrdersIdColumn
-            // 
-            this.OrdersIdColumn.HeaderText = "Id";
-            this.OrdersIdColumn.MinimumWidth = 6;
-            this.OrdersIdColumn.Name = "OrdersIdColumn";
-            this.OrdersIdColumn.ReadOnly = true;
-            this.OrdersIdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersIdColumn.Width = 125;
-            // 
-            // OrdersCreatedColumn
-            // 
-            this.OrdersCreatedColumn.HeaderText = "Created";
-            this.OrdersCreatedColumn.MinimumWidth = 6;
-            this.OrdersCreatedColumn.Name = "OrdersCreatedColumn";
-            this.OrdersCreatedColumn.ReadOnly = true;
-            this.OrdersCreatedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersCreatedColumn.Width = 125;
-            // 
-            // OrdersStatusColumn
-            // 
-            this.OrdersStatusColumn.HeaderText = "Order Status";
-            this.OrdersStatusColumn.MinimumWidth = 6;
-            this.OrdersStatusColumn.Name = "OrdersStatusColumn";
-            this.OrdersStatusColumn.ReadOnly = true;
-            this.OrdersStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersStatusColumn.Width = 125;
-            // 
-            // OrdersCustomerFullNameColumn
-            // 
-            this.OrdersCustomerFullNameColumn.HeaderText = "Customer Full Name";
-            this.OrdersCustomerFullNameColumn.MinimumWidth = 6;
-            this.OrdersCustomerFullNameColumn.Name = "OrdersCustomerFullNameColumn";
-            this.OrdersCustomerFullNameColumn.ReadOnly = true;
-            this.OrdersCustomerFullNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersCustomerFullNameColumn.Width = 125;
-            // 
-            // OrdersDeliveryAddressColumn
-            // 
-            this.OrdersDeliveryAddressColumn.HeaderText = "Delivery Address";
-            this.OrdersDeliveryAddressColumn.MinimumWidth = 6;
-            this.OrdersDeliveryAddressColumn.Name = "OrdersDeliveryAddressColumn";
-            this.OrdersDeliveryAddressColumn.ReadOnly = true;
-            this.OrdersDeliveryAddressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersDeliveryAddressColumn.Width = 125;
-            // 
-            // OrdersAmountColumn
-            // 
-            this.OrdersAmountColumn.HeaderText = "Amount";
-            this.OrdersAmountColumn.MinimumWidth = 6;
-            this.OrdersAmountColumn.Name = "OrdersAmountColumn";
-            this.OrdersAmountColumn.ReadOnly = true;
-            this.OrdersAmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersAmountColumn.Width = 125;
-            // 
-            // OrdersTotalColumn
-            // 
-            this.OrdersTotalColumn.HeaderText = "Total";
-            this.OrdersTotalColumn.MinimumWidth = 6;
-            this.OrdersTotalColumn.Name = "OrdersTotalColumn";
-            this.OrdersTotalColumn.ReadOnly = true;
-            this.OrdersTotalColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.OrdersTotalColumn.Width = 125;
-            // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label10.Location = new System.Drawing.Point(429, 432);
             this.label10.Name = "label10";
@@ -341,8 +339,6 @@
             // 
             // OrderTotalLabel
             // 
-            this.OrderTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.OrderTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OrderTotalLabel.Location = new System.Drawing.Point(376, 448);
             this.OrderTotalLabel.Name = "OrderTotalLabel";

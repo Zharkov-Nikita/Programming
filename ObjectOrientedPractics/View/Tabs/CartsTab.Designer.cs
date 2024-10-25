@@ -211,6 +211,7 @@
             // 
             this.CartDiscountsCheckedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CartDiscountsCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CartDiscountsCheckedListBox.CheckOnClick = true;
             this.CartDiscountsCheckedListBox.FormattingEnabled = true;
             this.CartDiscountsCheckedListBox.Location = new System.Drawing.Point(278, 280);
             this.CartDiscountsCheckedListBox.Name = "CartDiscountsCheckedListBox";
