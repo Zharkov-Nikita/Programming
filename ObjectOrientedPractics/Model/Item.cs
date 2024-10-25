@@ -127,7 +127,6 @@ namespace ObjectOrientedPractics.Model
         /// /// <returns>Склонированный экземпляр класса.</returns>
         public object Clone()
         {
-            _allItemsCount++;
             return new Item(this.Name, this.Info, this.Cost, this.Category) { Id = _allItemsCount-1 };
         }
 

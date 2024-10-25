@@ -91,6 +91,12 @@
     <Compile Include="View\Tabs\CustomersTab.Designer.cs">
       <DependentUpon>CustomersTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Tabs\InterfacesTestTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\InterfacesTestTab.Designer.cs">
+      <DependentUpon>InterfacesTestTab.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Tabs\ItemsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Tabs\CustomersTab.resx">
       <DependentUpon>CustomersTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Tabs\InterfacesTestTab.resx">
+      <DependentUpon>InterfacesTestTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Tabs\ItemsTab.resx">
       <DependentUpon>ItemsTab.cs</DependentUpon>
