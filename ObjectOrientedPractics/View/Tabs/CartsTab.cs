@@ -175,5 +175,33 @@ namespace ObjectOrientedPractics.View.Tabs
             CartDiscountAmountLabel.Text = _discount.ToString();
             CartTotalLabel.Text = _total.ToString();
         }
+
+        private void CreateCloneButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Cart cloneCart = (Cart)_currentCustomer.Cart.Clone();
+                Order order = new Order();
+                if (_currentCustomer.IsPriority == true)
+                {
+                    order = new PriorityOrder(DateTime.Now, "9:00 - 11:00", _currentCustomer.Address, _currentCustomer.Cart.Items);
+                }
+                else
+                {
+                    order = new Order(_currentCustomer.Address, cloneCart.Items);
+                }
+                order.DiscountAmount = _discount;
+                foreach (int index in CartDiscountsCheckedListBox.CheckedIndices)
+                {
+                    _currentCustomer.Discounts[index].Apply(order.Items);
+                }
+                foreach (IDiscount item in _currentCustomer.Discounts)
+                {
+                    item.Update(order.Items);
+                }
+                _currentCustomer.Orders.Add(order);
+            }
+            catch { }
+        }
     }
 }

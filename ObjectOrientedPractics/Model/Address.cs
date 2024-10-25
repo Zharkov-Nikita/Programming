@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -11,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о адресе.
     /// </summary>
-    public class Address
+    public class Address : ICloneable
     {
         /// <summary>
         /// Почтовый индекс.
@@ -158,5 +159,43 @@ namespace ObjectOrientedPractics.Model
             Apartment = apartment;
         }
         public Address() { }
+
+        /// <summary>
+        /// Клонирует экземпляр класса <see cref="Address"/>.
+        /// </summary>
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street, this.Building, this.Apartment);
+        }
+
+        /// <summary>
+        /// Сравнивает экземпляры класса
+        /// </summary>
+        /// <param name="other">Экземпляр, с которым будет происходить сравнение.</param>
+        /// <returns>true, если равны и false, если не равны.</returns>
+        public override bool Equals(object other)
+        {
+            //Обязательные проверки прежде чем мы сравним поля
+            if (other == null)
+                return false;
+            if (!(other is Address))
+                return false;
+            if (object.ReferenceEquals(this, other))
+                return true;
+            var address2 = (Address)other;
+
+            //Только теперь мы можем сделать собственное сравнение
+            if (this.Index != address2.Index)
+                return false;
+            if (this.Country != address2.Country)
+                return false;
+            if (this.City != address2.City)
+                return false;
+            if (this.Street != address2.Street)
+                return false;
+            if (this.Building != address2.Building)
+                return false;
+            return (this.Apartment == address2.Apartment);
+        }
     }
 }

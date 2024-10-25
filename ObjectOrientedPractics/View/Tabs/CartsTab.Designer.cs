@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CreateCloneButton = new System.Windows.Forms.Button();
             this.AddToCartButton = new System.Windows.Forms.Button();
             this.ItemsListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,16 +59,28 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 492);
+            this.groupBox1.Size = new System.Drawing.Size(262, 496);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Items";
+            // 
+            // CreateCloneButton
+            // 
+            this.CreateCloneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateCloneButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CreateCloneButton.Location = new System.Drawing.Point(570, 406);
+            this.CreateCloneButton.Name = "CreateCloneButton";
+            this.CreateCloneButton.Size = new System.Drawing.Size(103, 39);
+            this.CreateCloneButton.TabIndex = 23;
+            this.CreateCloneButton.Text = "Create Clone";
+            this.CreateCloneButton.UseVisualStyleBackColor = true;
+            this.CreateCloneButton.Click += new System.EventHandler(this.CreateCloneButton_Click);
             // 
             // AddToCartButton
             // 
             this.AddToCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddToCartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddToCartButton.Location = new System.Drawing.Point(7, 454);
+            this.AddToCartButton.Location = new System.Drawing.Point(7, 458);
             this.AddToCartButton.Name = "AddToCartButton";
             this.AddToCartButton.Size = new System.Drawing.Size(95, 32);
             this.AddToCartButton.TabIndex = 12;
@@ -201,7 +214,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.ClearCartButton);
             this.groupBox2.Controls.Add(this.CartAmountLabel);
-            this.groupBox2.Location = new System.Drawing.Point(272, 171);
+            this.groupBox2.Location = new System.Drawing.Point(272, 175);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(391, 102);
             this.groupBox2.TabIndex = 19;
@@ -211,8 +224,9 @@
             // 
             this.CartDiscountsCheckedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CartDiscountsCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CartDiscountsCheckedListBox.CheckOnClick = true;
             this.CartDiscountsCheckedListBox.FormattingEnabled = true;
-            this.CartDiscountsCheckedListBox.Location = new System.Drawing.Point(278, 280);
+            this.CartDiscountsCheckedListBox.Location = new System.Drawing.Point(278, 284);
             this.CartDiscountsCheckedListBox.Name = "CartDiscountsCheckedListBox";
             this.CartDiscountsCheckedListBox.Size = new System.Drawing.Size(210, 165);
             this.CartDiscountsCheckedListBox.TabIndex = 20;
@@ -222,7 +236,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(537, 280);
+            this.label4.Location = new System.Drawing.Point(537, 284);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 15);
             this.label4.TabIndex = 19;
@@ -234,7 +248,7 @@
             this.CartDiscountAmountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CartDiscountAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CartDiscountAmountLabel.Location = new System.Drawing.Point(543, 296);
+            this.CartDiscountAmountLabel.Location = new System.Drawing.Point(543, 300);
             this.CartDiscountAmountLabel.Name = "CartDiscountAmountLabel";
             this.CartDiscountAmountLabel.Size = new System.Drawing.Size(120, 23);
             this.CartDiscountAmountLabel.TabIndex = 20;
@@ -245,7 +259,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(539, 444);
+            this.label5.Location = new System.Drawing.Point(539, 448);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 15);
             this.label5.TabIndex = 21;
@@ -257,7 +271,7 @@
             this.CartTotalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CartTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CartTotalLabel.Location = new System.Drawing.Point(545, 460);
+            this.CartTotalLabel.Location = new System.Drawing.Point(545, 464);
             this.CartTotalLabel.Name = "CartTotalLabel";
             this.CartTotalLabel.Size = new System.Drawing.Size(120, 23);
             this.CartTotalLabel.TabIndex = 22;
@@ -268,6 +282,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CreateCloneButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.CartTotalLabel);
             this.Controls.Add(this.label4);
@@ -280,7 +295,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "CartsTab";
-            this.Size = new System.Drawing.Size(676, 492);
+            this.Size = new System.Drawing.Size(676, 496);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -308,5 +323,6 @@
         private System.Windows.Forms.Label CartDiscountAmountLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label CartTotalLabel;
+        private System.Windows.Forms.Button CreateCloneButton;
     }
 }

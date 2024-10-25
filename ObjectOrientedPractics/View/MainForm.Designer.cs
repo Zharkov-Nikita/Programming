@@ -40,12 +40,15 @@
             this.OrdersTab = new ObjectOrientedPractics.View.Tabs.OrdersTab();
             this.PriorityOrdersTabPage = new System.Windows.Forms.TabPage();
             this.PriorityOrdersTab = new ObjectOrientedPractics.View.Tabs.PriorityOrdersTab();
+            this.InterfacesTestTabPage = new System.Windows.Forms.TabPage();
+            this.InterfacesTestTab = new ObjectOrientedPractics.View.Tabs.InterfacesTestTab();
             this.MainTabControl.SuspendLayout();
             this.ItemsTabPage.SuspendLayout();
             this.CustomersTabPage.SuspendLayout();
             this.CartsTabPage.SuspendLayout();
             this.OrdersTabPage.SuspendLayout();
             this.PriorityOrdersTabPage.SuspendLayout();
+            this.InterfacesTestTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainTabControl
@@ -55,6 +58,7 @@
             this.MainTabControl.Controls.Add(this.CartsTabPage);
             this.MainTabControl.Controls.Add(this.OrdersTabPage);
             this.MainTabControl.Controls.Add(this.PriorityOrdersTabPage);
+            this.MainTabControl.Controls.Add(this.InterfacesTestTabPage);
             this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainTabControl.Name = "MainTabControl";
@@ -160,6 +164,25 @@
             this.PriorityOrdersTab.Size = new System.Drawing.Size(776, 418);
             this.PriorityOrdersTab.TabIndex = 0;
             // 
+            // InterfacesTestTabPage
+            // 
+            this.InterfacesTestTabPage.Controls.Add(this.InterfacesTestTab);
+            this.InterfacesTestTabPage.Location = new System.Drawing.Point(4, 22);
+            this.InterfacesTestTabPage.Name = "InterfacesTestTabPage";
+            this.InterfacesTestTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.InterfacesTestTabPage.Size = new System.Drawing.Size(782, 424);
+            this.InterfacesTestTabPage.TabIndex = 2;
+            this.InterfacesTestTabPage.Text = "Interfaces Test";
+            this.InterfacesTestTabPage.UseVisualStyleBackColor = true;
+            // 
+            // InterfacesTestTab
+            // 
+            this.InterfacesTestTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InterfacesTestTab.Location = new System.Drawing.Point(3, 3);
+            this.InterfacesTestTab.Name = "InterfacesTestTab";
+            this.InterfacesTestTab.Size = new System.Drawing.Size(776, 418);
+            this.InterfacesTestTab.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +198,7 @@
             this.CartsTabPage.ResumeLayout(false);
             this.OrdersTabPage.ResumeLayout(false);
             this.PriorityOrdersTabPage.ResumeLayout(false);
+            this.InterfacesTestTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -192,6 +216,8 @@
         private View.Tabs.OrdersTab OrdersTab;
         private System.Windows.Forms.TabPage PriorityOrdersTabPage;
         private View.Tabs.PriorityOrdersTab PriorityOrdersTab;
+        private System.Windows.Forms.TabPage InterfacesTestTabPage;
+        private View.Tabs.InterfacesTestTab InterfacesTestTab;
     }
 }
 
