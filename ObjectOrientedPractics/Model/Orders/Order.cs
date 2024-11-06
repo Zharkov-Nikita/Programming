@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model.Orders
     /// <summary>
     /// Хранит информацию о заказе.
     /// </summary>
-    public class Order
+    public class Order : IEquatable<Order>
     {
         /// <summary>
         /// Общее количество заказов.
@@ -122,7 +122,7 @@ namespace ObjectOrientedPractics.Model.Orders
         /// </summary>
         /// <param name="other">Экземпляр, с которым будет происходить сравнение.</param>
         /// <returns>true, если равны и false, если не равны.</returns>
-        public override bool Equals(object other)
+        public bool Equals(Order other)
         {
             //Обязательные проверки прежде чем мы сравним поля
             if (other == null)

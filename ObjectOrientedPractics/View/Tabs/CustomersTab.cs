@@ -155,7 +155,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 addDiscountForm.ShowDialog();
                 if (addDiscountForm.IsOk == true)
                 {
-                    PercentDiscount percentDiscount = new PercentDiscount(addDiscountForm.Category);
+                    IDiscount percentDiscount = new PercentDiscount(addDiscountForm.Category);
                     _currentCustomer.Discounts.Add(percentDiscount);
                     CustomerDiscountsListBox.Items.Clear();
                     foreach (IDiscount item in _currentCustomer.Discounts)
