@@ -43,6 +43,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ItemCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ItemFindTextBox = new System.Windows.Forms.TextBox();
+            this.ItemOrderByComboBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +58,7 @@
             this.ItemsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ItemsListBox.FormattingEnabled = true;
             this.ItemsListBox.ItemHeight = 17;
-            this.ItemsListBox.Location = new System.Drawing.Point(6, 19);
+            this.ItemsListBox.Location = new System.Drawing.Point(6, 53);
             this.ItemsListBox.Name = "ItemsListBox";
             this.ItemsListBox.Size = new System.Drawing.Size(200, 344);
             this.ItemsListBox.TabIndex = 0;
@@ -150,7 +154,7 @@
             // 
             this.ItemAddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemAddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemAddButton.Location = new System.Drawing.Point(6, 377);
+            this.ItemAddButton.Location = new System.Drawing.Point(6, 442);
             this.ItemAddButton.Name = "ItemAddButton";
             this.ItemAddButton.Size = new System.Drawing.Size(75, 32);
             this.ItemAddButton.TabIndex = 11;
@@ -162,7 +166,7 @@
             // 
             this.ItemRemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemRemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ItemRemoveButton.Location = new System.Drawing.Point(87, 377);
+            this.ItemRemoveButton.Location = new System.Drawing.Point(87, 442);
             this.ItemRemoveButton.Name = "ItemRemoveButton";
             this.ItemRemoveButton.Size = new System.Drawing.Size(75, 32);
             this.ItemRemoveButton.TabIndex = 12;
@@ -174,14 +178,18 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.ItemOrderByComboBox);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.ItemsListBox);
+            this.groupBox1.Controls.Add(this.ItemFindTextBox);
             this.groupBox1.Controls.Add(this.ItemRemoveButton);
             this.groupBox1.Controls.Add(this.ItemAddButton);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(3, 0);
             this.groupBox1.MinimumSize = new System.Drawing.Size(214, 214);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(214, 415);
+            this.groupBox1.Size = new System.Drawing.Size(214, 480);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Items";
@@ -205,7 +213,7 @@
             this.groupBox2.Location = new System.Drawing.Point(215, 0);
             this.groupBox2.MinimumSize = new System.Drawing.Size(313, 214);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(313, 415);
+            this.groupBox2.Size = new System.Drawing.Size(313, 480);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Selected Item";
@@ -232,6 +240,52 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Category:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(9, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Find:";
+            // 
+            // ItemFindTextBox
+            // 
+            this.ItemFindTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ItemFindTextBox.Location = new System.Drawing.Point(53, 24);
+            this.ItemFindTextBox.Name = "ItemFindTextBox";
+            this.ItemFindTextBox.Size = new System.Drawing.Size(153, 23);
+            this.ItemFindTextBox.TabIndex = 14;
+            this.ItemFindTextBox.TextChanged += new System.EventHandler(this.ItemFindTextBox_TextChanged);
+            // 
+            // ItemOrderByComboBox
+            // 
+            this.ItemOrderByComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ItemOrderByComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ItemOrderByComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ItemOrderByComboBox.FormattingEnabled = true;
+            this.ItemOrderByComboBox.Items.AddRange(new object[] {
+            "Name",
+            "Cost (Ascending)",
+            "Cost (Discending)"});
+            this.ItemOrderByComboBox.Location = new System.Drawing.Point(83, 410);
+            this.ItemOrderByComboBox.Name = "ItemOrderByComboBox";
+            this.ItemOrderByComboBox.Size = new System.Drawing.Size(121, 24);
+            this.ItemOrderByComboBox.TabIndex = 14;
+            this.ItemOrderByComboBox.SelectedIndexChanged += new System.EventHandler(this.ItemOrderByComboBox_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(9, 412);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 17);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Order by:";
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,8 +293,9 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(534, 419);
+            this.Size = new System.Drawing.Size(534, 484);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -264,5 +319,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox ItemCategoryComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox ItemFindTextBox;
+        private System.Windows.Forms.ComboBox ItemOrderByComboBox;
+        private System.Windows.Forms.Label label7;
     }
 }

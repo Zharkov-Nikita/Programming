@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,10 +22,12 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category)); //Заполнение Combobox категориями товаров.
+            ItemOrderByComboBox.SelectedIndex = 0;
         }
 
         private Item _currentItem; //Текущий товар.
         List<Item> _items = new List<Item>(); //Список с товарами.
+        List<Item> _displayedItems = new List<Item>();
 
         public List<Item> Items
         {
@@ -47,7 +50,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _currentItem = _items[ItemsListBox.SelectedIndex];
+                _currentItem = _items[_items.IndexOf(_displayedItems[ItemsListBox.SelectedIndex])];
                 ItemIdTextBox.Text = _currentItem.Id.ToString();
                 ItemCostTextBox.Text = _currentItem.Cost.ToString();
                 ItemNameTextBox.Text = _currentItem.Name;
@@ -129,7 +132,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ClearItemInfo()
         {
             ItemsListBox.Items.Clear();
-            foreach (Model.Item item in _items)
+            foreach (Model.Item item in _displayedItems)
             {
                 string _item = ($"{item.Id}: {item.Name}, цена = {item.Cost}").ToString();
                 ItemsListBox.Items.Add(_item);
@@ -167,7 +170,13 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             Model.Item item = new Model.Item("Название", "Описание", rnd.Next(100, 1001), Category.Cereals);
             _items.Add(item);
-            ClearItemInfo();
+            ItemFindTextBox.Text = "";
+            _displayedItems.Clear();
+            foreach (Item item2 in _items)
+            {
+                _displayedItems.Add(item2);
+            }
+            OrderBy();
         }
 
         /// <summary>
@@ -177,8 +186,14 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             try
             {
-                _items.RemoveAt(ItemsListBox.SelectedIndex);
-                ClearItemInfo();
+                _items.RemoveAt(_items.IndexOf(_displayedItems[ItemsListBox.SelectedIndex]));
+                ItemFindTextBox.Text = "";
+                _displayedItems.Clear();
+                foreach (Item item2 in _items)
+                {
+                    _displayedItems.Add(item2);
+                }
+                OrderBy();
             }
             catch { }
         }
@@ -196,6 +211,51 @@ namespace ObjectOrientedPractics.View.Tabs
                 }
             }
             catch{}
+        }
+
+        private void ItemFindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ItemsListBox.Items.Clear();
+            _displayedItems.Clear();
+            if (ItemFindTextBox.Text.Length > 0)
+            {
+                _displayedItems = DataTools.Filter(_items, item => { return item.Name.Contains(ItemFindTextBox.Text); });
+                OrderBy();
+            }
+            else
+            {
+                foreach (Item item in _items)
+                {
+                    _displayedItems.Add(item);
+                }
+                OrderBy();
+            }
+        }
+
+        public void OrderBy()
+        {
+            CompareSort compare = DataTools.NameSort;
+            ItemsListBox.Items.Clear();
+            List<Item> list = new List<Item>();
+            if (ItemOrderByComboBox.SelectedIndex == 0)
+            {
+                compare = DataTools.NameSort;
+            }
+            else if (ItemOrderByComboBox.SelectedIndex == 1)
+            {
+                compare = DataTools.CostAscendingSort;
+            }
+            else
+            {
+                compare = DataTools.CostDiscendingSort;
+            }
+            _displayedItems = DataTools.Sort(_displayedItems, compare);
+            ClearItemInfo();
+        }
+
+        private void ItemOrderByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OrderBy();
         }
     }
 }
