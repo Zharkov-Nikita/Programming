@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о адресе.
     /// </summary>
-    public class Address : ICloneable
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Почтовый индекс.
@@ -173,7 +173,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="other">Экземпляр, с которым будет происходить сравнение.</param>
         /// <returns>true, если равны и false, если не равны.</returns>
-        public override bool Equals(object other)
+        public bool Equals(Address other)
         {
             //Обязательные проверки прежде чем мы сравним поля
             if (other == null)
