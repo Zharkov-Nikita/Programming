@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    public class Item : ICloneable, IComparable<Item>
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Общее количество товаров.
@@ -135,7 +135,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="other">Экземпляр, с которым будет происходить сравнение.</param>
         /// <returns>true, если равны и false, если не равны.</returns>
-        public override bool Equals(object other)
+        public bool Equals(Item other)
         {
             //Обязательные проверки прежде чем мы сравним поля
             if (other == null)
