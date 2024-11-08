@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,6 +49,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomerFullNameTextBox.Text = _currentCustomer.Fullname;
                 CustomerAddressControl.Address = _currentCustomer.Address;
                 CustomerIsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+                CustomerAddressControl._selectedIndex = CustomersListBox.SelectedIndex;
                 CustomerAddressControl.ShowAddress();
                 CustomerDiscountsListBox.Items.Clear();
                 foreach (IDiscount item in _currentCustomer.Discounts)
@@ -121,8 +123,10 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void CustomerAddButton_Click(object sender, EventArgs e)
         {
-            Model.Customer item = new Model.Customer("Фамилия Имя Отчество", new Model.Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира"));
-            _customers.Add(item);
+            Address address = new Address(123456, "Страна", "Город", "Улица", "Номер дома", "Квартира");
+            address.AddressChanged += CustomerAddressControl.Address_AddressChanged;
+            Model.Customer customer = new Model.Customer("Фамилия Имя Отчество", address);
+            _customers.Add(customer);
             ClearCustomerInfo();
         }
 

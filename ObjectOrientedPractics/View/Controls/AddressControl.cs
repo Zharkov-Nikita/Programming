@@ -19,7 +19,7 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         private Address _address;
-        private int _selectedIndex;
+        public int _selectedIndex;
 
         public Address Address
         {
@@ -31,6 +31,11 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 _address = value;
             }
+        }
+
+        public void Address_AddressChanged(object sender, EventArgs args)
+        {
+            Console.WriteLine("Адрес изменился");
         }
 
         public void ShowAddress()

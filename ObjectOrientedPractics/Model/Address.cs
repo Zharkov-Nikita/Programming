@@ -14,6 +14,8 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Address : ICloneable, IEquatable<Address>
     {
+        public event EventHandler<EventArgs> AddressChanged;
+
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
@@ -56,7 +58,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value.ToString(), 6, nameof(Index));
-                _index = value;
+                if (_index != value)
+                {
+                    var args = new EventArgs();
+                    _index = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -72,7 +79,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
-                _country = value;
+                if (_country != value)
+                {
+                    var args = new EventArgs();
+                    _country = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -88,7 +100,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 50, nameof(City));
-                _city = value;
+                if (_city != value)
+                {
+                    var args = new EventArgs();
+                    _city = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -104,7 +121,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
-                _street = value;
+                if (_street != value)
+                {
+                    var args = new EventArgs();
+                    _street = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -120,7 +142,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
-                _building = value;
+                if (_building != value)
+                {
+                    var args = new EventArgs();
+                    _building = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 
@@ -136,7 +163,12 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
-                _apartment = value;
+                if (_apartment != value)
+                {
+                    var args = new EventArgs();
+                    _apartment = value;
+                    AddressChanged?.Invoke(this, args);
+                }
             }
         }
 

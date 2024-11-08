@@ -25,9 +25,16 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemOrderByComboBox.SelectedIndex = 0;
         }
 
+        public event EventHandler<EventArgs>ItemsChanged;
+
         private Item _currentItem; //Текущий товар.
         List<Item> _items = new List<Item>(); //Список с товарами.
         List<Item> _displayedItems = new List<Item>();
+
+        private void Item_NameChanged(object sender, EventArgs args)
+        {
+            Console.WriteLine("Имя изменилось");
+        }
 
         public List<Item> Items
         {
@@ -78,6 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _currentItem.Cost = Convert.ToDouble(ItemCostTextBox.Text);
                     ItemCostTextBox.BackColor = Color.White;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                     RefreshItemsListBoxItem();
                 }
             }
@@ -98,6 +106,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _currentItem.Name = ItemNameTextBox.Text;
                     ItemNameTextBox.BackColor = Color.White;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                     RefreshItemsListBoxItem();
                 }
             }
@@ -118,6 +127,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _currentItem.Info = ItemDescriptionTextBox.Text;
                     ItemDescriptionTextBox.BackColor = Color.White;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch
@@ -176,6 +186,8 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _displayedItems.Add(item2);
             }
+            item.NameChanged += Item_NameChanged;
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
             OrderBy();
         }
 
@@ -193,6 +205,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     _displayedItems.Add(item2);
                 }
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
                 OrderBy();
             }
             catch { }
@@ -208,6 +221,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (ItemsListBox.SelectedIndex != -1)
                 {
                     _currentItem.Category = (Category)ItemCategoryComboBox.SelectedItem;
+                    ItemsChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
             catch{}
