@@ -54,5 +54,6 @@ namespace Programming.Model
             return false;
         }
         //Старый тестовый текст удалён, это новый текст
+        //Новый текст
     }
 }
