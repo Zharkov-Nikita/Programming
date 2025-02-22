@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Contacts" Height="400" Width="550">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox HorizontalAlignment="Center" Height="311" Header="Edit Contact" VerticalAlignment="Top" Width="256" Margin="10,17,0,0">
+            <StackPanel>
+                <Label Content="Name:" Height="26" Width="238" Margin="3"/>
+                <TextBox x:Name="ContactNameTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="238" Margin="3" Padding="0,5,0,0"/>
+                <Label Content="Phone Number:" Height="26" Width="238" Margin="3"/>
+                <TextBox x:Name="ContactPhoneNumberTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="238" Margin="3" Padding="0,5,0,0"/>
+                <Label Content="Email:" Height="26" Width="238" Margin="3"/>
+                <TextBox x:Name="ContactEmailTextBox" Height="26" TextWrapping="Wrap" Text="TextBox" Width="238" Margin="3" Padding="0,5,0,0"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Center" Height="311" Header="Read Contact" VerticalAlignment="Top" Width="256" Margin="0,17,10,0" Grid.Column="1">
+            <StackPanel>
+                <Label Content="Name:" Height="26" Width="238" Margin="3"/>
+                <Label  x:Name="ContactNameLabel" FontWeight="Bold" Height="26" Width="238" Margin="3"/>
+                <Label Content="Phone Number:" Height="26" Width="238" Margin="3"/>
+                <Label x:Name="ContactPhoneNumberLabel" FontWeight="Bold" Height="26" Width="238" Margin="3"/>
+                <Label Content="Email:" Height="26" Width="238" Margin="3"/>
+                <Label x:Name="ContactEmailLabel" FontWeight="Bold" Height="26" Width="238" Margin="3"/>
+            </StackPanel>
+        </GroupBox>
+        <Button x:Name="ContactSaveButton" Grid.Column="1" Content="Save" HorizontalAlignment="Right" Height="25" Margin="15, 15, 105, 15" VerticalAlignment="Bottom" Width="75"/>
+        <Button x:Name="ContactLoadButton" Grid.Column="1" Content="Load" HorizontalAlignment="Right" Height="25" Margin="15" VerticalAlignment="Bottom" Width="75"/>
     </Grid>
 </Window>
