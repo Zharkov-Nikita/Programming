@@ -28,7 +28,7 @@ namespace View.ViewModel
             set
             {
                 Contact.Name = value;
-                OnPropertyChanged(Name);
+                OnPropertyChanged("Name");
             }
         }
 
@@ -44,7 +44,7 @@ namespace View.ViewModel
             set
             {
                 Contact.Phone = value;
-                OnPropertyChanged(Phone);
+                OnPropertyChanged("Phone");
             }
         }
 
@@ -60,7 +60,7 @@ namespace View.ViewModel
             set
             {
                 Contact.Email = value;
-                OnPropertyChanged(Email);
+                OnPropertyChanged("Email");
             }
         }
 

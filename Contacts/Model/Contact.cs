@@ -91,13 +91,11 @@ namespace View.Model
         /// <param name="name">ФИО контакта. Не может быть длиннее 100 символов.</param>
         /// <param name="phone">Номер телефона контакта. Не может быть длиннее 16 символов.</param>
         /// <param name="email">Email контакта. Не может быть длиннее 100 символов.</param>
-        public Contact(string name, string phone, string email)
+        public Contact(string name = "Смирнов Юрий", string phone = "+7-913-111-22-33", string email = "yuri.smirnov@no.mail")
         {
             Name = name;
             Phone = phone;
             Email = email;
         }
-
-        public Contact() { }
     }
 }
