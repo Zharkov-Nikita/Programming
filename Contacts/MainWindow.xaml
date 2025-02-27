@@ -31,7 +31,7 @@
                 <TextBlock x:Name="ContactEmailTextBlock" Text="{Binding Path=Email}" FontWeight="Bold" Height="26" Margin="3"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="ContactSaveButton" Grid.Column="1" Content="Save" HorizontalAlignment="Right" Height="25" Margin="15, 15, 105, 15" VerticalAlignment="Bottom" Width="75"/>
-        <Button x:Name="ContactLoadButton" Grid.Column="1" Content="Load" HorizontalAlignment="Right" Height="25" Margin="15" VerticalAlignment="Bottom" Width="75"/>
+        <Button x:Name="ContactSaveButton" Grid.Column="1" Content="Save" HorizontalAlignment="Right" Height="25" Margin="15, 15, 105, 15" VerticalAlignment="Bottom" Width="75" Command="{Binding SaveCommand}"/>
+        <Button x:Name="ContactLoadButton" Grid.Column="1" Content="Load" HorizontalAlignment="Right" Height="25" Margin="15" VerticalAlignment="Bottom" Width="75" Command="{Binding LoadCommand}"/>
     </Grid>
 </Window>

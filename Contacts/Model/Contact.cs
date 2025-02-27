@@ -58,7 +58,7 @@ namespace View.Model
             }
             set
             {
-                if (value.Length > 16)
+                if (value.Length > 160)
                 {
                     throw new ArgumentException();
                 }

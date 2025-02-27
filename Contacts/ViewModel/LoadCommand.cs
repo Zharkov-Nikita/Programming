@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model.Services;
 using View.Model;
+using System.Windows;
 
 namespace View.ViewModel
 {
     public class LoadCommand : ICommand
     {
-        /// <summary>
-        /// Возвращает и задаёт контакт.
-        /// </summary>
-        public Contact Contact { get; set; }
+        MainVM MainVM { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт сериализатор контакта.
@@ -23,10 +21,10 @@ namespace View.ViewModel
 
         public event EventHandler CanExecuteChanged;
 
-        public LoadCommand(Contact contact)
+        public LoadCommand(MainVM mainVM)
         {
-            Contact = contact;
             ContactSerializer = new ContactSerializer();
+            MainVM = mainVM;
         }
 
         public bool CanExecute(object parameter)
@@ -39,7 +37,9 @@ namespace View.ViewModel
             Contact loadedContact = ContactSerializer.LoadContact();
             if (loadedContact != null)
             {
-                Contact = loadedContact;
+                MainVM.Name = loadedContact.Name;
+                MainVM.Phone = loadedContact.Phone;
+                MainVM.Email = loadedContact.Email;
             }
         }
     }
