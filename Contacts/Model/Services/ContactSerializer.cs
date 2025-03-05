@@ -12,11 +12,15 @@ namespace View.Model.Services
 {
     public class ContactSerializer
     {
-        string path = @"C:\Users\5731gna\Documents\Contacts\contacts.json";
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts\contacts.json";
 
         public void SaveContact(Contact contact)
         {
             string newContact = JsonConvert.SerializeObject(contact);
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts"))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts");
+            }
             StreamWriter sw = new StreamWriter(path);
             sw.WriteLine(newContact);
             sw.Close();

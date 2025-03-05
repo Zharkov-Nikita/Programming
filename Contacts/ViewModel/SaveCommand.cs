@@ -9,6 +9,9 @@ using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Реализует сохранение контакта.
+    /// </summary>
     public class SaveCommand : ICommand
     {
         /// <summary>
@@ -23,6 +26,10 @@ namespace View.ViewModel
 
         public event EventHandler CanExecuteChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса  <see cref="SaveCommand"/>.
+        /// </summary>
+        /// <param name="mainVM">Экземпляр Contact.</param>
         public SaveCommand(Contact contact)
         {
             Contact = contact;

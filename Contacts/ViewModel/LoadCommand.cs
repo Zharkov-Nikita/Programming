@@ -10,8 +10,14 @@ using System.Windows;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Реализует загрузку контакта.
+    /// </summary>
     public class LoadCommand : ICommand
     {
+        /// <summary>
+        /// Возвращает и задаёт MainVM.
+        /// </summary>
         MainVM MainVM { get; set; }
 
         /// <summary>
@@ -21,6 +27,10 @@ namespace View.ViewModel
 
         public event EventHandler CanExecuteChanged;
 
+        /// <summary>
+        /// Создаёт экземпляр класса  <see cref="LoadCommand"/>.
+        /// </summary>
+        /// <param name="mainVM">Экземпляр MainVM.</param>
         public LoadCommand(MainVM mainVM)
         {
             ContactSerializer = new ContactSerializer();
@@ -34,12 +44,19 @@ namespace View.ViewModel
 
         public void Execute(object parameter)
         {
-            Contact loadedContact = ContactSerializer.LoadContact();
-            if (loadedContact != null)
+            try
             {
-                MainVM.Name = loadedContact.Name;
-                MainVM.Phone = loadedContact.Phone;
-                MainVM.Email = loadedContact.Email;
+                Contact loadedContact = ContactSerializer.LoadContact();
+                if (loadedContact != null)
+                {
+                    MainVM.Name = loadedContact.Name;
+                    MainVM.Phone = loadedContact.Phone;
+                    MainVM.Email = loadedContact.Email;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Сохранение не найдено");
             }
         }
     }

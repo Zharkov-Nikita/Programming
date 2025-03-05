@@ -45,8 +45,7 @@ namespace View.ViewModel
         {
             get
             {
-                return loadCommand ??
-                  (loadCommand = new LoadCommand(this));
+                return loadCommand ?? (loadCommand = new LoadCommand(this));
             }
         }
 
