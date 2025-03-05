@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using View.Model;
 
 namespace View.ViewModel
@@ -14,12 +8,12 @@ namespace View.ViewModel
         /// <summary>
         /// Команда сохранения контакта.
         /// </summary>
-        private SaveCommand saveCommand;
+        private SaveCommand _saveCommand;
 
         /// <summary>
         /// Команда загрузки контакта.
         /// </summary>
-        private LoadCommand loadCommand;
+        private LoadCommand _loadCommand;
 
         /// <summary>
         /// Возвращает и задаёт контакт.
@@ -33,8 +27,7 @@ namespace View.ViewModel
         {
             get
             {
-                return saveCommand ??
-                  (saveCommand = new SaveCommand(Contact));
+                return _saveCommand ?? (_saveCommand = new SaveCommand(Contact));
             }
         }
 
@@ -45,7 +38,7 @@ namespace View.ViewModel
         {
             get
             {
-                return loadCommand ?? (loadCommand = new LoadCommand(this));
+                return _loadCommand ?? (_loadCommand = new LoadCommand(this));
             }
         }
 
@@ -61,7 +54,7 @@ namespace View.ViewModel
             set
             {
                 Contact.Name = value;
-                OnPropertyChanged("Name");
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -77,7 +70,7 @@ namespace View.ViewModel
             set
             {
                 Contact.Phone = value;
-                OnPropertyChanged("Phone");
+                OnPropertyChanged(nameof(Phone));
             }
         }
 
@@ -93,9 +86,14 @@ namespace View.ViewModel
             set
             {
                 Contact.Email = value;
-                OnPropertyChanged("Email");
+                OnPropertyChanged(nameof(Email));
             }
         }
+
+        /// <summary>
+        /// Событие, срабатывающее при изменении данных.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="MainVM"/>.
@@ -105,14 +103,13 @@ namespace View.ViewModel
             Contact = new Contact();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// Извещает систему об изменении свойства. 
+        /// </summary>
+        /// <param name="prop">Свойство</param>
         public void OnPropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

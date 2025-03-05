@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace View.Model
 {
@@ -48,7 +42,7 @@ namespace View.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт номер телефона контакта. Не может быть длиннее 16 символов.
+        /// Возвращает и задаёт номер телефона контакта. Не может быть длиннее 100 символов.
         /// </summary>
         public string Phone
         {
@@ -58,7 +52,7 @@ namespace View.Model
             }
             set
             {
-                if (value.Length > 160)
+                if (value.Length > 100)
                 {
                     throw new ArgumentException();
                 }
@@ -89,7 +83,7 @@ namespace View.Model
         /// Создаёт экземпляр класса <see cref="Contact"/>.
         /// </summary>
         /// <param name="name">ФИО контакта. Не может быть длиннее 100 символов.</param>
-        /// <param name="phone">Номер телефона контакта. Не может быть длиннее 16 символов.</param>
+        /// <param name="phone">Номер телефона контакта. Не может быть длиннее 100 символов.</param>
         /// <param name="email">Email контакта. Не может быть длиннее 100 символов.</param>
         public Contact(string name = "Смирнов Юрий", string phone = "+7-913-111-22-33", string email = "yuri.smirnov@no.mail")
         {

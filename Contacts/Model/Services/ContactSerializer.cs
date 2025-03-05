@@ -1,36 +1,49 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace View.Model.Services
 {
+    /// <summary>
+    /// Сериализует класс Contact.
+    /// </summary>
     public class ContactSerializer
     {
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts\contacts.json";
+        /// <summary>
+        /// Путь в папке с данными.
+        /// </summary>
+        private string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts";
 
+        /// <summary>
+        /// Название файла с данными.
+        /// </summary>
+        private string _file = @"\contacts.json";
+
+        /// <summary>
+        /// Метод для сохранения контакта
+        /// </summary>
+        /// <param name="contact">Сохраняемый контакт</param>
         public void SaveContact(Contact contact)
         {
-            string newContact = JsonConvert.SerializeObject(contact);
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts"))
+            string jsonContact = JsonConvert.SerializeObject(contact);
+            if (!Directory.Exists(_path))
             {
-                DirectoryInfo di = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts");
+                Directory.CreateDirectory(_path);
             }
-            StreamWriter sw = new StreamWriter(path);
-            sw.WriteLine(newContact);
-            sw.Close();
+            StreamWriter streamWriter = new StreamWriter(_path + _file);
+            streamWriter.WriteLine(jsonContact);
+            streamWriter.Close();
         }
 
+        /// <summary>
+        /// Метод для загрузки контакта из файла
+        /// </summary>
+        /// <returns>Загруженный контакт</returns>
         public Contact LoadContact()
         {
-            StreamReader sr = new StreamReader(path);
-            string readContact = sr.ReadLine();
-            sr.Close();
+            StreamReader streamReader = new StreamReader(_path + _file);
+            string readContact = streamReader.ReadLine();
+            streamReader.Close();
             Contact contact = JsonConvert.DeserializeObject<Contact>(readContact);
             return contact;
         }

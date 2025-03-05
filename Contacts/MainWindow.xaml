@@ -8,30 +8,63 @@
         Title="Contacts" Height="420" Width="560" MinHeight="420" MinWidth="560">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Edit Contact" Margin="15,17,5,50" HorizontalContentAlignment="Stretch">
             <StackPanel>
                 <Label Content="Name:" Height="26" Margin="3"/>
-                <TextBox x:Name="ContactNameTextBox" Height="26" TextWrapping="Wrap" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="3" Padding="0,5,0,0"/>
+                <TextBox
+                    Height="26"
+                    TextWrapping="Wrap"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    Padding="0,5,0,0"/>
                 <Label Content="Phone Number:" Height="26" Margin="3"/>
-                <TextBox x:Name="ContactPhoneNumberTextBox" Height="26" TextWrapping="Wrap" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="3" Padding="0,5,0,0"/>
+                <TextBox
+                    Height="26"
+                    TextWrapping="Wrap"
+                    Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    Padding="0,5,0,0"/>
                 <Label Content="Email:" Height="26" Margin="3"/>
-                <TextBox x:Name="ContactEmailTextBox" Height="26" TextWrapping="Wrap" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3" Padding="0,5,0,0"/>
+                <TextBox
+                    Height="26"
+                    TextWrapping="Wrap"
+                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    Padding="0,5,0,0"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Read Contact" Margin="5,17,15,50" Grid.Column="1">
             <StackPanel>
                 <Label Content="Name:" Height="26" Margin="3"/>
-                <TextBlock x:Name="ContactNameTextBlock" Text="{Binding Path=Name}" FontWeight="Bold" Height="26" Margin="3"/>
+                <TextBlock 
+                    Text="{Binding Path=Name}" 
+                    FontWeight="Bold" 
+                    Height="26" 
+                    Margin="3"/>
                 <Label Content="Phone Number:" Height="26" Margin="3"/>
-                <TextBlock x:Name="ContactPhoneNumberTextBlock" Text="{Binding Path=Phone}" FontWeight="Bold" Height="26" Margin="3"/>
+                <TextBlock 
+                    Text="{Binding Path=Phone}" 
+                    FontWeight="Bold" 
+                    Height="26" 
+                    Margin="3"/>
                 <Label Content="Email:" Height="26" Margin="3"/>
-                <TextBlock x:Name="ContactEmailTextBlock" Text="{Binding Path=Email}" FontWeight="Bold" Height="26" Margin="3"/>
+                <TextBlock 
+                    Text="{Binding Path=Email}" 
+                    FontWeight="Bold" 
+                    Height="26"
+                    Margin="3"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="ContactSaveButton" Grid.Column="1" Content="Save" HorizontalAlignment="Right" Height="25" Margin="15, 15, 105, 15" VerticalAlignment="Bottom" Width="75" Command="{Binding SaveCommand}"/>
-        <Button x:Name="ContactLoadButton" Grid.Column="1" Content="Load" HorizontalAlignment="Right" Height="25" Margin="15" VerticalAlignment="Bottom" Width="75" Command="{Binding LoadCommand}"/>
+        <Button Grid.Column="1" Content="Save" 
+                HorizontalAlignment="Right" Height="25"
+                Margin="15, 15, 105, 15" VerticalAlignment="Bottom" 
+                Width="75" Command="{Binding SaveCommand}"/>
+        <Button Grid.Column="1" Content="Load"
+                HorizontalAlignment="Right" Height="25"
+                Margin="15" VerticalAlignment="Bottom"
+                Width="75" Command="{Binding LoadCommand}"/>
     </Grid>
 </Window>

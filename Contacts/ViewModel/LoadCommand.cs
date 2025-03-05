@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model.Services;
 using View.Model;
@@ -25,6 +21,9 @@ namespace View.ViewModel
         /// </summary>
         public ContactSerializer ContactSerializer { get; set; }
 
+        /// <summary>
+        /// Происходит, когда диспетчер команд обнаруживает изменение источника команды.
+        /// </summary>
         public event EventHandler CanExecuteChanged;
 
         /// <summary>
@@ -37,16 +36,25 @@ namespace View.ViewModel
             MainVM = mainVM;
         }
 
+        /// <summary>
+        /// Определяет, может ли команда выполняться в текущем состоянии.
+        /// </summary>
+        /// <param name="parameter">Данные, используемые данной командой.</param>
+        /// <returns>true</returns>
         public bool CanExecute(object parameter)
         {
             return true;
         }
 
+        /// <summary>
+        /// Определяет метод, вызываемый при вызове данной команды.
+        /// </summary>
+        /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
             try
             {
-                Contact loadedContact = ContactSerializer.LoadContact();
+                var loadedContact = ContactSerializer.LoadContact();
                 if (loadedContact != null)
                 {
                     MainVM.Name = loadedContact.Name;
@@ -54,10 +62,7 @@ namespace View.ViewModel
                     MainVM.Email = loadedContact.Email;
                 }
             }
-            catch
-            {
-                MessageBox.Show("Сохранение не найдено");
-            }
+            catch { }
         }
     }
 }
