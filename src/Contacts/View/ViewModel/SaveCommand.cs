@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using View.Model;
 using View.Model.Services;
@@ -11,9 +12,9 @@ namespace View.ViewModel
     public class SaveCommand : ICommand
     {
         /// <summary>
-        /// Возвращает и задаёт контакт.
+        /// Возвращает и задаёт список контактов.
         /// </summary>
-        public Contact Contact { get; set; }
+        public ObservableCollection<Contact> Contacts { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт сериализатор контакта.
@@ -29,9 +30,9 @@ namespace View.ViewModel
         /// Создаёт экземпляр класса  <see cref="SaveCommand"/>.
         /// </summary>
         /// <param name="mainVM">Экземпляр Contact.</param>
-        public SaveCommand(Contact contact)
+        public SaveCommand(ObservableCollection<Contact> contacts)
         {
-            Contact = contact;
+            Contacts = contacts;
             ContactSerializer = new ContactSerializer();
         }
 
@@ -51,7 +52,7 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            ContactSerializer.SaveContact(Contact);
+            ContactSerializer.SaveContact(Contacts);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using View.Model;
 
 namespace View.ViewModel
@@ -16,9 +17,14 @@ namespace View.ViewModel
         private LoadCommand _loadCommand;
 
         /// <summary>
-        /// Возвращает и задаёт контакт.
+        /// Возвращает и задаёт список контактов.
         /// </summary>
-        public Contact Contact { get; set; }
+        public ObservableCollection<Contact> Contacts { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт текущий контакт.
+        /// </summary>
+        public Contact CurrentContact { get; set; }
 
         /// <summary>
         /// Команда сохранения контакта.
@@ -27,7 +33,7 @@ namespace View.ViewModel
         {
             get
             {
-                return _saveCommand ?? (_saveCommand = new SaveCommand(Contact));
+                return _saveCommand ?? (_saveCommand = new SaveCommand(Contacts));
             }
         }
 
@@ -49,11 +55,11 @@ namespace View.ViewModel
         {
             get
             {
-                return Contact.Name;
+                return CurrentContact.Name;
             }
             set
             {
-                Contact.Name = value;
+                CurrentContact.Name = value;
                 OnPropertyChanged(nameof(Name));
             }
         }
@@ -65,11 +71,11 @@ namespace View.ViewModel
         {
             get
             {
-                return Contact.Phone;
+                return CurrentContact.Phone;
             }
             set
             {
-                Contact.Phone = value;
+                CurrentContact.Phone = value;
                 OnPropertyChanged(nameof(Phone));
             }
         }
@@ -81,11 +87,11 @@ namespace View.ViewModel
         {
             get
             {
-                return Contact.Email;
+                return CurrentContact.Email;
             }
             set
             {
-                Contact.Email = value;
+                CurrentContact.Email = value;
                 OnPropertyChanged(nameof(Email));
             }
         }
@@ -100,7 +106,7 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            Contact = new Contact();
+            CurrentContact = new Contact();
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 
 namespace View.Model.Services
@@ -23,7 +24,7 @@ namespace View.Model.Services
         /// Метод для сохранения контакта
         /// </summary>
         /// <param name="contact">Сохраняемый контакт</param>
-        public void SaveContact(Contact contact)
+        public void SaveContact(ObservableCollection<Contact> contact)
         {
             string jsonContact = JsonConvert.SerializeObject(contact);
             if (!Directory.Exists(_path))
