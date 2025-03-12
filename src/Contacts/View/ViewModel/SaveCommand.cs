@@ -52,7 +52,7 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            ContactSerializer.SaveContact(Contacts);
+            ContactSerializer.SaveContacts(Contacts);
         }
     }
 }

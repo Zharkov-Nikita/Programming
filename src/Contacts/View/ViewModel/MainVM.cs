@@ -106,6 +106,7 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
+            Contacts = new ObservableCollection<Contact>();
             CurrentContact = new Contact();
         }
 

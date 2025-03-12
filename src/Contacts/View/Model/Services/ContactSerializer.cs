@@ -21,32 +21,32 @@ namespace View.Model.Services
         private string _file = @"\contacts.json";
 
         /// <summary>
-        /// Метод для сохранения контакта
+        /// Метод для сохранения контактов.
         /// </summary>
-        /// <param name="contact">Сохраняемый контакт</param>
-        public void SaveContact(ObservableCollection<Contact> contact)
+        /// <param name="contacts">Сохраняемые контакты</param>
+        public void SaveContacts(ObservableCollection<Contact> contacts)
         {
-            string jsonContact = JsonConvert.SerializeObject(contact);
+            string jsonContacts = JsonConvert.SerializeObject(contacts);
             if (!Directory.Exists(_path))
             {
                 Directory.CreateDirectory(_path);
             }
             StreamWriter streamWriter = new StreamWriter(_path + _file);
-            streamWriter.WriteLine(jsonContact);
+            streamWriter.WriteLine(jsonContacts);
             streamWriter.Close();
         }
 
         /// <summary>
-        /// Метод для загрузки контакта из файла
+        /// Метод для загрузки контактов из файла.
         /// </summary>
-        /// <returns>Загруженный контакт</returns>
-        public Contact LoadContact()
+        /// <returns>Загруженные контакты</returns>
+        public ObservableCollection<Contact> LoadContact()
         {
             StreamReader streamReader = new StreamReader(_path + _file);
-            string readContact = streamReader.ReadLine();
+            string readContacts = streamReader.ReadLine();
             streamReader.Close();
-            Contact contact = JsonConvert.DeserializeObject<Contact>(readContact);
-            return contact;
+            ObservableCollection<Contact> contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(readContacts);
+            return contacts;
         }
     }
 }

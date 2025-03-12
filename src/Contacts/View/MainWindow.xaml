@@ -39,7 +39,7 @@
                 <Label Content="Find:" Width="40"/>
                 <TextBox/>
             </DockPanel>
-            <ListBox VerticalAlignment="Stretch" Grid.Row="1" Margin="3"/>
+            <ListBox ItemsSource="{Binding Contacts}" VerticalAlignment="Stretch" Grid.Row="1" Margin="3"/>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <Button Content="Add" Command="{Binding SaveCommand}"/>
                 <Button Content="Edit" Command="{Binding LoadCommand}"/>

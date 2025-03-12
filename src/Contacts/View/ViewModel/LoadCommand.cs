@@ -54,12 +54,14 @@ namespace View.ViewModel
         {
             try
             {
-                var loadedContact = ContactSerializer.LoadContact();
-                if (loadedContact != null)
+                var loadedContacts = ContactSerializer.LoadContact();
+                if (loadedContacts != null)
                 {
-                    MainVM.Name = loadedContact.Name;
-                    MainVM.Phone = loadedContact.Phone;
-                    MainVM.Email = loadedContact.Email;
+                    MainVM.Contacts.Clear();
+                    foreach (var contact in loadedContacts)
+                    {
+                        MainVM.Contacts.Add(contact);
+                    }
                 }
             }
             catch { }
