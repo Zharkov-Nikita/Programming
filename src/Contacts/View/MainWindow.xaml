@@ -39,11 +39,22 @@
                 <Label Content="Find:" Width="40"/>
                 <TextBox/>
             </DockPanel>
-            <ListBox ItemsSource="{Binding Contacts}" VerticalAlignment="Stretch" Grid.Row="1" Margin="3"/>
+            <ListBox
+                ItemsSource="{Binding Contacts}"
+                VerticalAlignment="Stretch"
+                Grid.Row="1"
+                Margin="3"
+                SelectedItem="{Binding CurrentContact, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <Button Content="Add" Command="{Binding SaveCommand}"/>
-                <Button Content="Edit" Command="{Binding LoadCommand}"/>
-                <Button Content="Remove" Command="{Binding LoadCommand}"/>
+                <Button Content="Edit" Command="{Binding EditCommand}" IsEnabled="{Binding IsEnabled}"/>
+                <Button Content="Remove" Command="{Binding LoadCommand}" IsEnabled="{Binding IsEnabled}"/>
             </StackPanel>
         </Grid>
         <Grid Background="White" Grid.Column="2">
@@ -62,25 +73,29 @@
                 <TextBox
                     Height="26"
                     TextWrapping="Wrap"
-                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"/>
+                    Text="{Binding EditContact.Name, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
                 <Label Content="Phone Number:" Height="26"/>
                 <TextBox
                     Height="26"
                     TextWrapping="Wrap"
-                    Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"/>
+                    Text="{Binding EditContact.Phone, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
                 <Label Content="Email:" Height="26"/>
                 <TextBox
                     Height="26"
                     TextWrapping="Wrap"
-                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"/>
+                    Text="{Binding EditContact.Email, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
                 <Button
                     Content="Apply"
                     Command="{Binding LoadCommand}"
                     HorizontalAlignment="Left"
-                    Margin="0,50,0,0"/>
+                    Margin="3,50,0,0"
+                    Visibility="Visible"/>
             </StackPanel>            
         </Grid>
     </Grid>

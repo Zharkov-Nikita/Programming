@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Model.Services;
-using View.Model;
-using System.Windows;
-using System.Collections.ObjectModel;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Реализует загрузку контакта.
+    /// Реализует команду редактирования контакта.
     /// </summary>
-    public class LoadCommand : ICommand
+    public class EditCommand : ICommand
     {
         /// <summary>
-        /// Возвращает и задаёт список контактов.
+        /// Возвращает и задаёт MainVM.
         /// </summary>
-        public ObservableCollection<Contact> Contacts { get; set; }
+        MainVM MainVM { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт сериализатор контакта.
@@ -30,11 +31,11 @@ namespace View.ViewModel
         /// <summary>
         /// Создаёт экземпляр класса  <see cref="LoadCommand"/>.
         /// </summary>
-        /// <param name="contacts">Экземпляр ObservableCollection<Contact>.</param>
-        public LoadCommand(ObservableCollection<Contact> contacts)
+        /// <param name="mainVM">Экземпляр MainVM.</param>
+        public EditCommand(MainVM mainVM)
         {
             ContactSerializer = new ContactSerializer();
-            Contacts = contacts;
+            MainVM = mainVM;
         }
 
         /// <summary>
@@ -53,19 +54,7 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            try
-            {
-                var loadedContacts = ContactSerializer.LoadContact();
-                if (loadedContacts != null)
-                {
-                    Contacts.Clear();
-                    foreach (var contact in loadedContacts)
-                    {
-                        Contacts.Add(contact);
-                    }
-                }
-            }
-            catch { }
+            MainVM.OnPropertyChanged(nameof(MainVM.IsReadOnly));
         }
     }
 }

@@ -17,6 +17,21 @@ namespace View.ViewModel
         private LoadCommand _loadCommand;
 
         /// <summary>
+        /// Команда редактирования контакта.
+        /// </summary>
+        private EditCommand _editCommand;
+
+        /// <summary>
+        /// Текущий контакт.
+        /// </summary>
+        private Contact _currentContact;
+
+        /// <summary>
+        /// Редактируемый контакт.
+        /// </summary>
+        private Contact _editContact;
+
+        /// <summary>
         /// Возвращает и задаёт список контактов.
         /// </summary>
         public ObservableCollection<Contact> Contacts { get; set; }
@@ -24,7 +39,36 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает и задаёт текущий контакт.
         /// </summary>
-        public Contact CurrentContact { get; set; }
+        public Contact CurrentContact
+        {
+            get 
+            {
+                return _currentContact;
+            }
+            set
+            {
+                _currentContact = value;
+                OnPropertyChanged(nameof(CurrentContact));
+                OnPropertyChanged(nameof(IsEnabled));
+                UpdateEditContact();
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт редактируемый контакт.
+        /// </summary>
+        public Contact EditContact
+        {
+            get
+            {
+                return _editContact;
+            }
+            set
+            {
+                _editContact = value;
+                OnPropertyChanged(nameof(EditContact));
+            }
+        }
 
         /// <summary>
         /// Команда сохранения контакта.
@@ -44,55 +88,34 @@ namespace View.ViewModel
         {
             get
             {
-                return _loadCommand ?? (_loadCommand = new LoadCommand(this));
+                return _loadCommand ?? (_loadCommand = new LoadCommand(Contacts));
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт ФИО контакта. Не может быть длиннее 100 символов.
+        /// Команда редактирования контакта.
         /// </summary>
-        public string Name
+        public EditCommand EditCommand
         {
             get
             {
-                return CurrentContact.Name;
-            }
-            set
-            {
-                CurrentContact.Name = value;
-                OnPropertyChanged(nameof(Name));
+                return _editCommand ?? (_editCommand = new EditCommand(this));
             }
         }
 
-        /// <summary>
-        /// Возвращает и задаёт номер телефона контакта. Не может быть длиннее 100 символов.
-        /// </summary>
-        public string Phone
+        public bool IsReadOnly
         {
             get
             {
-                return CurrentContact.Phone;
-            }
-            set
-            {
-                CurrentContact.Phone = value;
-                OnPropertyChanged(nameof(Phone));
+                return CurrentContact == null;
             }
         }
 
-        /// <summary>
-        /// Возвращает и задаёт почту контакта. Не может быть длиннее 100 символов.
-        /// </summary>
-        public string Email
+        public bool IsEnabled
         {
             get
             {
-                return CurrentContact.Email;
-            }
-            set
-            {
-                CurrentContact.Email = value;
-                OnPropertyChanged(nameof(Email));
+                return CurrentContact != null;
             }
         }
 
@@ -107,7 +130,20 @@ namespace View.ViewModel
         public MainVM()
         {
             Contacts = new ObservableCollection<Contact>();
-            CurrentContact = new Contact();
+            LoadCommand.Execute(Contacts);
+            OnPropertyChanged(nameof(IsReadOnly));
+        }
+
+        public void UpdateEditContact()
+        {
+            if (CurrentContact != null)
+            {
+                EditContact = new Contact(CurrentContact.Name, CurrentContact.Phone, CurrentContact.Email);
+            }
+            else
+            {
+                EditContact = null;
+            }
         }
 
         /// <summary>

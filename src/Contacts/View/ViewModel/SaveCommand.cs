@@ -29,7 +29,7 @@ namespace View.ViewModel
         /// <summary>
         /// Создаёт экземпляр класса  <see cref="SaveCommand"/>.
         /// </summary>
-        /// <param name="mainVM">Экземпляр Contact.</param>
+        /// <param name="contacts">Экземпляр ObservableCollection<Contact>.</param>
         public SaveCommand(ObservableCollection<Contact> contacts)
         {
             Contacts = contacts;
