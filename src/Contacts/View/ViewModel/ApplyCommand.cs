@@ -9,9 +9,9 @@ using View.Model.Services;
 namespace View.ViewModel
 {
     /// <summary>
-    /// Реализует команду редактирования контакта.
+    /// Реализует команду применения изменений.
     /// </summary>
-    public class EditCommand : ICommand
+    public class ApplyCommand : ICommand
     {
         /// <summary>
         /// Возвращает и задаёт MainVM.
@@ -32,7 +32,7 @@ namespace View.ViewModel
         /// Создаёт экземпляр класса  <see cref="LoadCommand"/>.
         /// </summary>
         /// <param name="mainVM">Экземпляр MainVM.</param>
-        public EditCommand(MainVM mainVM)
+        public ApplyCommand(MainVM mainVM)
         {
             ContactSerializer = new ContactSerializer();
             MainVM = mainVM;
@@ -54,8 +54,19 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            MainVM.OnPropertyChanged(nameof(MainVM.IsReadOnly));
-            MainVM.OnPropertyChanged(nameof(MainVM.Visibility));
+            if (MainVM.IsEnabled)
+            {
+                MainVM.CurrentContact.Name = MainVM.EditContact.Name;
+                MainVM.CurrentContact.Phone = MainVM.EditContact.Phone;
+                MainVM.CurrentContact.Email = MainVM.EditContact.Email;
+                MainVM.CurrentContact = MainVM.CurrentContact;
+            }
+            else
+            {
+                MainVM.Contacts.Add(MainVM.EditContact);
+                MainVM.CurrentContact = MainVM.Contacts.Last();
+            }
+            MainVM.SaveCommand.Execute(MainVM.Contacts);
         }
     }
 }

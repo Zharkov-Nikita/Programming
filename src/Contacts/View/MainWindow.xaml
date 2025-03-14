@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:View.ViewModel" d:DataContext="{d:DesignInstance Type=local:MainVM}"
         mc:Ignorable="d"
         Title="Contacts" Height="500" Width="770" MinHeight="500" MinWidth="770">
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="myVisibilityConverter"/>
+    </Window.Resources>
     <Grid Background="#f8f8f8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="256"/>
@@ -52,9 +55,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <Button Content="Add" Command="{Binding SaveCommand}"/>
+                <Button Content="Add" Command="{Binding AddCommand}"/>
                 <Button Content="Edit" Command="{Binding EditCommand}" IsEnabled="{Binding IsEnabled}"/>
-                <Button Content="Remove" Command="{Binding LoadCommand}" IsEnabled="{Binding IsEnabled}"/>
+                <Button Content="Remove" Command="{Binding RemoveCommand}" IsEnabled="{Binding IsEnabled}"/>
             </StackPanel>
         </Grid>
         <Grid Background="White" Grid.Column="2">
@@ -92,10 +95,10 @@
                     IsReadOnly="{Binding IsReadOnly}"/>
                 <Button
                     Content="Apply"
-                    Command="{Binding LoadCommand}"
+                    Command="{Binding ApplyCommand}"
                     HorizontalAlignment="Left"
                     Margin="3,50,0,0"
-                    Visibility="Visible"/>
+                    Visibility="{Binding Visibility, Converter={StaticResource myVisibilityConverter}}"/>
             </StackPanel>            
         </Grid>
     </Grid>

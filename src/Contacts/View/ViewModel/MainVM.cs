@@ -17,9 +17,24 @@ namespace View.ViewModel
         private LoadCommand _loadCommand;
 
         /// <summary>
+        /// Команда добавления контакта.
+        /// </summary>
+        private AddCommand _addCommand;
+
+        /// <summary>
         /// Команда редактирования контакта.
         /// </summary>
         private EditCommand _editCommand;
+
+        /// <summary>
+        /// Команда удаления контакта.
+        /// </summary>
+        private RemoveCommand _removeCommand;
+
+        /// <summary>
+        /// Команда применения изменений.
+        /// </summary>
+        private ApplyCommand _applyCommand;
 
         /// <summary>
         /// Текущий контакт.
@@ -50,6 +65,9 @@ namespace View.ViewModel
                 _currentContact = value;
                 OnPropertyChanged(nameof(CurrentContact));
                 OnPropertyChanged(nameof(IsEnabled));
+                EditContact = null;
+                OnPropertyChanged(nameof(Visibility));
+                OnPropertyChanged(nameof(IsReadOnly));
                 UpdateEditContact();
             }
         }
@@ -93,6 +111,17 @@ namespace View.ViewModel
         }
 
         /// <summary>
+        /// Команда добавления контакта.
+        /// </summary>
+        public AddCommand AddCommand
+        {
+            get
+            {
+                return _addCommand ?? (_addCommand = new AddCommand(this));
+            }
+        }
+
+        /// <summary>
         /// Команда редактирования контакта.
         /// </summary>
         public EditCommand EditCommand
@@ -103,11 +132,33 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда удаления контакта.
+        /// </summary>
+        public RemoveCommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ?? (_removeCommand = new RemoveCommand(this));
+            }
+        }
+
+        /// <summary>
+        /// Команда применения изменений.
+        /// </summary>
+        public ApplyCommand ApplyCommand
+        {
+            get
+            {
+                return _applyCommand ?? (_applyCommand = new ApplyCommand(this));
+            }
+        }
+
         public bool IsReadOnly
         {
             get
             {
-                return CurrentContact == null;
+                return EditContact == null;
             }
         }
 
@@ -116,6 +167,14 @@ namespace View.ViewModel
             get
             {
                 return CurrentContact != null;
+            }
+        }
+
+        public bool Visibility
+        {
+            get
+            {
+                return EditContact != null;
             }
         }
 

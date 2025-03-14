@@ -9,9 +9,9 @@ using View.Model.Services;
 namespace View.ViewModel
 {
     /// <summary>
-    /// Реализует команду редактирования контакта.
+    /// Реализует команду удаления контакта.
     /// </summary>
-    public class EditCommand : ICommand
+    public class RemoveCommand : ICommand
     {
         /// <summary>
         /// Возвращает и задаёт MainVM.
@@ -32,7 +32,7 @@ namespace View.ViewModel
         /// Создаёт экземпляр класса  <see cref="LoadCommand"/>.
         /// </summary>
         /// <param name="mainVM">Экземпляр MainVM.</param>
-        public EditCommand(MainVM mainVM)
+        public RemoveCommand(MainVM mainVM)
         {
             ContactSerializer = new ContactSerializer();
             MainVM = mainVM;
@@ -54,8 +54,24 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            MainVM.OnPropertyChanged(nameof(MainVM.IsReadOnly));
-            MainVM.OnPropertyChanged(nameof(MainVM.Visibility));
+            int index = MainVM.Contacts.IndexOf(MainVM.CurrentContact);
+            MainVM.Contacts.Remove(MainVM.CurrentContact);
+            MainVM.SaveCommand.Execute(MainVM.Contacts);
+            try
+            {
+                MainVM.CurrentContact = MainVM.Contacts[index];
+            }
+            catch
+            {
+                try
+                {
+                    MainVM.CurrentContact = MainVM.Contacts[index - 1];
+                }
+                catch
+                {
+                    MainVM.CurrentContact = null;
+                }
+            }
         }
     }
 }
