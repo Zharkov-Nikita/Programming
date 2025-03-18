@@ -19,11 +19,6 @@ namespace View.ViewModel
         MainVM MainVM { get; set; }
 
         /// <summary>
-        /// Возвращает и задаёт сериализатор контакта.
-        /// </summary>
-        public ContactSerializer ContactSerializer { get; set; }
-
-        /// <summary>
         /// Происходит, когда диспетчер команд обнаруживает изменение источника команды.
         /// </summary>
         public event EventHandler CanExecuteChanged;
@@ -34,7 +29,6 @@ namespace View.ViewModel
         /// <param name="mainVM">Экземпляр MainVM.</param>
         public EditCommand(MainVM mainVM)
         {
-            ContactSerializer = new ContactSerializer();
             MainVM = mainVM;
         }
 

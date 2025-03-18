@@ -4,6 +4,9 @@ using View.Model;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// Реализует модель представления.
+    /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
         /// <summary>
@@ -154,6 +157,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает, только ли на чтение.
+        /// </summary>
         public bool IsReadOnly
         {
             get
@@ -162,6 +168,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает, доступно ли.
+        /// </summary>
         public bool IsEnabled
         {
             get
@@ -170,6 +179,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает видимость.
+        /// </summary>
         public bool Visibility
         {
             get
@@ -193,6 +205,9 @@ namespace View.ViewModel
             OnPropertyChanged(nameof(IsReadOnly));
         }
 
+        /// <summary>
+        /// Обновляет редактируемый контакт
+        /// </summary>
         public void UpdateEditContact()
         {
             if (CurrentContact != null)
