@@ -31,6 +31,7 @@ namespace View.Model.Services
             {
                 Directory.CreateDirectory(_path);
             }
+
             StreamWriter streamWriter = new StreamWriter(_path + _file);
             streamWriter.WriteLine(jsonContacts);
             streamWriter.Close();
@@ -47,22 +48,6 @@ namespace View.Model.Services
             streamReader.Close();
             ObservableCollection<Contact> contacts = JsonConvert.DeserializeObject<ObservableCollection<Contact>>(readContacts);
             return contacts;
-        }
-
-        /// <summary>
-        /// Метод для выбора контакта.
-        /// </summary>
-        /// <param name="contact">Выбранный контакт</param>
-        public void SelectContact(Contact contact)
-        {
-            string jsonContacts = JsonConvert.SerializeObject(contact);
-            if (!Directory.Exists(_path))
-            {
-                Directory.CreateDirectory(_path);
-            }
-            StreamWriter streamWriter = new StreamWriter(_path + _file);
-            streamWriter.WriteLine(jsonContacts);
-            streamWriter.Close();
         }
     }
 }
