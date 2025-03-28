@@ -1,11 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact
+    public class Contact : INotifyPropertyChanged
     {
         /// <summary>
         /// ФИО контакта.
@@ -38,6 +39,7 @@ namespace View.Model
                     throw new ArgumentException();
                 }
                 _name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -57,6 +59,7 @@ namespace View.Model
                     throw new ArgumentException();
                 }
                 _phone = value;
+                OnPropertyChanged(nameof(Phone));
             }
         }
 
@@ -76,8 +79,14 @@ namespace View.Model
                     throw new ArgumentException();
                 }
                 _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
+
+        /// <summary>
+        /// Событие, срабатывающее при изменении данных.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Contact"/>.
@@ -90,6 +99,17 @@ namespace View.Model
             Name = name;
             Phone = phone;
             Email = email;
+        }
+
+        public Contact() { }
+
+        /// <summary>
+        /// Извещает систему об изменении свойства. 
+        /// </summary>
+        /// <param name="prop">Свойство</param>
+        public void OnPropertyChanged(string prop)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

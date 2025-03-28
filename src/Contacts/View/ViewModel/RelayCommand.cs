@@ -1,39 +1,39 @@
 ﻿using System;
 using System.Windows.Input;
-using View.Model.Services;
-using View.Model;
-using System.Windows;
 
 namespace View.ViewModel
 {
     /// <summary>
-    /// Реализует загрузку контакта.
+    /// Реализует класс выполнения команд.
     /// </summary>
-    public class LoadCommand : ICommand
+    public class RelayCommand : ICommand
     {
         /// <summary>
-        /// Возвращает и задаёт MainVM.
+        /// Определяет метод, вызываемый при вызове данной команды.
         /// </summary>
-        MainVM MainVM { get; set; }
+        private Action<object> execute;
 
         /// <summary>
-        /// Возвращает и задаёт сериализатор контакта.
+        /// Определяет, может ли команда выполняться в текущем состоянии.
         /// </summary>
-        public ContactSerializer ContactSerializer { get; set; }
+        private Func<object, bool> canExecute;
 
         /// <summary>
         /// Происходит, когда диспетчер команд обнаруживает изменение источника команды.
         /// </summary>
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         /// <summary>
-        /// Создаёт экземпляр класса  <see cref="LoadCommand"/>.
+        /// Создаёт экземпляр класса  <see cref="RelayCommand"/>.
         /// </summary>
-        /// <param name="mainVM">Экземпляр MainVM.</param>
-        public LoadCommand(MainVM mainVM)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            ContactSerializer = new ContactSerializer();
-            MainVM = mainVM;
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
 
         /// <summary>
@@ -52,17 +52,7 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            try
-            {
-                var loadedContact = ContactSerializer.LoadContact();
-                if (loadedContact != null)
-                {
-                    MainVM.Name = loadedContact.Name;
-                    MainVM.Phone = loadedContact.Phone;
-                    MainVM.Email = loadedContact.Email;
-                }
-            }
-            catch { }
+            this.execute(parameter);
         }
     }
 }

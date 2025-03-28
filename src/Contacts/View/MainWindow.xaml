@@ -5,66 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View.ViewModel" d:DataContext="{d:DesignInstance Type=local:MainVM}"
         mc:Ignorable="d"
-        Title="Contacts" Height="420" Width="560" MinHeight="420" MinWidth="560">
-    <Grid>
+        Title="Contacts" Height="500" Width="770" MinHeight="500" MinWidth="770">
+    <Window.Resources>
+        <local:BoolToVisibilityConverter x:Key="VisibilityConverter"/>
+    </Window.Resources>
+    <Grid Background="#f8f8f8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MinWidth="256"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Edit Contact" Margin="15,17,5,50" HorizontalContentAlignment="Stretch">
-            <StackPanel>
-                <Label Content="Name:" Height="26" Margin="3"/>
-                <TextBox
-                    Height="26"
-                    TextWrapping="Wrap"
-                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"
-                    Padding="0,5,0,0"/>
-                <Label Content="Phone Number:" Height="26" Margin="3"/>
-                <TextBox
-                    Height="26"
-                    TextWrapping="Wrap"
-                    Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"
-                    Padding="0,5,0,0"/>
-                <Label Content="Email:" Height="26" Margin="3"/>
-                <TextBox
-                    Height="26"
-                    TextWrapping="Wrap"
-                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="3"
-                    Padding="0,5,0,0"/>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Width" Value="75"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Padding" Value="0,5,0,0"/>
+            </Style>
+        </Grid.Resources>
+        <GridSplitter
+            Grid.Column="1"
+            ShowsPreview="False" 
+            Width="3"
+            Background="White"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Stretch" />
+        <Grid Grid.Column="0" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Margin="3">
+                <Label Content="Find:" Width="40"/>
+                <TextBox/>
+            </DockPanel>
+            <ListBox
+                ItemsSource="{Binding Contacts}"
+                VerticalAlignment="Stretch"
+                Grid.Row="1"
+                Margin="3"
+                SelectedItem="{Binding CurrentContact, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Button Content="Add" Command="{Binding AddCommand}"/>
+                <Button
+                    Content="Edit"
+                    Command="{Binding EditCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
+                <Button
+                    Content="Remove"
+                    Command="{Binding RemoveCommand}"
+                    IsEnabled="{Binding IsEnabled}"/>
             </StackPanel>
-        </GroupBox>
-        <GroupBox Header="Read Contact" Margin="5,17,15,50" Grid.Column="1">
-            <StackPanel>
-                <Label Content="Name:" Height="26" Margin="3"/>
-                <TextBlock 
-                    Text="{Binding Path=Name}" 
-                    FontWeight="Bold" 
-                    Height="26" 
-                    Margin="3"/>
-                <Label Content="Phone Number:" Height="26" Margin="3"/>
-                <TextBlock 
-                    Text="{Binding Path=Phone}" 
-                    FontWeight="Bold" 
-                    Height="26" 
-                    Margin="3"/>
-                <Label Content="Email:" Height="26" Margin="3"/>
-                <TextBlock 
-                    Text="{Binding Path=Email}" 
-                    FontWeight="Bold" 
+        </Grid>
+        <Grid Background="White" Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image
+                Width="100"
+                Height="100"
+                VerticalAlignment="Top"
+                Margin="5,34"
+                Source="user.png"/>
+            <StackPanel Margin="5" Grid.Column="1">
+                <Label Content="Name:" Height="26"/>
+                <TextBox
                     Height="26"
-                    Margin="3"/>
-            </StackPanel>
-        </GroupBox>
-        <Button Grid.Column="1" Content="Save" 
-                HorizontalAlignment="Right" Height="25"
-                Margin="15, 15, 105, 15" VerticalAlignment="Bottom" 
-                Width="75" Command="{Binding SaveCommand}"/>
-        <Button Grid.Column="1" Content="Load"
-                HorizontalAlignment="Right" Height="25"
-                Margin="15" VerticalAlignment="Bottom"
-                Width="75" Command="{Binding LoadCommand}"/>
+                    TextWrapping="Wrap"
+                    Text="{Binding EditContact.Name, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
+                <Label Content="Phone Number:" Height="26"/>
+                <TextBox
+                    Height="26"
+                    TextWrapping="Wrap"
+                    Text="{Binding EditContact.Phone, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
+                <Label Content="Email:" Height="26"/>
+                <TextBox
+                    Height="26"
+                    TextWrapping="Wrap"
+                    Text="{Binding EditContact.Email, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="3"
+                    IsReadOnly="{Binding IsReadOnly}"/>
+                <WrapPanel Margin="2,50,0,0">
+                    <Button
+                        Content="Apply"
+                        Command="{Binding ApplyCommand}"
+                        HorizontalAlignment="Left"
+                        Visibility="{Binding Visibility, 
+                        Converter={StaticResource VisibilityConverter}}"/>
+                    <Button
+                        Content="Cancel"
+                        Command="{Binding CancelCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="10,0,0,0"
+                        Visibility="{Binding Visibility, 
+                        Converter={StaticResource VisibilityConverter}}"/>
+                </WrapPanel>
+            </StackPanel>            
+        </Grid>
     </Grid>
 </Window>
