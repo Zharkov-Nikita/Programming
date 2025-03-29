@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using View.Model;
@@ -100,6 +101,11 @@ namespace View.ViewModel
             {
                 _editContact = value;
                 OnPropertyChanged(nameof(EditContact));
+                OnPropertyChanged(nameof(ApplyIsEnabled));
+                if (_editContact != null)
+                {
+                    _editContact.PropertyChanged += EditContact_PropertyChanged;
+                }
             }
         }
 
@@ -270,6 +276,17 @@ namespace View.ViewModel
         }
 
         /// <summary>
+        /// Возвращает, доступно ли применение.
+        /// </summary>
+        public bool ApplyIsEnabled
+        {
+            get
+            {
+                return EditContact != null && string.IsNullOrWhiteSpace(EditContact.Error);
+            }
+        }
+
+        /// <summary>
         /// Возвращает видимость.
         /// </summary>
         public bool Visibility
@@ -309,6 +326,14 @@ namespace View.ViewModel
             {
                 EditContact = null;
             }
+        }
+
+        /// <summary>
+        /// Меняет ФИО покупателя на введённое
+        /// </summary>
+        private void EditContact_PropertyChanged(object sender, EventArgs e)
+        {
+            OnPropertyChanged(nameof(ApplyIsEnabled));
         }
 
         /// <summary>

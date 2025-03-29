@@ -1,12 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Controls;
+using View.ViewModel;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged, IDataErrorInfo
     {
         /// <summary>
         /// ФИО контакта.
@@ -34,10 +36,6 @@ namespace View.Model
             }
             set
             {
-                if (value.Length > 100)
-                {
-                    throw new ArgumentException();
-                }
                 _name = value;
                 OnPropertyChanged(nameof(Name));
             }
@@ -54,10 +52,6 @@ namespace View.Model
             }
             set
             {
-                if (value.Length > 100)
-                {
-                    throw new ArgumentException();
-                }
                 _phone = value;
                 OnPropertyChanged(nameof(Phone));
             }
@@ -74,12 +68,46 @@ namespace View.Model
             }
             set
             {
-                if (value.Length > 100)
-                {
-                    throw new ArgumentException();
-                }
                 _email = value;
                 OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = String.Empty;
+                switch (columnName)
+                {
+                    case "Name":
+                        if (string.IsNullOrEmpty(Name) || Name.Length > 100)
+                        {
+                            error = "Name length must be > 0 and <= 100";
+                        }
+                        break;
+                    case "Phone":
+                        if (string.IsNullOrEmpty(Phone) || Phone.Length > 100)
+                        {
+                            error = "Phone can contains only digits and symbols '+()- '. Example: 7 (999) 111-22-33";
+                        }
+                        break;
+                    case "Email":
+                        if (string.IsNullOrEmpty(Email) || Email.Length > 100 || !Email.Contains("@"))
+                        {
+                            error = "Name length must be > 0, <= 100 and contains the symbol '@'";
+                        }
+                        break;
+                }
+                return error;
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return this[nameof(Name)] + this[nameof(Phone)] + this[nameof(Email)];
             }
         }
 
