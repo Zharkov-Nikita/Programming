@@ -11,7 +11,7 @@ namespace View.Model.Services
     public class ContactSerializer
     {
         /// <summary>
-        /// Путь в папке с данными.
+        /// Путь к папке с данными.
         /// </summary>
         private string _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Contacts";
 

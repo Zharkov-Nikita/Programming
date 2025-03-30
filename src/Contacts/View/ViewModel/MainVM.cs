@@ -329,7 +329,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Меняет ФИО покупателя на введённое
+        /// Вызов проверки, должна ли быть доступна кнопка Apply.
         /// </summary>
         private void EditContact_PropertyChanged(object sender, EventArgs e)
         {

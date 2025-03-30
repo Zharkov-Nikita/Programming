@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows.Controls;
-using View.ViewModel;
 
 namespace View.Model
 {
@@ -73,6 +71,11 @@ namespace View.Model
             }
         }
 
+        /// <summary>
+        /// Получение ошибки.
+        /// </summary>
+        /// <param name="columnName">Свойство, в котором возникла ошибка</param>
+        /// <returns>Текст ошибки.</returns>
         public string this[string columnName]
         {
             get
@@ -103,6 +106,9 @@ namespace View.Model
             }
         }
 
+        /// <summary>
+        /// Полученная ошибка.
+        /// </summary>
         public string Error
         {
             get
@@ -129,6 +135,9 @@ namespace View.Model
             Email = email;
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
         public Contact() { }
 
         /// <summary>

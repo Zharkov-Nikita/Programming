@@ -11,7 +11,8 @@
             <Style TargetType="TextBox">
                 <Style.Triggers>
                     <Trigger Property="Validation.HasError" Value="True">
-                        <Setter Property="ToolTip"
+                        <Setter
+                            Property="ToolTip"
                             Value="{Binding RelativeSource={RelativeSource Self},
                             Path=(Validation.Errors)[0].ErrorContent}"/>
                         <Setter Property="Background" Value="Pink"/>
@@ -46,10 +47,13 @@
             </TextBox>
             <Label Content="Phone Number:" Height="26"/>
             <TextBox
+                x:Name="ContactPhoneTextBox"
                 Height="26"
                 TextWrapping="Wrap"
                 Margin="3"
-                IsReadOnly="{Binding IsReadOnly}">
+                IsReadOnly="{Binding IsReadOnly}"
+                PreviewTextInput="ContactPhoneTextBox_PreviewTextInput"
+                DataObject.Pasting="ContactPhoneTextBox_Pasting">
                 <TextBox.Text>
                     <Binding Path="EditContact.Phone" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
