@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -10,43 +12,8 @@ namespace View.ViewModel
     /// <summary>
     /// Реализует модель представления.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public class MainVM : ObservableObject, INotifyPropertyChanged
     {
-        /// <summary>
-        /// Команда сохранения контакта.
-        /// </summary>
-        private RelayCommand _saveCommand;
-
-        /// <summary>
-        /// Команда загрузки контакта.
-        /// </summary>
-        private RelayCommand _loadCommand;
-
-        /// <summary>
-        /// Команда добавления контакта.
-        /// </summary>
-        private RelayCommand _addCommand;
-
-        /// <summary>
-        /// Команда редактирования контакта.
-        /// </summary>
-        private RelayCommand _editCommand;
-
-        /// <summary>
-        /// Команда удаления контакта.
-        /// </summary>
-        private RelayCommand _removeCommand;
-
-        /// <summary>
-        /// Команда применения изменений.
-        /// </summary>
-        private RelayCommand _applyCommand;
-
-        /// <summary>
-        /// Команда отмены изменений.
-        /// </summary>
-        private RelayCommand _cancelCommand;
-
         /// <summary>
         /// Текущий контакт.
         /// </summary>
@@ -112,146 +79,37 @@ namespace View.ViewModel
         /// <summary>
         /// Команда сохранения контакта.
         /// </summary>
-        public RelayCommand SaveCommand
-        {
-            get
-            {
-                return _saveCommand ?? (_saveCommand = new RelayCommand(obj =>
-                {
-                    ContactSerializer.SaveContacts(Contacts);
-                }));
-            }
-        }
+        public RelayCommand SaveCommand { get; }
 
         /// <summary>
         /// Команда загрузки контакта.
         /// </summary>
-        public RelayCommand LoadCommand
-        {
-            get
-            {
-                return _loadCommand ?? (_loadCommand = new RelayCommand(obj =>
-                {
-                    try
-                    {
-                        var loadedContacts = ContactSerializer.LoadContact();
-                        if (loadedContacts != null)
-                        {
-                            Contacts.Clear();
-                            foreach (var contact in loadedContacts)
-                            {
-                                Contacts.Add(contact);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        Contacts.Clear();
-                    }
-                }));
-            }
-        }
+        public RelayCommand LoadCommand { get; }        
 
         /// <summary>
         /// Команда добавления контакта.
         /// </summary>
-        public RelayCommand AddCommand
-        {
-            get
-            {
-                return _addCommand ?? (_addCommand = new RelayCommand(obj =>
-                {
-                    LoadCommand.Execute(Contacts);
-                    EditContact = new Contact("", "", "");
-                    OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(ApplyIsVisible));
-                }));
-            }
-        }
+        public RelayCommand AddCommand { get; }        
 
         /// <summary>
         /// Команда редактирования контакта.
         /// </summary>
-        public RelayCommand EditCommand
-        {
-            get
-            {
-                return _editCommand ?? (_editCommand = new RelayCommand(obj =>
-                {
-                    OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(ApplyIsVisible));
-                }));
-            }
-        }
+        public RelayCommand EditCommand { get; }        
 
         /// <summary>
         /// Команда удаления контакта.
         /// </summary>
-        public RelayCommand RemoveCommand
-        {
-            get
-            {
-                return _removeCommand ?? (_removeCommand = new RelayCommand(obj =>
-                {
-                    int index = Contacts.IndexOf(CurrentContact);
-                    Contacts.Remove(CurrentContact);
-                    SaveCommand.Execute(Contacts);
-                    if (index < Contacts.Count)
-                    {
-                        CurrentContact = Contacts[index];
-                    }
-                    else if (Contacts.Count > 0)
-                    {
-                        CurrentContact = Contacts[Contacts.Count - 1];
-                    }
-                    else
-                    {
-                        CurrentContact = null;
-                    }
-                }));
-            }
-        }
+        public RelayCommand RemoveCommand { get; }        
 
         /// <summary>
         /// Команда применения изменений.
         /// </summary>
-        public RelayCommand ApplyCommand
-        {
-            get
-            {
-                return _applyCommand ?? (_applyCommand = new RelayCommand(obj =>
-                {
-                    if (IsEnabled)
-                    {
-                        CurrentContact.Name = EditContact.Name;
-                        CurrentContact.Phone = EditContact.Phone;
-                        CurrentContact.Email = EditContact.Email;
-                        CurrentContact = CurrentContact;
-                    }
-                    else
-                    {
-                        Contacts.Add(EditContact);
-                        CurrentContact = Contacts.Last();
-                    }
-
-                    SaveCommand.Execute(Contacts);
-                }));
-            }
-        }
+        public RelayCommand ApplyCommand { get; }        
 
         /// <summary>
         /// Команда Отмены изменений.
         /// </summary>
-        public RelayCommand CancelCommand
-        {
-            get
-            {
-                return _cancelCommand ?? (_cancelCommand = new RelayCommand(obj =>
-                {
-                    CurrentContact = null;
-                }));
-            }
-        }
+        public RelayCommand CancelCommand { get; }        
 
         /// <summary>
         /// Возвращает, только ли на чтение.
@@ -309,6 +167,13 @@ namespace View.ViewModel
         {
             Contacts = new ObservableCollection<Contact>();
             ContactSerializer = new ContactSerializer();
+            SaveCommand = new RelayCommand(Save);
+            LoadCommand = new RelayCommand(Load);
+            AddCommand = new RelayCommand(Add);
+            EditCommand = new RelayCommand(Edit);
+            RemoveCommand = new RelayCommand(Remove);
+            ApplyCommand = new RelayCommand(Apply);
+            CancelCommand = new RelayCommand(Cancel);
             LoadCommand.Execute(Contacts);
             OnPropertyChanged(nameof(IsReadOnly));
         }
@@ -326,6 +191,108 @@ namespace View.ViewModel
             {
                 EditContact = null;
             }
+        }
+
+        /// <summary>
+        /// Метод сохранения.
+        /// </summary>
+        private void Save()
+        {
+            ContactSerializer.SaveContacts(Contacts);
+        }
+
+        /// <summary>
+        /// Метод загрузки.
+        /// </summary>
+        private void Load()
+        {
+            try
+            {
+                var loadedContacts = ContactSerializer.LoadContact();
+                if (loadedContacts != null)
+                {
+                    Contacts.Clear();
+                    foreach (var contact in loadedContacts)
+                    {
+                        Contacts.Add(contact);
+                    }
+                }
+            }
+            catch
+            {
+                Contacts.Clear();
+            }
+        }
+
+        /// <summary>
+        /// Метод добавления.
+        /// </summary>
+        private void Add()
+        {
+            LoadCommand.Execute(Contacts);
+            EditContact = new Contact("", "", "");
+            OnPropertyChanged(nameof(IsReadOnly));
+            OnPropertyChanged(nameof(ApplyIsVisible));
+        }
+
+        /// <summary>
+        /// Метод редактирования.
+        /// </summary>
+        private void Edit()
+        {
+            OnPropertyChanged(nameof(IsReadOnly));
+            OnPropertyChanged(nameof(ApplyIsVisible));
+        }
+
+        /// <summary>
+        /// Метод удаления.
+        /// </summary>
+        private void Remove()
+        {
+            int index = Contacts.IndexOf(CurrentContact);
+            Contacts.Remove(CurrentContact);
+            SaveCommand.Execute(Contacts);
+            if (index < Contacts.Count)
+            {
+                CurrentContact = Contacts[index];
+            }
+            else if (Contacts.Count > 0)
+            {
+                CurrentContact = Contacts[Contacts.Count - 1];
+            }
+            else
+            {
+                CurrentContact = null;
+            }
+        }
+
+        /// <summary>
+        /// Метод применения.
+        /// </summary>
+        private void Apply()
+        {
+            if (IsEnabled)
+            {
+                CurrentContact.Name = EditContact.Name;
+                CurrentContact.Phone = EditContact.Phone;
+                CurrentContact.Email = EditContact.Email;
+                CurrentContact = CurrentContact;
+            }
+            else
+            {
+                Contacts.Add(EditContact);
+                CurrentContact = Contacts.Last();
+            }
+
+            SaveCommand.Execute(Contacts);
+        }
+
+        /// <summary>
+        /// Метод отмены.
+        /// </summary>
+        private void Cancel()
+        {
+            CurrentContact = null;
         }
 
         /// <summary>
