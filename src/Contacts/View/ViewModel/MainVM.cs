@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using View.Model;
@@ -81,7 +82,7 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(CurrentContact));
                 OnPropertyChanged(nameof(IsEnabled));
                 EditContact = null;
-                OnPropertyChanged(nameof(Visibility));
+                OnPropertyChanged(nameof(ApplyIsVisible));
                 OnPropertyChanged(nameof(IsReadOnly));
                 UpdateEditContact();
             }
@@ -100,6 +101,11 @@ namespace View.ViewModel
             {
                 _editContact = value;
                 OnPropertyChanged(nameof(EditContact));
+                OnPropertyChanged(nameof(ApplyIsEnabled));
+                if (_editContact != null)
+                {
+                    _editContact.PropertyChanged += EditContact_PropertyChanged;
+                }
             }
         }
 
@@ -158,7 +164,7 @@ namespace View.ViewModel
                     LoadCommand.Execute(Contacts);
                     EditContact = new Contact("", "", "");
                     OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(Visibility));
+                    OnPropertyChanged(nameof(ApplyIsVisible));
                 }));
             }
         }
@@ -173,7 +179,7 @@ namespace View.ViewModel
                 return _editCommand ?? (_editCommand = new RelayCommand(obj =>
                 {
                     OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(Visibility));
+                    OnPropertyChanged(nameof(ApplyIsVisible));
                 }));
             }
         }
@@ -270,9 +276,20 @@ namespace View.ViewModel
         }
 
         /// <summary>
+        /// Возвращает, доступно ли применение.
+        /// </summary>
+        public bool ApplyIsEnabled
+        {
+            get
+            {
+                return EditContact != null && string.IsNullOrWhiteSpace(EditContact.Error);
+            }
+        }
+
+        /// <summary>
         /// Возвращает видимость.
         /// </summary>
-        public bool Visibility
+        public bool ApplyIsVisible
         {
             get
             {
@@ -309,6 +326,14 @@ namespace View.ViewModel
             {
                 EditContact = null;
             }
+        }
+
+        /// <summary>
+        /// Вызов проверки, должна ли быть доступна кнопка Apply.
+        /// </summary>
+        private void EditContact_PropertyChanged(object sender, EventArgs e)
+        {
+            OnPropertyChanged(nameof(ApplyIsEnabled));
         }
 
         /// <summary>

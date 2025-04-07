@@ -11,12 +11,12 @@ namespace View.ViewModel
         /// <summary>
         /// Определяет метод, вызываемый при вызове данной команды.
         /// </summary>
-        private Action<object> execute;
+        private Action<object> _execute;
 
         /// <summary>
         /// Определяет, может ли команда выполняться в текущем состоянии.
         /// </summary>
-        private Func<object, bool> canExecute;
+        private Func<object, bool> _canExecute;
 
         /// <summary>
         /// Происходит, когда диспетчер команд обнаруживает изменение источника команды.
@@ -32,8 +32,8 @@ namespace View.ViewModel
         /// </summary>
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            this.execute = execute;
-            this.canExecute = canExecute;
+            this._execute = execute;
+            this._canExecute = canExecute;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace View.ViewModel
         /// <param name="parameter">Данные, используемые данной командой.</param>
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            this._execute(parameter);
         }
     }
 }
