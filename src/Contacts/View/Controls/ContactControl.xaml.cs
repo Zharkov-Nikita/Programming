@@ -36,7 +36,7 @@ namespace View.Controls
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
                 string text = (string)e.DataObject.GetData(typeof(string));
-                if (regex.IsMatch(text))
+                if (!regex.IsMatch(text))
                 {
                     e.CancelCommand();
                 }

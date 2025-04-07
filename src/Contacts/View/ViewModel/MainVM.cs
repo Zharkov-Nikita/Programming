@@ -82,7 +82,7 @@ namespace View.ViewModel
                 OnPropertyChanged(nameof(CurrentContact));
                 OnPropertyChanged(nameof(IsEnabled));
                 EditContact = null;
-                OnPropertyChanged(nameof(Visibility));
+                OnPropertyChanged(nameof(ApplyIsVisible));
                 OnPropertyChanged(nameof(IsReadOnly));
                 UpdateEditContact();
             }
@@ -164,7 +164,7 @@ namespace View.ViewModel
                     LoadCommand.Execute(Contacts);
                     EditContact = new Contact("", "", "");
                     OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(Visibility));
+                    OnPropertyChanged(nameof(ApplyIsVisible));
                 }));
             }
         }
@@ -179,7 +179,7 @@ namespace View.ViewModel
                 return _editCommand ?? (_editCommand = new RelayCommand(obj =>
                 {
                     OnPropertyChanged(nameof(IsReadOnly));
-                    OnPropertyChanged(nameof(Visibility));
+                    OnPropertyChanged(nameof(ApplyIsVisible));
                 }));
             }
         }
@@ -289,7 +289,7 @@ namespace View.ViewModel
         /// <summary>
         /// Возвращает видимость.
         /// </summary>
-        public bool Visibility
+        public bool ApplyIsVisible
         {
             get
             {

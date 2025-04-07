@@ -99,14 +99,14 @@
                     Content="Apply"
                     Command="{Binding ApplyCommand}"
                     HorizontalAlignment="Left"
-                    Visibility="{Binding Visibility, Converter={StaticResource VisibilityConverter}}"
+                    Visibility="{Binding ApplyIsVisible, Converter={StaticResource VisibilityConverter}}"
                     IsEnabled="{Binding ApplyIsEnabled}"/>
                 <Button
                     Content="Cancel"
                     Command="{Binding CancelCommand}"
                     HorizontalAlignment="Left"
                     Margin="10,0,0,0"
-                    Visibility="{Binding Visibility, Converter={StaticResource VisibilityConverter}}"/>
+                    Visibility="{Binding ApplyIsVisible, Converter={StaticResource VisibilityConverter}}"/>
             </WrapPanel>
         </Grid>
     </Grid>

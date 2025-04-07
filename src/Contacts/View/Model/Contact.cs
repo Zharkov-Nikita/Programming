@@ -83,19 +83,19 @@ namespace View.Model
                 string error = String.Empty;
                 switch (columnName)
                 {
-                    case "Name":
+                    case nameof(Name):
                         if (string.IsNullOrEmpty(Name) || Name.Length > 100)
                         {
                             error = "Name length must be > 0 and <= 100";
                         }
                         break;
-                    case "Phone":
+                    case nameof(Phone):
                         if (string.IsNullOrEmpty(Phone) || Phone.Length > 100)
                         {
                             error = "Phone can contains only digits and symbols '+()- '. Example: 7 (999) 111-22-33";
                         }
                         break;
-                    case "Email":
+                    case nameof(Email):
                         if (string.IsNullOrEmpty(Email) || Email.Length > 100 || !Email.Contains("@"))
                         {
                             error = "Name length must be > 0, <= 100 and contains the symbol '@'";
