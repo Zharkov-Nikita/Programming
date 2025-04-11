@@ -12,16 +12,18 @@ namespace View.ViewModel
     /// <summary>
     /// Реализует модель представления.
     /// </summary>
-    public class MainVM : ObservableObject, INotifyPropertyChanged
+    public partial class MainVM : ObservableObject, INotifyPropertyChanged
     {
         /// <summary>
         /// Текущий контакт.
         /// </summary>
+        [ObservableProperty]
         private Contact _currentContact;
 
         /// <summary>
         /// Редактируемый контакт.
         /// </summary>
+        [ObservableProperty]
         private Contact _editContact;
 
         /// <summary>
@@ -33,48 +35,6 @@ namespace View.ViewModel
         /// Возвращает и задаёт сериализатор контакта.
         /// </summary>
         public ContactSerializer ContactSerializer { get; set; }
-
-        /// <summary>
-        /// Возвращает и задаёт текущий контакт.
-        /// </summary>
-        public Contact CurrentContact
-        {
-            get 
-            {
-                return _currentContact;
-            }
-            set
-            {
-                _currentContact = value;
-                OnPropertyChanged(nameof(CurrentContact));
-                OnPropertyChanged(nameof(IsEnabled));
-                EditContact = null;
-                OnPropertyChanged(nameof(ApplyIsVisible));
-                OnPropertyChanged(nameof(IsReadOnly));
-                UpdateEditContact();
-            }
-        }
-
-        /// <summary>
-        /// Возвращает и задаёт редактируемый контакт.
-        /// </summary>
-        public Contact EditContact
-        {
-            get
-            {
-                return _editContact;
-            }
-            set
-            {
-                _editContact = value;
-                OnPropertyChanged(nameof(EditContact));
-                OnPropertyChanged(nameof(ApplyIsEnabled));
-                if (_editContact != null)
-                {
-                    _editContact.PropertyChanged += EditContact_PropertyChanged;
-                }
-            }
-        }
 
         /// <summary>
         /// Команда сохранения контакта.
@@ -276,7 +236,9 @@ namespace View.ViewModel
                 CurrentContact.Name = EditContact.Name;
                 CurrentContact.Phone = EditContact.Phone;
                 CurrentContact.Email = EditContact.Email;
-                CurrentContact = CurrentContact;
+                Contact currentContact = CurrentContact;
+                CurrentContact = null;
+                CurrentContact = currentContact;
             }
             else
             {
@@ -293,6 +255,26 @@ namespace View.ViewModel
         private void Cancel()
         {
             CurrentContact = null;
+        }
+
+        partial void OnCurrentContactChanged(Contact value)
+        {
+            OnPropertyChanged(nameof(CurrentContact));
+            OnPropertyChanged(nameof(IsEnabled));
+            EditContact = null;
+            OnPropertyChanged(nameof(ApplyIsVisible));
+            OnPropertyChanged(nameof(IsReadOnly));
+            UpdateEditContact();
+        }
+
+        partial void OnEditContactChanged(Contact value)
+        {
+            OnPropertyChanged(nameof(EditContact));
+            OnPropertyChanged(nameof(ApplyIsEnabled));
+            if (_editContact != null)
+            {
+                _editContact.PropertyChanged += EditContact_PropertyChanged;
+            }
         }
 
         /// <summary>
