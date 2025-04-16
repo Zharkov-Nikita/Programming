@@ -257,6 +257,9 @@ namespace ViewModel
             CurrentContact = null;
         }
 
+        /// <summary>
+        /// Срабатывает при изменении текущего контакта.
+        /// </summary>
         partial void OnCurrentContactChanged(Contact value)
         {
             OnPropertyChanged(nameof(CurrentContact));
@@ -267,6 +270,9 @@ namespace ViewModel
             UpdateEditContact();
         }
 
+        /// <summary>
+        /// Срабатывает при изменении редактируемого контакта.
+        /// </summary>
         partial void OnEditContactChanged(Contact value)
         {
             OnPropertyChanged(nameof(EditContact));
