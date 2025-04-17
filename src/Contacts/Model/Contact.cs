@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
